@@ -1,0 +1,28 @@
+First things first a checklist:
+    is XAMPP : mysql and apache running?
+    am I running the server via: composer run dev
+    can I access the project from localhost/dashboard/Portfolio-3.0/public/
+
+Ok now if the test server isn't running follow these commands:
+    cd E:\XAMPP\htdocs\dashboard\Portfolio-3.0
+    npm install vite --save-dev
+    npx vite    // npx vite is recommended
+    // now control+click on the laravel link //
+
+    Now I can make all my changes
+    To compile to live/prod version:
+        Exit dev server gracefully 
+        by typing Ctl+C and type yes
+        then npx vite build
+
+
+To create a Model and Controller
+    php artisan make:model NameOfController -mcr\
+    // To update database/migrations/table.php
+    php artisan migrate
+    // To rollback mistake
+    php artisan migrate:rollback
+    // Target specific file? 
+    --path=database/migrations/NameOfModel.php
+    // Delete and re-run all Models?
+    php artisan migrate:refresh

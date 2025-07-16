@@ -1,0 +1,104 @@
+// Fonts
+// @import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+body {
+    background-color: $body-bg;
+}
+h1 {
+    font-size: 75px;
+}
+
+//////////////////////////////
+//////   Banner CSS    ///////
+
+#banner {
+    border: 0.5rem solid navy;
+    border-radius: 2rem;
+    border-style:outset;
+}
+
+
+
+
+
+
+
+//////////////////////////////
+
+///////////////////////////////////////
+///// Navigation Bar Adjustments  /////
+///////////////////////////////////////
+
+nav {
+    border: 0.5rem solid navy;
+    border-radius: 2rem;
+    border-style:inset;
+    background-color: lightblue !important;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+}
+.navbar-brand {
+    // This will bring the left part toward the center
+    margin-left: 2rem;
+}
+.navbar-toggler {
+    margin-right: 2rem;
+}
+.navbar-collapse {
+    margin-right: 2rem;
+}
+#collapseNav {
+    margin-left: 5rem;
+}
+//////////////////////////////////////
+// Animation for dropdown menu open //
+@keyframes dropdownFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+}
+
+.dropdown-menu.show {
+  display: block;
+  animation: dropdownFadeIn 0.5s ease forwards;
+}
+
+//////////////////////////////////////////
+
+
+.navbar-custom-rounded {
+  border-radius: 999px;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: burlywood;
+  transition: border-radius 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .navbar-custom-rounded {
+    border-radius: 0;
+
+  }
+}
+/////////////////////////////////////////
+
+
+
