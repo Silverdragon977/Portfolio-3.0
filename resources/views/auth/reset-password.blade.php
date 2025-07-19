@@ -1,0 +1,52 @@
+<form method="POST" action="{{ route('password.store') }}">
+    @csrf
+
+    <!-- Password Reset Token -->
+    <input type="hidden" name="token" value="{{ $request->route('token') }}">
+
+    <!-- Email Address -->
+    <div class="mb-3">
+        <label for="email" class="form-label">{{ __('Email') }}</label>
+        <input
+            id="email"
+            type="email"
+            name="email"
+            value="{{ old('email', $request->email) }}"
+            required autofocus autocomplete="username"
+            class="form-control"
+        />
+        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+    </div>
+
+    <!-- Password -->
+    <div class="mb-3">
+        <label for="password" class="form-label">{{ __('Password') }}</label>
+        <input
+            id="password"
+            type="password"
+            name="password"
+            required autocomplete="new-password"
+            class="form-control"
+        />
+        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="mb-3">
+        <label for="password_confirmation" class="form-label">{{ __('Confirm Password') }}</label>
+        <input
+            id="password_confirmation"
+            type="password"
+            name="password_confirmation"
+            required autocomplete="new-password"
+            class="form-control"
+        />
+        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+    </div>
+
+    <div class="d-flex justify-content-end mt-4">
+        <x-primary-button>
+            {{ __('Reset Password') }}
+        </x-primary-button>
+    </div>
+</form>

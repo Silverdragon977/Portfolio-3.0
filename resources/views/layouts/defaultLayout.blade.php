@@ -20,7 +20,21 @@
         @include('navigationBar')
         @yield('header')
     </header>
+    <!-- Below we say hello to the user  -->
+        @php
+            $user = auth()->user();
+        @endphp
 
+        @if ($user)
+            @if ($user->role === 'admin')
+                <p>Hello Admin, {{ $user->name }}!</p>
+            @else
+                <p>Hello, {{ $user->name }}!</p>
+            @endif
+        @else
+            <p>Hello Guest!</p>
+        @endif
+    <!--  -->
     <main class="container-fluid px-5">
         @yield('mainContent')
     </main>
@@ -29,5 +43,26 @@
 
     </div>
 
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- TODO: Replace this Bootstrap CDN with Vite-managed assets for better bundling and version control -->
+<!-- <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const navLinks = document.querySelectorAll('.navbar-collapse .nav-link');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const bsCollapse = new bootstrap.Collapse(document.getElementById('main-nav'), { toggle: false });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navbarToggler.offsetParent !== null) { // only close on small screens
+                bsCollapse.hide();
+            }
+        });
+    });
+});
+</script> -->
 </body>
 </html>

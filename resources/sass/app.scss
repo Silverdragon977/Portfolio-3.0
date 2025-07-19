@@ -6,41 +6,29 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
-
 body {
     background-color: $body-bg;
 }
 h1 {
     font-size: 75px;
 }
-
 //////////////////////////////
 //////   Banner CSS    ///////
-
 #banner {
-    border: 0.5rem solid navy;
-    border-radius: 2rem;
+    border: 0.25rem solid navy;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
     border-style:outset;
 }
-
-
-
-
-
-
-
-//////////////////////////////
-
 ///////////////////////////////////////
-///// Navigation Bar Adjustments  /////
-///////////////////////////////////////
-
+///// Navigation Bar Adjustments  
 nav {
-    border: 0.5rem solid navy;
-    border-radius: 2rem;
+    border: 0.25rem solid navy;
     border-style:inset;
     background-color: lightblue !important;
-    border-radius: 999px;
+    border-radius: 10px;
     transition: all 0.3s ease;
 }
 .navbar-brand {
@@ -56,8 +44,8 @@ nav {
 #collapseNav {
     margin-left: 5rem;
 }
-//////////////////////////////////////
-// Animation for dropdown menu open //
+/////////////////////////////////////////////
+// Navigation Animation for dropdown
 @keyframes dropdownFadeIn {
   0% {
     opacity: 0;
@@ -68,20 +56,16 @@ nav {
     transform: translateY(0);
   }
 }
-
 .dropdown-menu {
   display: none;
   opacity: 0;
 }
-
 .dropdown-menu.show {
   display: block;
   animation: dropdownFadeIn 0.5s ease forwards;
 }
-
 //////////////////////////////////////////
-
-
+// Navigation bar CSS
 .navbar-custom-rounded {
   border-radius: 999px;
   padding-left: 1.5rem;
@@ -91,7 +75,6 @@ nav {
   background-color: burlywood;
   transition: border-radius 0.3s ease;
 }
-
 @media (max-width: 768px) {
   .navbar-custom-rounded {
     border-radius: 0;
@@ -99,6 +82,88 @@ nav {
   }
 }
 /////////////////////////////////////////
+// Login & Register CSS
+.formContainer {
+  text-align: center;
+  max-width: 60%;
+  margin: auto;         // center horizontally + vertical spacing
+  background-color: #fff;    // white background
+  border: solid navy 1px;
+  border-radius: 0.5rem;     // rounded corners
+  box-shadow: 8px 8px 12px rgba(0,0,0,0.2); // subtle shadow
+  padding: 2rem;      // padding inside container
+}
+table.authTable {
+    background-color: #fff;    // white background
+    width: 100%;             // table fills container width
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
 
+    th {
+      text-align: center;
+      background-color: #fff;
+      // padding: 0.5rem;
+      vertical-align: center;
+      margin-top: 0.1rem;
+    }
 
+    td {
+      background-color: #fff;    // white background
+      padding: 0.5rem;
+      vertical-align: center;
+    }
 
+    tr:not(:last-child) {
+      border-bottom: 1px solid #e5e7eb;  // subtle line between rows
+    }
+    label {
+      font-weight: 600;
+      // color: #374151;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: auto;
+      min-width: none;
+      max-width: 100%;
+      padding: 0.2rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.375rem;
+    }
+  tr.responsive-row {
+    @media (max-width: 767.98px) {
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    th.responsive-cell,
+    td.responsive-cell {
+      @media (max-width: 767.98px) {
+        display: block;
+        width: 100%;
+        text-align: left;
+      }
+    }
+
+    td.responsive-cell input {
+      @media (max-width: 767.98px) {
+        width: 100% !important;
+        max-width: 100%;
+      }
+    }
+  }
+}
+//////////////////////////////////////////////
+//   Clicker Hero CSS            
+#gameBorder {
+  border: black solid 5px;
+  background-color: #fff;
+  min-height: 300px;
+}
+#gamecontent {
+  text-align: center;
+  vertical-align: center;
+}
+////////////////////////////////////////////////

@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-md navbar-light navbar-custom-rounded">
+<nav class="navbar navbar-expand-md navbar-light">
       <div class="container-fluid">
         <a href='{{ route('homePage') }}' class="navbar-brand">
-         <span class="fw-bold text-secondary">MichaelHoward977</span>
+         <span class="fw-bold text-secondary">Homepage</span>
         </a>
 
         <button class="navbar-toggler" type='button' data-bs-toggle="collapse"
@@ -10,17 +10,19 @@
             <span class='navbar-toggler-icon'></span>
         </button>
 
-      <div class='collapse navbar-collapse justify-content-end align-center' id='main-nav'>
-        <ul id='collapseNav' class='navbar-nav gap-2'> 
+      <div class='collapse navbar-collapse' id='main-nav'>
+        <ul class='navbar-nav ms-auto gap-2 align-items-center'> 
           <li class="nav-item dropdown me-1">
-            <a class="nav-link dropdown-toggle" href="{{ route('homePage') }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a id="portfolioDropdown"class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Portfolio
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown-menu" aria-labelledby="portfolioDropdown">
                 <li><a class="dropdown-item" href="{{ route('homePage') }}">Homepage</a></li>
                 <li><a class="dropdown-item" href="{{ route('projectsPage') }}">Projects</a></li>
                 <li><a class="dropdown-item" href="{{ route('resumePage') }}">Resume</a></li>
                 <li><a class="dropdown-item" href="{{ route('contactPage') }}">Contact</a></li>
+                <li><a class="dropdown-item" href="{{ route('adminPage') }}">Admin</a></li>
+
             </ul>
           </li>
           <li class="nav-item dropdown me-1">
@@ -28,11 +30,14 @@
                     Games
                 </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Click Hero</a></li>
+            <li><a class="dropdown-item" href="{{ route('clickHero') }}">Click Hero</a></li>
           </ul>
         </li>
-           <li class='nav-item d-none d-md-inline'>
-                <a class='btn btn-secondary' href='{{ route('homePage') }}'>Login/SignUp</a>
+           <li class='nav-item'>
+                <a class='btn btn-secondary' href='{{ route('login') }}'>Login</a>
+            </li>
+            <li class='nav-item'>
+                <a class='btn btn-secondary' href='{{ route('register') }}'>Register</a>
             </li>
         </ul>
       </div>
