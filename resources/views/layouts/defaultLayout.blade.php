@@ -24,17 +24,21 @@
         @php
             $user = auth()->user();
         @endphp
-
         @if ($user)
             @if ($user->role === 'admin')
-                <p>Hello Admin, {{ $user->name }}!</p>
+                <p>Hello {{ $user->name }}, you are now an {{ $user->role }}!</p>
             @else
-                <p>Hello, {{ $user->name }}!</p>
+                <p>Welcome back {{ $user->name }}!</p>
             @endif
         @else
-            <p>Hello Guest!</p>
+            <!-- If visitor don't show -->
         @endif
-    <!--  -->
+    <!-- Now we put errors here -->
+     @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
     <main class="container-fluid px-5">
         @yield('mainContent')
     </main>

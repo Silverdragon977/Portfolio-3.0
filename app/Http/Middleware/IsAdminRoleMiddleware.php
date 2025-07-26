@@ -16,13 +16,12 @@ class IsAdminRoleMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-       // Check if the user is authenticated and their role is 'admin'
-        if (Auth::check() && Auth::user()->role !== 'admin') {
-            // If the user is not an admin, redirect them with an error message
-            return redirect()->route('homePage')->with('error', 'Unauthorized access');
+        $user = Auth::user();
+
+        if (!$user || $user->role !== 'admin') {
+            return redirect('/');
         }
 
-        // Allow the request to proceed if the user is an admin
         return $next($request);
     }
 }
