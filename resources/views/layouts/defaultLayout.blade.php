@@ -6,7 +6,7 @@
     <title>Home</title>
     <!-- Order Matters Here -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    @vite('resources/sass/app.scss')
+    @vite('resources/scss/app.scss')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     @vite('resources/js/app.js')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,17 +24,21 @@
         @php
             $user = auth()->user();
         @endphp
-
         @if ($user)
             @if ($user->role === 'admin')
-                <p>Hello Admin, {{ $user->name }}!</p>
+                <p>Hello {{ $user->name }}, you are now an {{ $user->role }}!</p>
             @else
-                <p>Hello, {{ $user->name }}!</p>
+                <p>Welcome back {{ $user->name }}!</p>
             @endif
         @else
-            <p>Hello Guest!</p>
+            <!-- If visitor don't show -->
         @endif
-    <!--  -->
+    <!-- Now we put errors here -->
+     @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+    @endif
     <main class="container-fluid px-5">
         @yield('mainContent')
     </main>

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('languages');
             $table->string('github_link');
-            $table->text('full_description');
-            $table->longText('short_description');
+            $table->longText('full_description');
+            $table->text('short_description');
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@ Route::get('/contact', function () {
 
 Route::get('/admin', function () {
     return view('protectedWebPages.indexAdmin');
-})->middleware('isAdminRole')->name('adminPage');
+})->middleware('admin')->name('adminPage');
 
 Route::get('/games', function(){
     return view('webpages.clickHero');

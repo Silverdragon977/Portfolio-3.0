@@ -26,19 +26,34 @@
             </ul>
           </li>
           <li class="nav-item dropdown me-1">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Games
-                </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ route('clickHero') }}">Click Hero</a></li>
-          </ul>
-        </li>
-           <li class='nav-item'>
-                <a class='btn btn-secondary' href='{{ route('login') }}'>Login</a>
-            </li>
-            <li class='nav-item'>
-                <a class='btn btn-secondary' href='{{ route('register') }}'>Register</a>
-            </li>
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                 Games
+              </a>
+              <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ route('clickHero') }}">Click Hero</a></li>
+              </ul>
+          </li>
+          <li class='nav-item'>
+              <a class='btn btn-secondary' href='{{ route('login') }}'>Login</a>
+          </li>
+          <li class='nav-item'>
+               <a class='btn btn-secondary' href='{{ route('register') }}'>Register</a>
+          </li>
+          @php
+              $user = auth()->user();
+          @endphp
+          @if ($user)
+              @if ($user->role === 'admin' || $user->role === 'user')
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+              @else
+                  <!-- Do not render logout button -->
+              @endif
+          @else
+              <!-- Do not render logout button -->
+          @endif
         </ul>
       </div>
     </div>
