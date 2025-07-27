@@ -11,6 +11,7 @@ This website is my personal portfolio website. I designed it with the following 
 - Typescript/React for dynamic content
 - Phaser for website game development
 
+## About Me
 I will be updating my website periodically with new features. As the President of the CS Club at Bemidji State University I host (https://bemidjicsclub.com) for myself and other cs students. This website allow the cs students of Bemidji show off their own web development skills and list their portfolio on their resume! If you want to contact me, you can do so on my website @ (https://bemidjicsclub.com/michaelh) 
 
 ## License
