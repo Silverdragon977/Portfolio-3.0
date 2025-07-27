@@ -15,8 +15,20 @@ This website is my personal portfolio website. I designed it with the following 
 I will be updating my website periodically with new features. As the President of the CS Club at Bemidji State University I host (https://bemidjicsclub.com) for myself and other cs students. This website allow the cs students of Bemidji show off their own web development skills and list their portfolio on their resume! If you want to contact me, you can do so on my website @ (https://bemidjicsclub.com/michaelh) 
 
 ## License
+This project is licensed under a custom license:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p align="center">Personal and Educational Use Only
+You may clone, fork, and learn from this repository for personal or educational purposes.
+You may not redistribute, sell, sublicense, or use any part of this project in commercial products or services without explicit written permission.
+
+See the LICENSE file for full details.</p>
+
+### Cloning Repo
+Run this command in the directory/folder you choose:
+    
+
+
+
 
 ## Made with Laravel Framework
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
