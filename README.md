@@ -17,11 +17,11 @@ I will be updating my website periodically with new features. As the President o
 ## License
 This project is licensed under a custom license:
 
-<p align="center">Personal and Educational Use Only
-You may clone, fork, and learn from this repository for personal or educational purposes.
-You may not redistribute, sell, sublicense, or use any part of this project in commercial products or services without explicit written permission.
+Personal and Educational Use Only
+<t>You may clone, fork, and learn from this repository for personal or educational purposes.
+<t>You may not redistribute, sell, sublicense, or use any part of this project in commercial products or services without explicit written permission.
 
-See the LICENSE file for full details.</p>
+See the LICENSE file for full details.
 
 ### Cloning Repo
 Run this command in the directory/folder you choose:
