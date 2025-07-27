@@ -26,3 +26,6 @@ prod.env
 .htaccess
 prod.htaccess
 runningProdChecklist
+/storage/logs/*
+/storage/framework/*
+!storage/framework/.gitignore
