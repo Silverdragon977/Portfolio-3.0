@@ -22,9 +22,9 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
-prod.env
+prod.env.txt
 .htaccess
-prod.htaccess
+prod.htaccess.txt
 runningProdChecklist
 /storage/logs/*
 /storage/framework/*

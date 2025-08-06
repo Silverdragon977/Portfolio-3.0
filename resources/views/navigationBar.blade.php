@@ -21,7 +21,7 @@
                 <li><a class="dropdown-item" href="{{ route('projectsPage') }}">Projects</a></li>
                 <li><a class="dropdown-item" href="{{ route('resumePage') }}">Resume</a></li>
                 <li><a class="dropdown-item" href="{{ route('contactPage') }}">Contact</a></li>
-                <li><a class="dropdown-item" href="{{ route('adminPage') }}">Admin</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.index') }}">Admin</a></li>
 
             </ul>
           </li>
