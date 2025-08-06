@@ -22,15 +22,15 @@
                     </div>
                 @endif
             </div>
-                <button><a href="{{ route('admin.createProject') }}">Create Project</a></button>
-            <div>
-                <table border="1">
+                <a href="{{ route('admin.createProject') }}"><button type="button">Create Project</button></a>
+            <div class="table-responsive">
+                <table class="table table-hover table-dark table-striped table-sm w-100">
                     <tr>
                         <th>Title</th>
                         <th>Languages</th>
                         <th>Github Link</th>
                         <th>Description</th>
-                        <th>TLDR</th>
+                        <th>Summary</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -38,10 +38,10 @@
                         <tr>
                             <td>{{ $project->title }}</td>
                             <td>{{ $project->languages }}</td>
-                            <td>{{ $project->github_link }}</td>
-                            <td>{{ $project->full_description }}</td>
+                            <td><a href="{{ $project->github_link }}"><button type="button">View on Github</button></a></td>
+                            <!-- <td>{{ $project->full_description }}</td> ## Too long and is a README available on github -->
                             <td>{{ $project->short_description }}</td>
-                            <td><a href="{{ route('admin.editProject', ['project' => $project]) }}"></a></td>
+                            <td><a href="{{ route('admin.editProject', ['project' => $project]) }}"><button type="button">Edit</button></a></td>
                             <td>
                                 <form method="post" action="{{ route('admin.deleteProject', ['project' => $project]) }}">
                                     @csrf

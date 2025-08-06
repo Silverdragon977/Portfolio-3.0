@@ -7,7 +7,7 @@
       <a href="https://github.com/Silverdragon977" class="btn btn-outline-dark btn-floating m-1" role="button">
         <i class="fab fa-github"></i>
       </a>
-      <a href="www.linkedin.com/in/michael-howard-919761337" class="btn btn-outline-dark btn-floating m-1" role="button">
+      <a href="https://linkedin.com/in/michael-howard-919761337" class="btn btn-outline-dark btn-floating m-1" role="button">
         <i class="fab fa-linkedin-in"></i>
       </a>
 
