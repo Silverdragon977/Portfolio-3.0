@@ -42,10 +42,10 @@ class AdminRouteController extends Controller
         ]);
         
         $project->update($data);
-        return redirect(route('admin.index'))->with('sucess', 'Project Updated Successfully');
+        return redirect(route('admin.index'))->with('success', 'Project Updated Successfully');
     }
     public function deleteProject(GithubProjects $project){
         $project->delete();
-        return redirect(route('admin.index'))->with('sucess', 'Project Deleted Successfully');
+        return redirect(route('admin.index'))->with('success', 'Project Deleted Successfully');
     }
 }

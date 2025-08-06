@@ -15,7 +15,7 @@
                 </ul>
             </div>
             <div>
-                @if(session()->has('sucess'))
+                @if(session()->has('success'))
                     <div>
                         {{ session('success') }}
                     </div>

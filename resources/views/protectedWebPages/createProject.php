@@ -14,7 +14,7 @@
                 @endforeach
             </ul>
         </div>
-        <form method="post" actions="{{route('admin.storeProject')}}">
+        <form method="post" action="{{route('admin.storeProject')}}">
             @csrf
             @method('post')
             <!-- To submit form we need a Route::post() -->
