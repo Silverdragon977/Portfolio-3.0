@@ -5,3 +5,10 @@ npm run build
 sudo php artisan migrate --force
 sudo php artisan optimize:clear
 sudo php artisan optimize
+php artisan route:clear
+php artisan config:clear
+php artisan cache:clear
+php artisan view:clear
+
+All implemented in the pullFromGitClean.sh
+bash pullFromGitClean.sh

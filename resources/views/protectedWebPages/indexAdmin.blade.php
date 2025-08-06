@@ -13,6 +13,7 @@
                         <li>{{$error}}</li>
                     @endforeach
                 </ul>
+                @endif
             </div>
             <div>
                 @if(session()->has('success'))
