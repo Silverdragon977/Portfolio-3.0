@@ -35,9 +35,9 @@
         @endif
     <!-- Now we put errors here -->
      @if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
     @endif
     <main class="container-fluid px-5">
         @yield('mainContent')
