@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminRouteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Models\GithubProjects; 
 
 
 ## UnProtected Routes
@@ -13,17 +13,13 @@ Route::get('/', function () {
 })->name('homePage');
 
 Route::get('/projects', function () {
-    return view('webpages.projects');
+    $projects = GithubProjects::all();
+    return view('webpages.projects', compact('projects'));
 })->name('projectsPage');
 
 Route::get('/resume', function () {
     return view('webpages.resume');
 })->name('resumePage');
-
-Route::get('/contact', function () {
-    return view('webpages.contact');
-})->name('contactPage');
-
 
 
 ## Protected Routes
@@ -31,7 +27,9 @@ Route::get('/games', function(){
     return view('webpages.clickHero');
 })->middleware('auth')->name('clickHero');
 
-
+Route::get('/contact', function () {
+    return view('webpages.contact');
+})->middleware('auth')->name('contactPage');
 
 ## User Profile Page Routes
 

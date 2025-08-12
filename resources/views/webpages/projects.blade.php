@@ -13,8 +13,6 @@
                         <th>Languages</th>
                         <th>Github Link</th>
                         <th>Summary</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
                     </tr>
                     @foreach($projects as $project)
                         <tr>
