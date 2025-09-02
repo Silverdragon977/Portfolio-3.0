@@ -41,6 +41,7 @@
     @endif
     <main class="container-fluid px-5">
         @yield('mainContent')
+        @yield('secondaryContent')
     </main>
 
     @include('footer')
