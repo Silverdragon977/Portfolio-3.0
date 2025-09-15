@@ -1,0 +1,37 @@
+First thing for the admin panel is to setup the adminPanelController (AdminRouteController Here)
+    php artisan make:model ModelName -mcr    OR   php artisan make:model Comments -mcr
+Next we need to add the login system and add admin roles for users
+    #add login system specifics
+Lets now focus on links in the web.php for admin and login
+    ##############################################################
+    ########     Routes Protected with Authorization     #########
+    ##############################################################
+    Route::middleware(['auth'])->group(function(){
+        Route::get('/contact', fn()=> view('webpages.contact'))->name('contactPage');
+        Route::get('/games', fn()=>view('webpages.click-hero'))->name('clickHero');
+        ##
+        # Dashboard need Authorization and Verification
+        Route::get('dashboard', fn()=> view('dashboard'))->middleware('verified')->name('dashboard');
+        ##
+        # User Profile Page Routes
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+    ##############################################################
+    ##
+    ##
+    ##############################################################
+    ########    Admin Panel Routes    ############################
+    ##############################################################
+
+    Route::middleware(['auth', 'admin'])->group(function() {
+        Route::get('/admin', [AdminRouteController::class, 'index'])->name('admin.index');
+        Route::resource('projects', GithubProjectsController::class);
+        ## Add more resources here
+        ## Route::resource('comments', CommentController::class);
+        ## Route::resource('users', UserController::class);
+    });
+    ##############################################################
+    ##############################################################
+

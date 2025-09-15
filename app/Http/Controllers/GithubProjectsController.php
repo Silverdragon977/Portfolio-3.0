@@ -18,11 +18,8 @@ class GithubProjectsController extends Controller
         $this->middleware(['auth', 'is_admin'])->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
-    {
+    { ## works for both public and admin
         $projects = GithubProjects::all();
 
         if (auth()->check() && auth()->user()->role === 'admin') {
@@ -37,8 +34,11 @@ class GithubProjectsController extends Controller
      */
     public function create()
     {
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return view('admin.github_projects.create');
+        }
         // Only accesable from admin!
-        return view('admin.github_projects.create');
+        return view('webpages.projects');
     }
 
     /**
@@ -46,18 +46,20 @@ class GithubProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        // Only accesable from admin!
-                $validated = $request->validate([
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            
+            $validated = $request->validate([
             'title' => 'required|string',
             'languages' => 'required|string',
             'github_link' => 'required|url',
             'short_description' => 'required|string|max:1000',
             'full_description' => 'required|string',
-        ]);
-
-        GithubProjects::create($validated);
-        return redirect()->route('admin.github_projects.index')->with('success', 'Project created!');
-    
+            ]);
+            GithubProjects::create($validated);
+            return redirect()->route('admin.github_projects.index')
+                            ->with('success', 'Project created!');
+        }
+        return view('webpages.projects');
     }
 
     /**
@@ -73,8 +75,10 @@ class GithubProjectsController extends Controller
      */
     public function edit(GithubProjects $githubProjects)
     {
-        // Only accesable from admin!
-        return view('admin.github_projects.edit', compact('githubProjects'));
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            return view('admin.github_projects.edit', compact('githubProjects'));
+        }
+        return view('webpages.projects');
     }
 
     /**
@@ -82,17 +86,18 @@ class GithubProjectsController extends Controller
      */
     public function update(Request $request, GithubProjects $githubProjects)
     {
-        $validated = $request->validate([
-            'title' => 'required|string',
-            'languages' => 'required|string',
-            'github_link' => 'required|url',
-            'short_description' => 'required|string|max:1000',
-            'full_description' => 'required|string',
-        ]);
-
-        $githubProjects->update($validated);
-
-        return redirect()->route('admin.github_projects.index')->with('success', 'Project updated!');
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            $validated = $request->validate([
+                'title' => 'required|string',
+                'languages' => 'required|string',
+                'github_link' => 'required|url',
+                'short_description' => 'required|string|max:1000',
+                'full_description' => 'required|string',
+            ]);
+            $githubProjects->update($validated);
+            return redirect()->route('admin.github_projects.index')->with('success', 'Project updated!');
+        }
+        return view('webpages.projects');
     }
 
     /**
@@ -100,7 +105,10 @@ class GithubProjectsController extends Controller
      */
     public function destroy(GithubProjects $githubProjects)
     {
-        $githubProjects->delete();
-        return redirect()->route('admin.github_projects.index')->with('success', 'Project deleted!');
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            $githubProjects->delete();
+            return redirect()->route('admin.github_projects.index')->with('success', 'Project deleted!');
+        }
+        return view('webpages.projects');
     }
 }
