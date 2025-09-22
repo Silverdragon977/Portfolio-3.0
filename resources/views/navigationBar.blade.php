@@ -18,7 +18,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="portfolioDropdown">
                 <li><a class="dropdown-item" href="{{ route('homePage') }}">Homepage</a></li>
-                <li><a class="dropdown-item" href="{{ route('projectsPage') }}">Projects</a></li>
+                <li><a class="dropdown-item" href="{{ route('projects.index') }}">Projects</a></li>
                 <li><a class="dropdown-item" href="{{ route('resumePage') }}">Resume</a></li>
                 <li><a class="dropdown-item" href="{{ route('contactPage') }}">Contact</a></li>
                 <li><a class="dropdown-item" href="{{ route('admin.index') }}">Admin</a></li>
