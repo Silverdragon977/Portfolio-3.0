@@ -23,7 +23,7 @@ Route::get('/resume', fn () => view('webpages.resume'))->name('resumePage');
 ##############################################################
 Route::middleware(['auth'])->group(function(){
     Route::get('/games', fn()=>view('webpages.click-hero'))->name('clickHero');
-    Route::get('/contact', [CommentController::class, 'create'])->name('contact');
+    Route::get('/contact', [CommentController::class, 'create'])->name('contactPage');
     Route::post('/contact', [CommentController::class, 'store'])->name('contact.store');
     ##
     # Dashboard need Authorization and Verification
