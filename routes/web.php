@@ -13,7 +13,7 @@ use Symfony\Component\Console\Exception\CommandNotFoundException;
 #############################################################
 Route::get('/',fn() => view('index'))->name('homePage');
 ## This will call the publicIndex for the public route /projects as projectsPage
-Route::get('/projects', [GithubProjectsController::class, 'publicIndex'])->name('projectsPage'); 
+Route::get('/projects', [GithubProjectsController::class, 'index'])->name('projectsPage'); 
 Route::get('/resume', fn () => view('webpages.resume'))->name('resumePage');
 ##############################################################
 ##
