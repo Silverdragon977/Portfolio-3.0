@@ -9,7 +9,8 @@ class CommentController extends Controller
 {
 
     public function __construct() {
-        $this->middleware(['auth', 'is_admin'])->only(['store', 'edit', 'update', 'destroy']);
+        $this->middleware('auth');
+        $this->middleware('admin')->only(['index', 'destroy']);
 
     }
     public function index()
@@ -30,7 +31,7 @@ class CommentController extends Controller
     public function create()
     {
         $user = auth()->user(); ## Get user and pass session variable to view
-        return view('comments.create', ['name' => $user->name, 'email' => $user->email]);
+        return view('webpages.contact', ['name' => $user->name, 'email' => $user->email]);
     }
 
     /**
@@ -51,7 +52,9 @@ class CommentController extends Controller
             'comment' => $validated['comment']
         ]);
         
-        return redirect()->route('comments.create')->with('success', 'Comment Posted!');
+        return redirect()
+        ->route('comments.create')
+        ->with('success', 'Comment Posted!');
     }
 
     /**
@@ -83,7 +86,10 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment)
     {
-        $comment->delete();
-        return redirect()->route('admin.comments.index')->with('success', 'Comment Deleted');
+         if (auth()->check() && auth()->user()->role === 'admin') {
+                $comment->delete();
+                return redirect()->route('admin.comments.index')->with('success', 'Comment Deleted');
+            }
+        redirect()->route('homePage');
     }
 }

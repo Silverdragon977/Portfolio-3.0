@@ -5,6 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GithubProjectsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Console\Exception\CommandNotFoundException;
 
 
 #############################################################
@@ -21,8 +22,9 @@ Route::get('/resume', fn () => view('webpages.resume'))->name('resumePage');
 ########     Routes Protected with Authorization     #########
 ##############################################################
 Route::middleware(['auth'])->group(function(){
-    Route::get('/contact', fn()=> view('webpages.contact'))->name('contactPage');
     Route::get('/games', fn()=>view('webpages.click-hero'))->name('clickHero');
+    Route::get('/contact', [CommentController::class, 'create'])->name('contact');
+    Route::post('/contact', [CommentController::class, 'store'])->name('contact.store');
     ##
     # Dashboard need Authorization and Verification
     Route::get('dashboard', fn()=> view('dashboard'))->middleware('verified')->name('dashboard');

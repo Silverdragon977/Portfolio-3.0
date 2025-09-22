@@ -1,4 +1,6 @@
-    @section('secondaryContent')
+<!-- Not used anymore? -->    
+    
+    <!-- @section('secondaryContent')
         <h1>Projects</h1>
         <div id="ProjectsTablePublic"  class="table-responsive">
                 <table class="table table-hover table-dark table-striped table-sm w-100">
@@ -15,4 +17,4 @@
                         </tr>
                     @endforeach
                 </table>
-    @endsection
+    @endsection -->
