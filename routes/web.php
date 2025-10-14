@@ -1,5 +1,5 @@
 <?php
-/ /routes/web.php
+// /routes/web.php
 use App\Http\Controllers\AdminRouteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GithubProjectsController;
