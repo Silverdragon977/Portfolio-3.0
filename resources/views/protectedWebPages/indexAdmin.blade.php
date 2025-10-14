@@ -24,7 +24,7 @@
         <div id="projectsSection">
 
             <h2>Projects</h2>
-                <a href="{{ route('admin.createProject') }}"><button type="button">Create Project</button></a>
+                <a href="{{ route('createProject') }}"><button type="button">Create Project</button></a>
             <!----  Projects Section  ----->  
             <div id="ProjectsTableAdmin" class="table-responsive">
                 <table class="table table-hover table-dark table-striped table-sm w-100">
@@ -70,7 +70,7 @@
                 <!-- <th>Email</th> These will come from users table     -->
                 <!-- <th>Name</th>                                       -->
                 </tr>
-                <!-- @forelse($projects as $project)
+                <!-- @forelse($comments as $comment)
                     <tr>
                         <td>{{ $comment->Comment }}</td>
                         <td>{{ $comment->Email }}</td>
