@@ -19,9 +19,10 @@ class CommentController extends Controller
         $comments = Comment::all();
 
         if (auth()->check() && auth()->user()->role === 'admin') {
+            #If user and user is admin
             return view('admin.comments.index', compact('comments'));
         }
-
+        # If user
         return view('webpages.comments', compact('comments'));
     }
 

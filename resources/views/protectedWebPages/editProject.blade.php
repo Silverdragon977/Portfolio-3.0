@@ -15,7 +15,7 @@
                 </ul>
             @endif
         </div>
-        <form method="post" action="{{ route('admin.updateProject', ['project' => $project]) }}">
+        <form method="post" action="{{ route('admin.projects.edit', ['project' => $project]) }}">
             @csrf
             @method('put')
             <!-- To submit form we need a Route::post() -->

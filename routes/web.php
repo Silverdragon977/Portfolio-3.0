@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminRouteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GithubProjectsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicProjectController;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 
@@ -13,7 +14,7 @@ use Symfony\Component\Console\Exception\CommandNotFoundException;
 #############################################################
 Route::get('/',fn() => view('index'))->name('homePage');
 ## This will call the publicIndex for the public route /projects as projectsPage
-Route::get('/projects', [GithubProjectsController::class, 'index'])->name('projectsPage'); 
+Route::get('/projects', [PublicProjectController::class, 'index'])->name('projectsPage'); 
 Route::get('/resume', fn () => view('webpages.resume'))->name('resumePage');
 ##############################################################
 ##
@@ -43,8 +44,22 @@ Route::middleware(['auth'])->group(function(){
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin', [AdminRouteController::class, 'index'])->name('admin.index');
-    Route::resource('projects', GithubProjectsController::class);
+    //// Project Routes
+    // Create
+    Route::get('/admin/createProject', [GithubProjectsController::class, 'create'])->name('admin.projects.create');
+    Route::post('/admin/createProject', [GithubProjectsController::class, 'store'])->name('admin.projects.store');
+    // Edit/Update
+    Route::get('/admin/editProject/{project}', [GithubProjectsController::class, 'edit'])->name('admin.projects.edit');
+    Route::put('/admin/editProject/{project}', [GithubProjectsController::class, 'update'])->name('admin.projects.update');
+    // Delete
+    Route::delete('/admin/deleteProject/{project}', [GithubProjectsController::class, 'destroy'])->name('admin.projects.destroy');
+
+
+    // /comments Route
+    Route::delete('/admin/deleteComment/{project}', [CommentController::class, 'destroy'])->name('admin.comments.destroy');
+
     Route::resource('comments', CommentController::class);
+
     ## Add more resources here
     ## Route::resource('comments', CommentController::class);
     ## Route::resource('users', UserController::class);

@@ -15,7 +15,15 @@
                 </ul>
             @endif
         </div>
-        <form method="post" action="{{route('admin.storeProject')}}">
+        <div>
+        {{-- Success Message --}}
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+        </div>
+        <form method="post" action="{{route('admin.projects.store')}}">
             @csrf
             @method('post')
             <!-- To submit form we need a Route::post() -->

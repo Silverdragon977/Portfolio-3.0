@@ -9,9 +9,10 @@ use App\Models\Comment;
 class AdminRouteController extends Controller
 {
     public function index(){
-        $projects = GithubProjects::all();
+        
         ## Add other tables here
         ## also add to view compact()
+        $projects = GithubProjects::all();
         $comments = Comment::all();
         
 

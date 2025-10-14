@@ -65,7 +65,7 @@ class GithubProjectsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(GithubProjects $githubProjects)
+    public function show(GithubProjects $project)
     {
         //
     }
@@ -73,10 +73,10 @@ class GithubProjectsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(GithubProjects $githubProjects)
+    public function edit(GithubProjects $project)
     {
         if (auth()->check() && auth()->user()->role === 'admin') {
-            return view('admin.github_projects.edit', compact('githubProjects'));
+            return view('admin.github_projects.edit', compact('project'));
         }
         return view('webpages.projects');
     }
@@ -84,7 +84,7 @@ class GithubProjectsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, GithubProjects $githubProjects)
+    public function update(Request $request, GithubProjects $project)
     {
         if (auth()->check() && auth()->user()->role === 'admin') {
             $validated = $request->validate([
@@ -94,7 +94,7 @@ class GithubProjectsController extends Controller
                 'short_description' => 'required|string|max:1000',
                 'full_description' => 'required|string',
             ]);
-            $githubProjects->update($validated);
+            $project->update($validated);
             return redirect()->route('admin.github_projects.index')->with('success', 'Project updated!');
         }
         return view('webpages.projects');
@@ -103,10 +103,10 @@ class GithubProjectsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GithubProjects $githubProjects)
+    public function destroy(GithubProjects $project)
     {
         if (auth()->check() && auth()->user()->role === 'admin') {
-            $githubProjects->delete();
+            $project->delete();
             return redirect()->route('admin.github_projects.index')->with('success', 'Project deleted!');
         }
         return view('webpages.projects');
