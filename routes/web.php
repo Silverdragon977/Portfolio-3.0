@@ -56,9 +56,9 @@ Route::middleware(['auth', 'admin'])->group(function() {
 
 
     // /comments Route
-    Route::delete('/admin/deleteComment/{project}', [CommentController::class, 'destroy'])->name('admin.comments.destroy');
+    // Route::delete('/admin/deleteComment/{project}', [CommentController::class, 'destroy'])->name('admin.comments.destroy');
 
-    Route::resource('comments', CommentController::class);
+    // Route::resource('comments', CommentController::class);
 
     ## Add more resources here
     ## Route::resource('comments', CommentController::class);
