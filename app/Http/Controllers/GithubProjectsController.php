@@ -56,7 +56,7 @@ class GithubProjectsController extends Controller
             'full_description' => 'required|string',
             ]);
             GithubProjects::create($validated);
-            return redirect()->route('admin.github_projects.index')
+            return redirect()->route('admin.index')
                             ->with('success', 'Project created!');
         }
         return view('webpages.projects');
@@ -76,7 +76,7 @@ class GithubProjectsController extends Controller
     public function edit(GithubProjects $project)
     {
         if (auth()->check() && auth()->user()->role === 'admin') {
-            return view('admin.github_projects.edit', compact('project'));
+            return view('admin.projects.edit', compact('project'));
         }
         return view('webpages.projects');
     }
@@ -95,7 +95,7 @@ class GithubProjectsController extends Controller
                 'full_description' => 'required|string',
             ]);
             $project->update($validated);
-            return redirect()->route('admin.github_projects.index')->with('success', 'Project updated!');
+            return redirect()->route('admin.index')->with('success', 'Project updated!');
         }
         return view('webpages.projects');
     }
@@ -107,7 +107,7 @@ class GithubProjectsController extends Controller
     {
         if (auth()->check() && auth()->user()->role === 'admin') {
             $project->delete();
-            return redirect()->route('admin.github_projects.index')->with('success', 'Project deleted!');
+            return redirect()->route('admin.index')->with('success', 'Project deleted!');
         }
         return view('webpages.projects');
     }
