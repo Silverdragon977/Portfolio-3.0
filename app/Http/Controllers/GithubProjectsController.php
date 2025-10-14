@@ -15,7 +15,7 @@ class GithubProjectsController extends Controller
     // Constructs this controller if the user if verified and isAdmin
     public function __construct()
     {
-        $this->middleware(['auth', 'is_admin'])->only(['create', 'store', 'edit', 'update', 'destroy']);
+        $this->middleware(['auth', 'admin'])->only(['create', 'store', 'edit', 'update', 'destroy']);
     }
 
     public function index()
