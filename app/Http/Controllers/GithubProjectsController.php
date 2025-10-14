@@ -23,7 +23,9 @@ class GithubProjectsController extends Controller
         $projects = GithubProjects::all();
 
         if (auth()->check() && auth()->user()->role === 'admin') {
-            return view('admin.github_projects.index', compact('projects'));
+            return view('admin.github_projects.index', compact('projects')); 
+            // If needed update due to broken then uncomment below
+            //return view('protectedWebPages.indexAdmin)
         }
 
         return view('webpages.projects', compact('projects'));
@@ -35,7 +37,7 @@ class GithubProjectsController extends Controller
     public function create()
     {
         if (auth()->check() && auth()->user()->role === 'admin') {
-            return view('admin.github_projects.create');
+            return view('protectedWebPages.createProject');
         }
         // Only accesable from admin!
         return view('webpages.projects');
@@ -56,6 +58,7 @@ class GithubProjectsController extends Controller
             'full_description' => 'required|string',
             ]);
             GithubProjects::create($validated);
+
             return redirect()->route('admin.index')
                             ->with('success', 'Project created!');
         }
@@ -76,7 +79,7 @@ class GithubProjectsController extends Controller
     public function edit(GithubProjects $project)
     {
         if (auth()->check() && auth()->user()->role === 'admin') {
-            return view('admin.projects.edit', compact('project'));
+            return view('protectedWebPages.editProject', compact('project'));
         }
         return view('webpages.projects');
     }
