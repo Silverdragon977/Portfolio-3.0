@@ -1,5 +1,5 @@
 <?php
-# /routes/web.php
+/ /routes/web.php
 use App\Http\Controllers\AdminRouteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GithubProjectsController;
@@ -9,38 +9,38 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 
 
-#############################################################
-########    Public Routes    ################################
-#############################################################
+/////////////////////////////////////////////////////////////
+////////    Public Routes    ////////////////////////////////
+/////////////////////////////////////////////////////////////
 Route::get('/',fn() => view('index'))->name('homePage');
-## This will call the publicIndex for the public route /projects as projectsPage
+// This will call the publicIndex for the public route /projects as projectsPage
 Route::get('/projects', [PublicProjectController::class, 'index'])->name('projectsPage'); 
 Route::get('/resume', fn () => view('webpages.resume'))->name('resumePage');
-##############################################################
-##
-##
-##############################################################
-########     Routes Protected with Authorization     #########
-##############################################################
+//////////////////////////////////////////////////////////////
+//
+//
+//////////////////////////////////////////////////////////////
+////////     Routes Protected with Authorization     /////////
+//////////////////////////////////////////////////////////////
 Route::middleware(['auth'])->group(function(){
     Route::get('/games', fn()=>view('webpages.click-hero'))->name('clickHero');
     Route::get('/contact', [CommentController::class, 'create'])->name('contactPage');
     Route::post('/contact', [CommentController::class, 'store'])->name('contact.store');
-    ##
-    # Dashboard need Authorization and Verification
+    //
+    / Dashboard need Authorization and Verification
     Route::get('dashboard', fn()=> view('dashboard'))->middleware('verified')->name('dashboard');
-    ##
-    # User Profile Page Routes
+    //
+    / User Profile Page Routes
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-##############################################################
-##
-##
-##############################################################
-########    Admin Panel Routes    ############################
-##############################################################
+//////////////////////////////////////////////////////////////
+//
+//
+//////////////////////////////////////////////////////////////
+////////    Admin Panel Routes    ////////////////////////////
+//////////////////////////////////////////////////////////////
 
 Route::middleware(['auth', 'admin'])->group(function() {
     Route::get('/admin', [AdminRouteController::class, 'index'])->name('admin.index');
@@ -53,24 +53,23 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::put('/admin/editProject/{project}', [GithubProjectsController::class, 'update'])->name('admin.projects.update');
     // Delete
     Route::delete('/admin/deleteProject/{project}', [GithubProjectsController::class, 'destroy'])->name('admin.projects.destroy');
-
-
+});
     // /comments Route
     // Route::delete('/admin/deleteComment/{project}', [CommentController::class, 'destroy'])->name('admin.comments.destroy');
 
     // Route::resource('comments', CommentController::class);
 
-    ## Add more resources here
-    ## Route::resource('comments', CommentController::class);
-    ## Route::resource('users', UserController::class);
-});
-##############################################################
-##############################################################
+    // Add more resources here
+    // Route::resource('comments', CommentController::class);
+    // Route::resource('users', UserController::class);
+//});
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
-// ## Index
+// // Index
 // Route::get('/admin', [AdminRouteController::class, 'index']
 // )->middleware('admin')->name('admin.index');
-// ## Create New Project
+// // Create New Project
 // Route::get('/admin/createProject', [AdminRouteController::class, 'createProject']
 // )->middleware('admin')->name('admin.createProject');
 

@@ -70,7 +70,7 @@
                 <!-- <th>Email</th> These will come from users table     -->
                 <!-- <th>Name</th>                                       -->
                 </tr>
-                <!-- @forelse($comments as $comment)
+                {{-- <!-- @forelse($comments as $comment)
                     <tr>
                         <td>{{ $comment->Comment }}</td>
                         <td>{{ $comment->Email }}</td>
@@ -87,7 +87,7 @@
                         <tr>
                             <td>No Comments</td>
                         </tr>
-                @endforelse -->
+                @endforelse --> --}}
             </table>
         </div>
         <!----------------------------->
@@ -101,6 +101,7 @@
                     <th>E-mail</th>
                     <th>Role</th>
                 </tr>
+                {{-- 
                 <!-- @forelse($projects as $project)
                     <tr>
                         <td>{{ $comment->Comment }}</td>
@@ -119,6 +120,7 @@
                             <td>No Comments</td>
                         </tr>
                 @endforelse -->
+                --}}
             </table>
         </div>
     @endsection
