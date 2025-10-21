@@ -1,14 +1,11 @@
 <?php
+# /app/Http/Controllers/GithubProjectsController.php
 
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-
 use App\Models\GithubProjects;
-
 use Illuminate\Http\Request;
-
-
 
 class GithubProjectsController extends Controller
 {

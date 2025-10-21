@@ -53,6 +53,7 @@ Route::middleware(['auth', 'admin'])->group(function() {
     Route::put('/admin/editProject/{project}', [GithubProjectsController::class, 'update'])->name('admin.projects.update');
     // Delete
     Route::delete('/admin/deleteProject/{project}', [GithubProjectsController::class, 'destroy'])->name('admin.projects.destroy');
+
 });
     // /comments Route
     // Route::delete('/admin/deleteComment/{project}', [CommentController::class, 'destroy'])->name('admin.comments.destroy');

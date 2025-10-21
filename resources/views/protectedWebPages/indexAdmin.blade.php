@@ -62,13 +62,13 @@
         <!----------------------------->
         <!----  Comments Section  ----->
         <br>
-        <div id="CommentsTableAdmins" class="table-responsive">
+        <div id="CommentsTableAdmins" >  {{-- class="table-responsive"--}}
             <h2>Comments</h2>
             <table class="table table-hover table-dark table-striped table-sm w-100">
                 <tr>
                     <th>Comment</th>
-                <!-- <th>Email</th> These will come from users table     -->
-                <!-- <th>Name</th>                                       -->
+                    <th>Email</th>
+                    <th>Name</th>                                      
                 </tr>
                 {{-- <!-- @forelse($comments as $comment)
                     <tr>

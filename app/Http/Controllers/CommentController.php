@@ -1,6 +1,8 @@
 <?php
 # /app/Http/Controllers/CommentController.php
+#
 namespace App\Http\Controllers;
+
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -9,7 +11,7 @@ class CommentController extends Controller
 {
 
     public function __construct() {
-        $this->middleware('auth');
+        $this->middleware('auth')->only(['create', 'store']);
         $this->middleware('admin')->only(['index', 'destroy']);
 
     }
@@ -19,7 +21,7 @@ class CommentController extends Controller
         $comments = Comment::all();
 
         if (auth()->check() && auth()->user()->role === 'admin') {
-            #If user and user is admin
+            #If user and admin
             return view('admin.comments.index', compact('comments'));
         }
         # If user
@@ -48,13 +50,13 @@ class CommentController extends Controller
         ]);
 
         Comment::create([
-            'name' => $user->name,
+            'fullName' => $user->name,
             'email' => $user->email,
             'comment' => $validated['comment']
         ]);
         
         return redirect()
-        ->route('comments.create')
+        ->route('contactPage')
         ->with('success', 'Comment Posted!');
     }
 
