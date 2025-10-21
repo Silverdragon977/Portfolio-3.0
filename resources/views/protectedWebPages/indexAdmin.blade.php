@@ -66,17 +66,17 @@
             <h2>Comments</h2>
             <table class="table table-hover table-dark table-striped table-sm w-100">
                 <tr>
-                    <th>Comment</th>
+                    <th>Name</th>
                     <th>Email</th>
-                    <th>Name</th>                                      
+                    <th>Comment</th>                                      
                 </tr>
-                {{-- <!-- @forelse($comments as $comment)
+                @forelse($comments as $comment)
                     <tr>
-                        <td>{{ $comment->Comment }}</td>
-                        <td>{{ $comment->Email }}</td>
-                        <td>{{ $comment->Name }}</td>
+                        <td>{{ $comment->fullName }}</td>
+                        <td>{{ $comment->email }}</td>
+                        <td>{{ $comment->comment }}</td>
                         <td>
-                            <form method="post" action="{{ route('admin.deleteProject', ['project' => $project]) }}">
+                            <form method="post" action="{{ route('admin.comments.destroy', ['project' => $project]) }}">
                                 @csrf
                                 @method('delete')
                                 <input type="submit" value="Delete">
@@ -87,7 +87,7 @@
                         <tr>
                             <td>No Comments</td>
                         </tr>
-                @endforelse --> --}}
+                @endforelse
             </table>
         </div>
         <!----------------------------->
