@@ -29,7 +29,7 @@ php artisan view:cache || exit 1
 echo "♻️ Restarting queues..."
 php artisan queue:restart || true
 
-echo "♻️ Reloading PHP-FPM..."
-sudo service php8.2-fpm reload || true
+echo "♻️ Reloading PHP..."
+sudo systemctl reload apache2 || true
 
 echo "✅ Deployment complete!"
