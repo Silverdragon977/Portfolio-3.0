@@ -68,7 +68,8 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Comment</th>                                      
+                    <th>Comment</th> 
+                    <th>Delete</th>                                     
                 </tr>
                 @forelse($comments as $comment)
                     <tr>
@@ -76,9 +77,9 @@
                         <td>{{ $comment->email }}</td>
                         <td>{{ $comment->comment }}</td>
                         <td>
-                            <form method="post" action="{{ route('admin.comments.destroy', ['project' => $project]) }}">
+                            <form method="POST" action="{{ route('admin.comments.destroy', $comment) }}">
                                 @csrf
-                                @method('delete')
+                                @method('DELETE')
                                 <input type="submit" value="Delete">
                             </form>
                         </td>

@@ -56,7 +56,7 @@ class CommentController extends Controller
         ]);
         
         return redirect()
-        ->route('contactPage')
+        ->route('contact.create')
         ->with('success', 'Comment Posted!');
     }
 
@@ -91,7 +91,7 @@ class CommentController extends Controller
     {
          if (auth()->check() && auth()->user()->role === 'admin') {
                 $comment->delete();
-                return redirect()->route('admin.comments.index')->with('success', 'Comment Deleted');
+                return redirect()->route('admin.dashboard')->with('success', 'Comment Deleted');
             }
         redirect()->route('homePage');
     }

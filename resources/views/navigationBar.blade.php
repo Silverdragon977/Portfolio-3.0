@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light">
       <div class="container-fluid">
-        <a href='{{ route('homePage') }}' class="navbar-brand">
+        <a href='{{ route('home') }}' class="navbar-brand">
          <span class="fw-bold text-secondary">Homepage</span>
         </a>
 
@@ -17,11 +17,11 @@
               Portfolio
             </a>
             <ul class="dropdown-menu" aria-labelledby="portfolioDropdown">
-                <li><a class="dropdown-item" href="{{ route('homePage') }}">Homepage</a></li>
-                <li><a class="dropdown-item" href="{{ route('projectsPage') }}">Projects</a></li>
-                <li><a class="dropdown-item" href="{{ route('resumePage') }}">Resume</a></li>
-                <li><a class="dropdown-item" href="{{ route('contactPage') }}">Contact</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.index') }}">Admin</a></li>
+                <li><a class="dropdown-item" href="{{ route('home') }}">Homepage</a></li>
+                <li><a class="dropdown-item" href="{{ route('projects.index') }}">Projects</a></li>
+                <li><a class="dropdown-item" href="{{ route('resume') }}">Resume</a></li>
+                <li><a class="dropdown-item" href="{{ route('contact.create') }}">Contact</a></li>
+                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a></li>
 
             </ul>
           </li>
@@ -30,30 +30,30 @@
                  Games
               </a>
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{{ route('clickHero') }}">Click Hero</a></li>
+                  <li><a class="dropdown-item" href="{{ route('ClickHero') }}">Click Hero</a></li>
               </ul>
           </li>
-          <li class='nav-item'>
+
+        {{-- Rendering the login and register buttons for guests, and only the logout button for authenticated users --}}
+        {{-- User === guest --}}
+        @guest
+            <li class='nav-item'>
               <a class='btn btn-secondary' href='{{ route('login') }}'>Login</a>
           </li>
           <li class='nav-item'>
                <a class='btn btn-secondary' href='{{ route('register') }}'>Register</a>
           </li>
-          @php
-              $user = auth()->user();
-          @endphp
-          @if ($user)
-              @if ($user->role === 'admin' || $user->role === 'user')
+        @endguest
+
+        {{-- User === authenticated --}}
+        @auth
+            <li class='nav-item'>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="btn btn-secondary">Logout</button>
                 </form>
-              @else
-                  <!-- Do not render logout button -->
-              @endif
-          @else
-              <!-- Do not render logout button -->
-          @endif
+            </li>
+        @endauth
         </ul>
       </div>
     </div>
