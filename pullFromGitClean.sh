@@ -23,7 +23,6 @@ php artisan optimize:clear || exit 1
 
 echo "🚀 Rebuilding caches..."
 php artisan config:cache || exit 1
-php artisan route:cache || exit 1
 php artisan view:cache || exit 1
 
 echo "♻️ Restarting queues..."

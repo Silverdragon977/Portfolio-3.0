@@ -1,3 +1,19 @@
+@extends('layouts.defaultLayout')
+
+    @section('header')
+    @endsection
+        
+    @section('mainContent')
+        <h1>Profile</h1>
+        <div>
+            @if($errors->any())
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            @endif
+        </div>
 <div class="container py-5">
     <div class="row">
         <div class="col-md-12">
@@ -35,3 +51,4 @@
         </div>
     </div>
 </div>
+@endsection

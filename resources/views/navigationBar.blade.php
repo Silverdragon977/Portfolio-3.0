@@ -53,6 +53,9 @@
                     <button type="submit" class="btn btn-secondary">Logout</button>
                 </form>
             </li>
+            <li class='nav-item'>
+                <a class='btn btn-secondary' href='{{ route('profile.edit') }}'>Profile</a>
+            </li>
         @endauth
         </ul>
       </div>

@@ -22,10 +22,12 @@
             @endif
         </div>
         <div id="projectsSection">
-
+        <!----------------------------------------------------------->
+        <!----------------------------------------------------------->
+        <!---------     Projects Section     ------------------------>
+        <!----------------------------------------------------------->
             <h2>Projects</h2>
                 <a href="{{ route('admin.projects.create') }}"><button type="button">Create Project</button></a>
-            <!----  Projects Section  ----->  
             <div id="ProjectsTableAdmin" class="table-responsive">
                 <table class="table table-hover table-dark table-striped table-sm w-100">
                     <tr>
@@ -59,10 +61,12 @@
                     @endforelse
                 </table>
             </div>
-        <!----------------------------->
-        <!----  Comments Section  ----->
+        <!----------------------------------------------------------->
+        <!----------------------------------------------------------->
+        <!------------    Comments Section    ----------------------->
+        <!----------------------------------------------------------->
         <br>
-        <div id="CommentsTableAdmins" >  {{-- class="table-responsive"--}}
+        <div id="CommentsTableAdmins">  {{-- class="table-responsive"--}}
             <h2>Comments</h2>
             <table class="table table-hover table-dark table-striped table-sm w-100">
                 <tr>
@@ -91,37 +95,44 @@
                 @endforelse
             </table>
         </div>
-        <!----------------------------->
-
-        </div>
+        <!----------------------------------------------------------->
+        <!----------------------------------------------------------->
+        <!------------      Users Section     ----------------------->
+        <!----------------------------------------------------------->
+        <br>
         <div id="usersSection">
+            <h2>Users</h2>
             <table class="table table-hover table-dark table-striped table-sm w-100">
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
                     <th>E-mail</th>
                     <th>Role</th>
+                    <th>Delete</th>
                 </tr>
-                {{-- 
-                <!-- @forelse($projects as $project)
+                
+                @forelse($users as $user)
                     <tr>
-                        <td>{{ $comment->Comment }}</td>
-                        <td>{{ $comment->Email }}</td>
-                        <td>{{ $comment->Name }}</td>
+                        <td>{{ $user->id }}</td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->role }}</td>
                         <td>
-                            <form method="post" action="{{ route('admin.deleteProject', ['project' => $project]) }}">
+                            <form action="{{ route('admin.users.delete', $user->id) }}" method="POST">
                                 @csrf
-                                @method('delete')
-                                <input type="submit" value="Delete">
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm"
+                                    onclick="return confirm('Are you sure?')">
+                                    Delete
+                                </button>
                             </form>
                         </td>
                     </tr>
-                    @empty
-                        <tr>
-                            <td>No Comments</td>
-                        </tr>
-                @endforelse -->
-                --}}
+                @empty
+                    <tr>
+                        <td>No Users Found</td>
+                    </tr>
+                @endforelse
             </table>
         </div>
     @endsection

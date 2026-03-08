@@ -5,20 +5,37 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\GithubProjects;
 use App\Models\Comment;
+use App\Models\User;
 
 class AdminRouteController extends Controller
 {
     public function index(){
         
         ## Add other tables here
+        ## Add use App\Models\newModel 
         ## also add to view compact()
         $projects = GithubProjects::all();
         $comments = Comment::all();
+        $users = User::select('id', 'name', 'email', 'role')->get();
         
 
-        return view('protectedWebPages.indexAdmin', compact('projects', 'comments'));
+        return view('protectedWebPages.indexAdmin', compact('projects', 'comments', 'users'));
         
     }
+    public function deleteUser(User $user){
+        // Prevent admin from deleting themselves
+        if ($user->id === auth()->id()) {
+            return back()->with('error', 'You cannot delete yourself.');
+        }
+        if ($user->role === 'admin') {
+            return back()->with('error', 'You cannot delete another admin.');
+        }
+
+        $user->delete();
+
+        return back()->with('success', 'User ' . $user->name . ' deleted successfully.');
+    }
+
 }
 //     public function createProject(){
 //         return view('protectedWebPages.createProject');

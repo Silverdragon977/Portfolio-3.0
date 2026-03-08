@@ -64,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
         Route::patch('/profile', 'update')->name('profile.update');
+        Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
 });
 //////////////////////////////////////////////////////////////
@@ -105,6 +106,14 @@ Route::middleware(['auth', 'admin'])
         Route::delete('comments/{comment}', [CommentController::class, 'destroy'])
             ->name('comments.destroy');
             // Allows admin to delete comments from the contact form
+
+        Route::delete('/users/{user}', [AdminRouteController::class, 'deleteUser'])
+            ->name('users.delete');
+            // Allows admin to delete users from the admin panel
+
+
+
+
 });
 //////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
