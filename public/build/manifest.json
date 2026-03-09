@@ -1,8 +1,8 @@
 {
-  "resources/js/app.js": {
-    "file": "assets/app-CO1jSsZ9.js",
+  "resources/js/app.tsx": {
+    "file": "assets/app-BoG0bIvK.js",
     "name": "app",
-    "src": "resources/js/app.js",
+    "src": "resources/js/app.tsx",
     "isEntry": true
   },
   "resources/scss/app.scss": {
