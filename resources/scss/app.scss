@@ -4,8 +4,7 @@
 // Variables
 @import 'variables';
 
-// Bootstrap
-@import 'bootstrap/scss/bootstrap';
+
 body {
     background-color: $body-bg;
 }
@@ -162,8 +161,10 @@ table.authTable {
   background-color: #fff;
   min-height: 300px;
 }
-#gamecontent {
+#gameContent {
   text-align: center;
   vertical-align: center;
 }
 ////////////////////////////////////////////////
+/// // Bootstrap
+@import 'bootstrap/scss/bootstrap';

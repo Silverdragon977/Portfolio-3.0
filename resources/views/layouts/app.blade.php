@@ -12,7 +12,6 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
-        @vite(['resources/scss/app.scss', 'resources/js/app.js'])
     </head>
     <body class="font-sans">
         <div class="min-vh-100 bg-light">

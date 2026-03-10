@@ -12,15 +12,14 @@
 
         @if ($user)
             <div id="gameBorder">
-                <div id="gameContent">
-                    <p>Game coming soon!</p>
-                </div>
+                {{-- <div id="gameContent"> --}}
+                    <div id="clicker-hero-root"></div>
+                    <div> Clicker Hero ^^^^^</div>
+                    
+                {{-- </div> --}}
             </div>
-        @else
-            <p>Hello Guest!</p>
         @endif
-
-
-
-
+        @if (!$user)
+            <p class="text-center">Please log in to play the game.</p>
+        @endif
     @endsection
