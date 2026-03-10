@@ -1,33 +1,41 @@
+console.log('APP.TSX loaded successfully');
 import './bootstrap';
-
-console.log('JS running successfully');
-
 import Alpine from 'alpinejs';
-import 'bootstrap/dist/js/bootstrap.bundle';
+import * as bootstrap from 'bootstrap'
 
-declare global {
-    interface Window {
-        Alpine: typeof Alpine;
-    }
-}
+window.Alpine = Alpine;
+Alpine.start()
+
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import ClickerHero from './games/ClickerHero/ClickerHero';
+// function Test() {
+//     return (
+//         <div>
+//             <h1>React Test</h1>
+//         </div>
+//     );
+// }
 
-window.Alpine = Alpine;
-Alpine.start();
-
-console.log('Alpine and Bootstrap init successfully');
-
-// const clickerHeroRoot = document.getElementById('clicker-hero-root');
-// console.log('Clicker Hero root element:', clickerHeroRoot);
-// if (clickerHeroRoot) {
-//     const root = ReactDOM.createRoot(clickerHeroRoot);
-//     root.render(
+// const reactRoot = document.getElementById('react-root');
+// if (reactRoot) {
+//     ReactDOM.createRoot(reactRoot).render(
 //         <React.StrictMode>
-//             <ClickerHero />
+//             <Test />
 //         </React.StrictMode>
 //     );
 // }
+
+import ClickerHero from './games/ClickerHero/ClickerHero';
+const clickerHeroRoot = document.getElementById('clicker-hero-root');
+// console.log('Clicker Hero root element:', clickerHeroRoot);
+if (clickerHeroRoot) {
+    // const root = ReactDOM.createRoot(clickerHeroRoot);
+    ReactDOM.createRoot(clickerHeroRoot).render
+    (
+        <React.StrictMode>
+            <ClickerHero />
+        </React.StrictMode>
+    );
+}

@@ -9,18 +9,18 @@
     "devDependencies": {
         "@popperjs/core": "^2.11.6",
         "@types/alpinejs": "^3.13.11",
+        "@types/bootstrap": "^5.2.10",
         "@types/react": "^19.2.14",
         "@types/react-dom": "^19.2.3",
-        "@vitejs/plugin-react": "^5.1.4",
         "alpinejs": "^3.4.2",
         "autoprefixer": "^10.4.21",
         "axios": "^1.8.2",
         "bootstrap": "^5.2.3",
         "concurrently": "^9.0.1",
-        "laravel-vite-plugin": "^1.2.0",
+        "laravel-vite-plugin": "^2.1.0",
         "sass": "^1.56.1",
         "typescript": "^5.9.3",
-        "vite": "^6.3.5"
+        "vite": "^7.3.1"
     },
     "dependencies": {
         "react": "^18.3.1",

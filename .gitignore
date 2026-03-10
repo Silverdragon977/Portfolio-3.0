@@ -31,3 +31,4 @@ runningProdChecklist
 !storage/framework/.gitignore
 prod_db_dumps
 prod_db*
+*.notes

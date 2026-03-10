@@ -14,7 +14,7 @@
             <div id="gameBorder">
                 {{-- <div id="gameContent"> --}}
                     <div id="clicker-hero-root"></div>
-                    <div> Clicker Hero ^^^^^</div>
+                    
                     
                 {{-- </div> --}}
             </div>
