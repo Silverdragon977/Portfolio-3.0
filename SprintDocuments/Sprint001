@@ -1,0 +1,100 @@
+3/10/26
+
+# Sprint 001 – Clicker Hero Foundation
+
+## 📅 Duration
+Start Date: 03-10-26  
+End Date:   03-17-26  
+Length: 1 Week  
+
+---
+
+## 🎯 Sprint Goal
+Deliver a playable Clicker Hero MVP with:
+- Manual click scoring
+- Passive income system
+- Auto-save every 30 seconds
+- Load existing user score from database
+
+---
+
+## 📦 Scope (In Scope)
+
+### Frontend (React + TS)
+- [ ] Click button increases score
+- [ ] Passive score increment every second (basic)
+- [ ] State management structure
+- [ ] Auto-save timer
+- [ ] Fetch score on mount
+
+### Backend (Laravel)
+- [ ] Create ClickerHero model
+- [ ] Create migration with foreign key (user_id)
+- [ ] Create API route for saving score
+- [ ] Create API route for loading score
+- [ ] Add validation
+- [ ] Protect with auth middleware
+
+---
+
+## 🚫 Out of Scope
+- Leaderboards
+- Achievements
+- Animations
+- Sound effects
+- Multiple upgrades
+- Production performance optimization
+- Prestige System
+- Percentage Modifiers for passive income
+
+---
+
+## 🏗 Architecture Plan
+
+### Data Model
+ClickerHero Table:
+- id
+- user_id (foreign key)
+- score
+- prestige_level
+- updated_at
+
+### API Structure
+POST /api/clicker/save  
+GET /api/clicker/load  
+
+---
+
+## 🧪 Definition of Done
+
+- Score persists after refresh
+- No console errors
+- No database errors
+- Clean merge into main
+- Deployed to production
+- Works on mobile
+
+---
+
+## 🔄 CI/CD Plan
+- Feature branch: feature/clicker-hero
+- Merge to main after completion
+- Run deployment script
+- Verify production
+- Tag release v1.1.0 (Optional)
+
+---
+
+## 📊 Risk Assessment
+
+| Risk | Mitigation |
+|------|------------|
+| Merge conflicts | Merge main into feature weekly |
+| State bugs | Keep logic isolated in component |
+| API spam | Debounce save calls |
+
+---
+
+## 📝 Notes
+- Keep app.tsx minimal
+- All game logic inside /resources/js/games/ClickerHero
