@@ -1,0 +1,31 @@
+.clicker-hero {
+  padding: 1rem;
+}
+
+.clicker-hero-container {
+    background-color: gray;
+}
+
+/* The developer layout grid */
+.layout-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, minmax(60px, 1fr));
+  gap: 10px;
+
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Optional: helps you see placement while designing */
+.layout-grid > div {
+  /* Remove this later */
+  border: 1px dashed rgba(0,0,0,0.15);
+}
+
+.score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}

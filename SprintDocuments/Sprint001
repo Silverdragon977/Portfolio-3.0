@@ -1,5 +1,8 @@
 3/10/26
 
+Done Checkmark:  ✅
+Not Done or can't complete: ❌
+
 # Sprint 001 – Clicker Hero Foundation
 
 ## 📅 Duration
@@ -11,7 +14,7 @@ Length: 1 Week
 
 ## 🎯 Sprint Goal
 Deliver a playable Clicker Hero MVP with:
-- Manual click scoring
+- Manual click scoring ✅
 - Passive income system
 - Auto-save every 30 seconds
 - Load existing user score from database
@@ -21,9 +24,9 @@ Deliver a playable Clicker Hero MVP with:
 ## 📦 Scope (In Scope)
 
 ### Frontend (React + TS)
-- [ ] Click button increases score
+- [✅] Click button increases score
 - [ ] Passive score increment every second (basic)
-- [ ] State management structure
+- [✅] State management structure
 - [ ] Auto-save timer
 - [ ] Fetch score on mount
 
@@ -98,3 +101,11 @@ GET /api/clicker/load
 ## 📝 Notes
 - Keep app.tsx minimal
 - All game logic inside /resources/js/games/ClickerHero
+
+## Developement Log
+- Added CSS grid for UI arrangement
+- Implemented a max score and a way to check the score
+- Retained score in local client storage to keep score through session
+    This could result in cheating so remove the local storage or secure it
+    after implementing long term storage of scores
+
