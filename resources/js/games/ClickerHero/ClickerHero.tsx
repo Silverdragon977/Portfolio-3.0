@@ -16,15 +16,14 @@ export default function ClickerHero() {
     // Game State
     const [score, setScore] = useState<number>(0);
     const [multiplier, setMultiplier] = useState<number>(1);
-    ////////////////////////////////////////////////////////////////////////////////////////////
-    // useEffect is on load, and every 30 seconds to auto save the game data to local storage //     
-    /////////////////////////////////////////////////////////////////////////////////////////////
+
     
     // Loads the game data from load route when the component mounts
     useEffect(() => {
         loadGame();
     }, []);
 
+    // Auto-saves the game data every 30 seconds, but only if there have been changes since the last save
     useEffect(() => {
         const interval = setInterval(() => 
             {
@@ -33,11 +32,6 @@ export default function ClickerHero() {
         return () => clearInterval(interval);
     }, [score, multiplier]); 
  
-
-
-
-    //
-    /////////////////////////////////////////////////
     /////////////////////////////////////////////////
     // Button Click Game Logic                     //
     /////////////////////////////////////////////////
@@ -65,7 +59,6 @@ export default function ClickerHero() {
             console.log('No changes since last save, skipping save.');
             return;
         }
-
         const saveJsonData = {
             score: score,
             multiplier: multiplier,
@@ -91,6 +84,7 @@ export default function ClickerHero() {
             console.error(`Error saving data: ${error}`);
         }
     }
+
     const loadGame = async () => {
         try {
             const response = await fetch('/clickerhero/load');
@@ -143,7 +137,7 @@ export default function ClickerHero() {
                             <h1 style={{gridRow: "3 / span 2", gridColumn: "4 / span 6"}}>
                                 Cost: ${[10, 30, 90, 270, 810][Math.log2(multiplier)]} <br />
                             </h1>
-                            <button style={{gridRow: "3 / span 1", gridColumn: "2 / span 1"}} className="btn btn-outline-dark w-20 h-20" onClick={doubleClick}>
+                            <button style={{gridRow: "3 / span 1", gridColumn: "2 / span 1"}} className="btn btn-outline-dark" onClick={doubleClick}>
                                 Double Score
                             </button>
                         </div>

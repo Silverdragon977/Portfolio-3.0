@@ -27,16 +27,16 @@ Deliver a playable Clicker Hero MVP with:
 - [✅] Click button increases score
 - [ ] Passive score increment every second (basic)
 - [✅] State management structure
-- [ ] Auto-save timer
-- [ ] Fetch score on mount
+- [✅] Auto-save timer
+- [✅] Fetch score on mount
 
 ### Backend (Laravel)
-- [ ] Create ClickerHero model
-- [ ] Create migration with foreign key (user_id)
-- [ ] Create API route for saving score
-- [ ] Create API route for loading score
-- [ ] Add validation
-- [ ] Protect with auth middleware
+- [✅] Create ClickerHero model
+- [✅] Create migration with foreign key (user_id)
+- [✅] Create API route for saving score
+- [✅] Create API route for loading score
+- [✅] Add validation
+- [✅] Protect with auth middleware
 
 ---
 
@@ -59,7 +59,7 @@ ClickerHero Table:
 - id
 - user_id (foreign key)
 - score
-- prestige_level
+- prestige_level  // Out of Scope
 - updated_at
 
 ### API Structure
@@ -108,4 +108,12 @@ GET /api/clicker/load
 - Retained score in local client storage to keep score through session
     This could result in cheating so remove the local storage or secure it
     after implementing long term storage of scores
+- Added a manual save button
+- on load we load the users data from database
+- every 30 seconds with interval we check if there are unsaved changes and 
+  if none then we don't save, this saves on operations, otherwise we save the data
+- Removed local client storage to secure it
+- Extracted Double costs to global constant so array doesn't need to be made every time we double
+- Instead of creating a new record each save we use the user_id foreign key to updateOrCreate
+   this way the users data is updated on saves reducing the memory cost
 
