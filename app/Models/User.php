@@ -45,4 +45,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function clickerGames()
+    { // Every user should have one clicker game save
+        return $this->hasOne(ClickerGame::class);
+    }
 }

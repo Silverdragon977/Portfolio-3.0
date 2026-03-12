@@ -32,3 +32,6 @@ runningProdChecklist
 prod_db_dumps
 prod_db*
 *.notes
+db_dumps
+db_dumps/*
+!db_dumps/.gitkeep

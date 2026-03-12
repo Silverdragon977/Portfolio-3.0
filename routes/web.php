@@ -1,5 +1,6 @@
 <?php
 // /routes/web.php
+use App\Http\Controllers\APi\ClickerHeroController;
 use App\Http\Controllers\AdminRouteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GithubProjectsController;
@@ -51,6 +52,10 @@ Route::view('/resume', 'webpages.resume')->name('resume');
 // Refactored RESTful routes for authenticated users
 Route::middleware(['auth'])->group(function () {
     Route::view('/ClickHero', 'webpages.clickHero')->name('ClickHero');
+
+    Route::get('/clickerhero/load', [ClickerHeroController::class, 'load']);
+    Route::post('/clickerhero/save', [ClickerHeroController::class, 'store']);
+
     Route::get('/contact', [CommentController::class, 'create'])
         ->name('contact.create');
 
@@ -65,6 +70,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
+
+
+
+
     });
 });
 //////////////////////////////////////////////////////////////
