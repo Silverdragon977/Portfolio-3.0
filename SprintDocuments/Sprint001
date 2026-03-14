@@ -116,4 +116,4 @@ GET /api/clicker/load
 - Extracted Double costs to global constant so array doesn't need to be made every time we double
 - Instead of creating a new record each save we use the user_id foreign key to updateOrCreate
    this way the users data is updated on saves reducing the memory cost
-
+- Just about finished, still need to finish the second sprint setup with a feature branch and get the doc ready

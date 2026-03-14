@@ -36,7 +36,7 @@
             {{ session('error') }}
         </div>
     @endif
-    <main class="container-fluid px-5">
+    <main class="container-fluid px-0">
         @yield('mainContent')
         @yield('secondaryContent')
     </main>

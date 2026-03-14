@@ -1,0 +1,108 @@
+3/13/26
+
+Done Checkmark:  ✅
+Not Done or can't complete: ❌
+
+# Sprint 002 – Clicker Hero Store Additions
+
+## 📅 Duration
+Start Date: 03-xx-26  
+End Date:   03-xx-26  
+Length: 1 Week  
+
+---
+
+## 🎯 Sprint Goal
+Deliver More Store Options for cutomization:
+- implement a clicker limit to stop cheating
+- Add costs to passive income
+- add buttons to mass buy click upgrades with 1x, 5x, and 10x 
+- add store background colors
+- add prestige system
+- add prestige emblems
+- add frames to customize the player in store
+
+---
+
+## 📦 Scope (In Scope)
+
+### Frontend (React + TS)
+- [] - implement a clicker limit to stop cheating
+- []   Add costs to passive income
+- []   add buttons to mass buy click upgrades with 1x, 5x, and 10x 
+- []   add store background colors
+- []   add prestige system
+- []   add prestige emblems
+- []   add frames to customize the player in store
+
+### Backend (Laravel)
+- [] add prestige score to games table
+- [] add background color choice to the backend
+- [] add frame choice to the backend
+
+---
+
+## 🚫 Out of Scope
+- Leaderboards
+- Achievements
+- Animations
+- Sound effects
+- Production performance optimization
+- Percentage Modifiers for passive income
+
+---
+
+## 🏗 Architecture Plan
+
+### Data Model
+ClickerHero Table:
+- id
+- user_id (foreign key)
+- score
+- prestige_level     // New
+- background color   // New
+- frame choice       // New
+- updated_at
+
+### API Structure
+POST /api/clicker/save  
+GET /api/clicker/load  
+
+---
+
+## 🧪 Definition of Done
+
+- Returns all the proper values
+- Implemnts defaults for new users
+- No console errors
+- No database errors
+- Clean merge into main
+- Deployed to production
+- Works on mobile
+
+---
+
+## 🔄 CI/CD Plan
+- Feature branch: feature/clicker-hero
+- Merge to main after completion
+- Run deployment script
+- Verify production
+- Tag release v1.1.0 (Optional)
+
+---
+
+## 📊 Risk Assessment
+
+| Risk | Mitigation |
+|------|------------|
+| Merge conflicts | Merge main into feature weekly |
+| State bugs | Keep logic isolated in component |
+| API spam | Debounce save calls |
+
+---
+
+## 📝 Notes
+
+
+## Developement Log
+
