@@ -8,8 +8,7 @@ This website is my personal portfolio website. I designed it with the following 
 - Vite
 - Hosted on DigitalOcean as IaaS
 - LAMP stack
-- Typescript/React for dynamic content
-- Phaser for website game development
+- Typescript/React for dynamic content in Games Section
 
 ## About Me
 I will be updating my website periodically with new features. As the President of the CS Club at Bemidji State University I host (https://bemidjicsclub.com) for myself and other cs students. This website allow the cs students of Bemidji show off their own web development skills and list their portfolio on their resume! If you want to contact me, you can do so on my website @ (https://bemidjicsclub.com/michaelh) 
@@ -26,6 +25,8 @@ See the LICENSE file for full details.
 ### Cloning Repo
 Run this command in the directory/folder you choose:
     git clone https://github.com/Silverdragon977/Portfolio-3.0.git
+Run a web dev environment like Herd, XAMPP, or Laravel Valet
+I deploy to my prod server with this script in my repo: pullFromGitClean.sh 
 
 ## Made with Laravel Framework
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
@@ -36,3 +37,24 @@ Run this command in the directory/folder you choose:
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+
+## ClickerHero Game Engine (Sprint 01)
+
+Deliver a playable Clicker Hero MVC with:
+- Manual click scoring ✅
+- Passive income system ❌ // Added to next Sprint
+- Auto-save every 30 seconds ✅
+- Load existing user score from database ✅
+
+## ClickerHero Update1 (Sprint 02)
+Deliver More Store Options for cutomization:
+- Finish the passive score generator from last sprint
+- implement a clicker limit to stop cheating
+- Add costs to passive income
+- add buttons to mass buy click upgrades with 1x, 5x, and 10x 
+- add store background colors
+- add prestige system
+- add prestige emblems
+- add frames to customize the player in store
+
+

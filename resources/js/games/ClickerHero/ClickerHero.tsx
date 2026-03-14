@@ -1,4 +1,4 @@
-console.log('ClickerHero component loaded');
+console.log('ClickerHero loaded');
 import { useState, useEffect, useRef } from "react";
 import "./ClickerHero.scss";
 
@@ -77,7 +77,9 @@ export default function ClickerHero() {
                 throw new Error(`Network response was not ok: ${response.status}`);
             }
             const result = await response.json();
-            console.log('Save successful:', result);
+            console.log('Save successful:');
+            // console.log('Save successful:', result);
+
             lastSavedData.current = { score: score, multiplier: multiplier }; // Update the ref with the current data after successful save
         }
         catch (error) {

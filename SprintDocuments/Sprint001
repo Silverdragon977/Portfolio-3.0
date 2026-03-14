@@ -15,9 +15,9 @@ Length: 1 Week
 ## 🎯 Sprint Goal
 Deliver a playable Clicker Hero MVP with:
 - Manual click scoring ✅
-- Passive income system
-- Auto-save every 30 seconds
-- Load existing user score from database
+- Passive income system ❌ // Added to next Sprint
+- Auto-save every 30 seconds ✅
+- Load existing user score from database ✅
 
 ---
 
@@ -25,7 +25,7 @@ Deliver a playable Clicker Hero MVP with:
 
 ### Frontend (React + TS)
 - [✅] Click button increases score
-- [ ] Passive score increment every second (basic)
+- [❌] Passive score increment every second (basic) // Added to next Sprint
 - [✅] State management structure
 - [✅] Auto-save timer
 - [✅] Fetch score on mount
@@ -117,3 +117,30 @@ GET /api/clicker/load
 - Instead of creating a new record each save we use the user_id foreign key to updateOrCreate
    this way the users data is updated on saves reducing the memory cost
 - Just about finished, still need to finish the second sprint setup with a feature branch and get the doc ready
+
+## Challenges Solved
+
+In this sprint I had a hard time setting up my development, getting react working correctly and displaying.
+I used Laravel Valet to host my website @ vite.portfolio.test. I figured out that to get react working for the 
+front end of things I needed to use npm run dev. I had removed the bootstrap & react external dependencies via
+<link> into internal ones with vite and npm to keep track of the versions. I learned alot about statemanagement
+in react, how to run functions, pass parameters, and render dynamic UI elements. I was going to use traditional
+api calls to send JSON data to the backend however after some research it seems like using RESTful Laravel routes
+with web.php would be the most familiar and keeps everything in one file for simplicity. I started out by saving
+the data to local storage via JSON. This worked and made things easy however I found that I could manipulate the 
+cookies to cheat the game and the local storage wouldn't persist when closing. So I decided to use my api calls for
+loading and saving json data via the ClickerHeroController in /Controllers/APi/. This way when the react app mounts
+I can grab the data from the database and if it's not there initialize the records. Making the model and migrations
+seemed pretty easy at this point so I was able to work fast. Though the only hard part I found with it was using a
+foreign key of user_id from the users table. When placing the UI elements I reached for CSS to make a grid of 16 x 16
+to place the items easily and rearrange them.Once I was able to save the JSON to the database after verifying the data
+I began to make the auto save timer. Now that I had a timer for 30 seconds I decided to check if anything changed in the last
+30 seconds before doing an api call with createOrUpdate() method and if it hadn't then it skipped the auto save reducing the amount of operations.
+Also I saved on memory with the foreign key by forcing a unique record per user. However this does mean that there is 
+only one save per user, I might change that down the line but for now this made sense. I made a double score button
+that doubles the amount of score per click. I made the costs increase in a logarithmic format so that even though the
+score goes up it still takes about the same amount of clicks to progress to the next one and it makes it easy to figure
+out how many scores to add. This way later on I can get rid of the array and make it endless by doing math operations
+to determine the cost and score per click! When deployed to prod I just needed to reduce the console.log info as to not
+show the user what the saved data is. I still kept information to the user like, "save successful" to show viewers
+that stuff is happening without giving away anything! Now I'm moving onto the next sprint!

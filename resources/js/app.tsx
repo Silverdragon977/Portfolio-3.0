@@ -1,4 +1,4 @@
-console.log('APP.TSX loaded successfully');
+// console.log('React loaded successfully');
 import './bootstrap';
 import Alpine from 'alpinejs';
 import * as bootstrap from 'bootstrap'
