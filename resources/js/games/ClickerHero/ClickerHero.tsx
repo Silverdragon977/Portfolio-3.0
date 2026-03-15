@@ -7,22 +7,23 @@ export default function ClickerHero() {
     // Max of n + 1 clicks
     // Eg. if MAX_SCORE is 10, then 11 clicks
     // is when the user wins and resets to 0.
-    const MAX_SCORE = 999; 
+    const MAX_SCORE = 999999999; 
     const AUTOSAVE_INTERVAL = 30000; // Timer for auto-saving game data (30 seconds)
-    const MULTIPLIER_COSTS = [10, 30, 90, 270, 810];
-
+    const MULTIPLIER_COSTS = [10, 30, 90, 270, 810, 2430, 7290, 21870, 65610, 131220, 262440, 524880, 1049760, 2099520, 4199040, 8398080, 12597120, 18895680, 28343520, 34012224, 40814669, 48977603, 58773124, 70527749, 84672000]; // Costs for each multiplier level (x2, x4, x8, etc.)
+    const PASSIVE_INCOME_COSTS = [100, 250, 500, 750, 1000];
     const lastSavedData = useRef({ score: 0, multiplier: 1 });
 
-    // Game State
+    // Game State Variables
     const [score, setScore] = useState<number>(0);
     const [multiplier, setMultiplier] = useState<number>(1);
-
+    const [passiveIncomeLevel, setPassiveIncomeLevel] = useState<number>(0);
     
     // Loads the game data from load route when the component mounts
     useEffect(() => {
         loadGame();
     }, []);
 
+    //// SaveGame Interval Logic ////
     // Auto-saves the game data every 30 seconds, but only if there have been changes since the last save
     useEffect(() => {
         const interval = setInterval(() => 
@@ -31,6 +32,18 @@ export default function ClickerHero() {
             }, AUTOSAVE_INTERVAL);
         return () => clearInterval(interval);
     }, [score, multiplier]); 
+
+    //// Passive Income Logic ////
+    useEffect(() => {
+        const passiveIncomeInterval = setInterval(() => {
+            setScore(prevScore => {
+                const newScore = prevScore + passiveIncomeLevel;
+                return newScore <= MAX_SCORE ? newScore : prevScore;
+            });
+        }, 1000);
+
+        return () => clearInterval(passiveIncomeInterval);
+    }, [passiveIncomeLevel]);
  
     /////////////////////////////////////////////////
     // Button Click Game Logic                     //
@@ -101,6 +114,33 @@ export default function ClickerHero() {
             console.error("Error loading save:", error);
         }
     };
+
+    function getPassiveIncomeCost(level: number): number {
+    let value = 10;
+    for (let i = 0; i < level; i++) {
+        let multiplier;
+        if (i < 5) 
+            {multiplier = 3} 
+        else if (i < 15) 
+            {multiplier = 2.5;} 
+        else if (i < 25) 
+            {multiplier = 2.0;} 
+        else if (i < 35) 
+            {multiplier = 1.5;} 
+        else if (i < 45) 
+            {multiplier = 1.4;} 
+        else {multiplier = 1.2;}
+        value *= multiplier;
+    }
+    return Math.floor(value);
+}
+
+
+
+
+
+
+
     // End of Game Methods
     /////////////////////////////////////////////////////////////////////
     // Render the game UI
@@ -109,16 +149,20 @@ export default function ClickerHero() {
             <div className="clicker-hero-container">
                 <div className="layout-grid">
                     {/* Multiplier Display */}
-                    <div style={{ gridRow: "4 / span 1", gridColumn: "1 / span 5"}} className="multiplier text-center p-4">
+                    <div style={{ gridRow: "1 / span 2", gridColumn: "1 / span 5"}} className="multiplier text-center p-4">
                         <h1>Score Multiplier: x{multiplier}</h1>
                     </div>
                     {/* Score Display */}
-                    <div style={{ gridRow: "5 / span 1", gridColumn: "1 / span 5"}} className="score text-center p-4">
+                    <div style={{ gridRow: "5 / span 2", gridColumn: "1 / span 5"}} className="score text-center p-4">
                         <h1>Score: {score}</h1>
+                    </div>
+                    {/* Clicks Per Second Display */}
+                    <div style={{ gridRow: "3 / span 2", gridColumn: "1 / span 5"}} className="clicks-per-second text-center p-4">
+                        <h1>Clicks Per Second: {passiveIncomeLevel}</h1>
                     </div>
 
                     {/* Click Button */}
-                    <div className="text-left p-4" style={{ gridRow: "8 / span 2", gridColumn: "1 / span 5"}}>
+                    <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "1 / span 5"}}>
                         <button className="btn btn-outline-dark w-100 h-100" onClick={handleClick}>
                             Click Me!
                         </button>
@@ -137,11 +181,32 @@ export default function ClickerHero() {
                             
                             {/* Double Score */}
                             <h1 style={{gridRow: "3 / span 2", gridColumn: "4 / span 6"}}>
-                                Cost: ${[10, 30, 90, 270, 810][Math.log2(multiplier)]} <br />
+                                Cost: ${MULTIPLIER_COSTS[Math.log2(multiplier)]} <br />
                             </h1>
                             <button style={{gridRow: "3 / span 1", gridColumn: "2 / span 1"}} className="btn btn-outline-dark" onClick={doubleClick}>
                                 Double Score
                             </button>
+                            {/* Passive Income */}
+                            <h1 style={{gridRow: "5 / span 2", gridColumn: "4 / span 6"}}>
+                                Cost: ${getPassiveIncomeCost(passiveIncomeLevel)} <br />
+                            </h1>
+                            <button style={{gridRow: "5 / span 1", gridColumn: "2 / span 1"}} className="btn btn-outline-dark" onClick={() => {    
+                                if (passiveIncomeLevel >= 256) return;
+                                const cost = getPassiveIncomeCost(passiveIncomeLevel);
+                                if (score >= cost) {
+                                    setScore(prev => prev - cost);
+                                    setPassiveIncomeLevel(prev => {
+                                        const newLevel = prev + 1;
+                                        console.log(`Passive income level is now ${newLevel}`);
+                                        return newLevel;
+                                    });
+                                }
+                            }}>
+                                Activate Passive Income
+                            </button>
+
+                            {/* Future Shop Items */}
+
                         </div>
                     </div>
                 </div>

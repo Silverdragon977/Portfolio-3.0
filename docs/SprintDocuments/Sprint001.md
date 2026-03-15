@@ -118,7 +118,7 @@ GET /api/clicker/load
    this way the users data is updated on saves reducing the memory cost
 - Just about finished, still need to finish the second sprint setup with a feature branch and get the doc ready
 
-## Challenges Solved
+## In-Depth Development Log
 
 In this sprint I had a hard time setting up my development, getting react working correctly and displaying.
 I used Laravel Valet to host my website @ vite.portfolio.test. I figured out that to get react working for the 

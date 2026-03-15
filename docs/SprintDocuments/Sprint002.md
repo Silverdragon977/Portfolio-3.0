@@ -28,9 +28,9 @@ Deliver More Store Options for cutomization:
 ## 📦 Scope (In Scope)
 
 ### Frontend (React + TS)
-- []   Finish the passive score generator from last sprint
-- []   implement a clicker limit to stop cheating
-- []   Add costs to passive income
+- [✅]   Finish the passive score generator from last sprint
+- [❌]   implement a clicker limit to stop cheating  // Much harder than expected
+- [✅]   Add costs to passive income
 - []   add buttons to mass buy click upgrades with 1x, 5x, and 10x 
 - []   add store background colors
 - []   add prestige system
@@ -44,7 +44,29 @@ Deliver More Store Options for cutomization:
 - [] add prestige score to games table
 - [] add background color choice to the backend
 - [] add frame choice to the backend
-
+    ## 1. Continuous Integration (CI)
+       ## I-5  E-3
+   
+           ### Goals
+           Introduce automated validation to simulate professional team workflow and prevent regressions.
+   
+           ### Tasks
+           - [ ] Add PHPUnit tests for ClickerHeroController
+           - [ ] Add validation tests for score updates
+           - [ ] Add tests for updateOrCreate persistence logic
+           - [ ] Configure GitHub Actions workflow:
+               - Composer install
+               - Laravel key generation
+               - Database migration
+               - PHPUnit execution
+               - npm ci
+               - npm run build
+           - [ ] Enable branch protection rules:
+               - Require Pull Requests before merge
+               - Require CI checks to pass
+               - Prevent direct pushes to main
+   
+           ---
 ---
 
 ## 🚫 Out of Scope
@@ -53,7 +75,7 @@ Deliver More Store Options for cutomization:
 - Animations
 - Sound effects
 - Production performance optimization
-- Percentage Modifiers for passive income
+- Optimizing Percentage Modifiers for passive and active income
 
 ---
 
@@ -112,4 +134,11 @@ From now on we use full console.logs for development, minimal logs when testing 
 then transition to user feedback without releasing sensitive data!
 
 ## Developement Log
+    Added Passive Income 
+    Made algorithm to increase the price of passive income
+    Passive Income needs to give more than +1 each time I feel
 
+
+
+
+## In-Depth Development Log
