@@ -52,8 +52,8 @@ Deliver More Store Options for cutomization:
    
            ### Tasks
            - [✅] Add PHPUnit tests for ClickerHeroController
-           - [ ] Add validation tests for score updates
-           - [ ] Add tests for updateOrCreate persistence logic
+           - [✅] Add validation tests for score updates
+           - [✅] Add tests for updateOrCreate persistence logic
            - [ ] Configure GitHub Actions workflow:
                - Composer install
                - Laravel key generation
@@ -147,7 +147,7 @@ then transition to user feedback without releasing sensitive data!
     There were some errors with the ClickerHeroTest.php Pest tests like linking wrong table and AssertingJson structure with specific values instead of just
         verifying the columns exist and can load/save
     All 38 tests pass now it is time to use these new state variables in the React UI
-    
+
 
 
 ## In-Depth Development Log

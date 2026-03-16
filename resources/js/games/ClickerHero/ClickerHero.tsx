@@ -114,7 +114,7 @@ export default function ClickerHero() {
                 throw new Error(`Failed to load game data: ${response.status}`);
             }
             const data = await response.json();
-            
+
             setScore(data.score ?? 0);
             setMultiplier(data.multiplier ?? 1);
             setPassiveIncomeLevel(data.passive_income_level ?? 0);
@@ -168,48 +168,52 @@ export default function ClickerHero() {
             <div className="clicker-hero-container">
                 <div className="layout-grid">
                     {/* Multiplier Display */}
-                    <div style={{ gridRow: "1 / span 2", gridColumn: "1 / span 5"}} className="multiplier text-center p-4">
-                        <h1>Score Multiplier: x{multiplier}</h1>
+                    <div style={{ gridRow: "2 / span 2", gridColumn: "2 / span 4"}} className="multiplier text-center p-4">
+                        <h1>Point Multiplier: x{multiplier}</h1>
                     </div>
                     {/* Score Display */}
-                    <div style={{ gridRow: "5 / span 2", gridColumn: "1 / span 5"}} className="score text-center p-4">
-                        <h1>Score: {score}</h1>
+                    <div style={{ gridRow: "5 / span 2", gridColumn: "2 / span 4"}} className="score text-center p-4">
+                        <h1>Total Points: {score}</h1>
                     </div>
                     {/* Clicks Per Second Display */}
-                    <div style={{ gridRow: "3 / span 2", gridColumn: "1 / span 5"}} className="clicks-per-second text-center p-4">
-                        <h1>Clicks Per Second: {passiveIncomeLevel}</h1>
+                    <div style={{ gridRow: "2 / span 2", gridColumn: "6 / span 4"}} className="clicks-per-second text-center p-4">
+                        <h1>Points Per Second: {passiveIncomeLevel}</h1>
                     </div>
 
                     {/* Click Button */}
-                    <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "1 / span 5"}}>
+                    <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "2 / span 4"}}>
                         <button className="btn btn-outline-dark w-100 h-100" onClick={handleClick}>
                             Click Me!
                         </button>
                     </div>
                     {/* Save Button */}
-                    <div className="text-left p-4" style={{ gridRow: "10 / span 2", gridColumn: "1 / span 5"}}>
+                    <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "6 / span 4"}}>
                         <button className="btn btn-outline-dark w-100 h-100" onClick={saveData}>
                             Save Game
                         </button>
                     </div> 
+                    {/* Prestige Level */}
+                    <div style={{ gridRow: "5 / span 2", gridColumn: "6 / span 4"}} className="prestige-level text-center p-4">
+                        <h1>Prestige Level: {prestigeLevel}</h1>
+                    </div>
 
                     {/* Shop */}
-                    <div style={{ gridRow: "1 / span 12", gridColumn: "6 / span 12"}} className="shop">
+                    <div style={{ gridRow: "2 / span 12", gridColumn: "10 / span 6"}} className="shop">
                         <div className="layout-grid">
                             <h1 style={{gridRow: "1 / span 2", gridColumn: "1 / span 12"}} className="text-center">Shop</h1>
                             
                             {/* Double Score */}
-                            <h1 style={{gridRow: "3 / span 2", gridColumn: "4 / span 6"}}>
-                                Cost: ${MULTIPLIER_COSTS[Math.log2(multiplier)]} <br />
+                            <h1 style={{gridRow: "3 / span 2", gridColumn: "2 / span 6"}}>
+                                Double points <br />
                             </h1>
-                            <button style={{gridRow: "3 / span 1", gridColumn: "2 / span 1"}} className="btn btn-outline-dark" onClick={doubleClick}>
-                                Double Score
+                            <button style={{gridRow: "3 / span 1", gridColumn: "8 / span 3"}} className="btn btn-outline-dark" onClick={doubleClick}>
+                                 ${MULTIPLIER_COSTS[Math.log2(multiplier)]}
                             </button>
                             {/* Passive Income */}
-                            <h1 style={{gridRow: "5 / span 2", gridColumn: "4 / span 6"}}>
-                                Cost: ${getPassiveIncomeCost(passiveIncomeLevel)} <br />
+                            <h1 style={{gridRow: "5 / span 2", gridColumn: "2 / span 6"}}>
+                                Clicks per Second: {passiveIncomeLevel} <br />
                             </h1>
-                            <button style={{gridRow: "5 / span 1", gridColumn: "2 / span 1"}} className="btn btn-outline-dark" onClick={() => {    
+                            <button style={{gridRow: "5 / span 1", gridColumn: "8 / span 3"}} className="btn btn-outline-dark" onClick={() => {    
                                 if (passiveIncomeLevel >= 256) return;
                                 const cost = getPassiveIncomeCost(passiveIncomeLevel);
                                 if (score >= cost) {
@@ -221,7 +225,7 @@ export default function ClickerHero() {
                                     });
                                 }
                             }}>
-                                Activate Passive Income
+                                ${getPassiveIncomeCost(passiveIncomeLevel)}
                             </button>
 
                             {/* Future Shop Items */}
