@@ -51,7 +51,7 @@ Deliver More Store Options for cutomization:
            Introduce automated validation to simulate professional team workflow and prevent regressions.
    
            ### Tasks
-           - [ ] Add PHPUnit tests for ClickerHeroController
+           - [✅] Add PHPUnit tests for ClickerHeroController
            - [ ] Add validation tests for score updates
            - [ ] Add tests for updateOrCreate persistence logic
            - [ ] Configure GitHub Actions workflow:
@@ -137,8 +137,17 @@ then transition to user feedback without releasing sensitive data!
     Added Passive Income 
     Made algorithm to increase the price of passive income
     Passive Income needs to give more than +1 each time I feel
-
-
+    Started working on the CI parts
+    Needed to refactor the ClickHero url to comply with unit testing in CI
+      All namedroutes are left alone only the raw url is changed to /clickhero
+    I setup route testing for both guests and an auth user in FeatureTests
+    Next I modified the following files to add the new columns to the data model (prestige_level, background_color, frame_choice):
+        added columns to the Model, added columns to Pest Tests, added columns to the controller, created a new migration on existing table like this:
+        php artisan make:migration add_game_fields_to_click_hero_table --table=clicker_games
+    There were some errors with the ClickerHeroTest.php Pest tests like linking wrong table and AssertingJson structure with specific values instead of just
+        verifying the columns exist and can load/save
+    All 38 tests pass now it is time to use these new state variables in the React UI
+    
 
 
 ## In-Depth Development Log

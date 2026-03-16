@@ -51,7 +51,7 @@ Route::view('/resume', 'webpages.resume')->name('resume');
 // });
 // Refactored RESTful routes for authenticated users
 Route::middleware(['auth'])->group(function () {
-    Route::view('/ClickHero', 'webpages.clickHero')->name('ClickHero');
+    Route::view('/clickhero', 'webpages.clickHero')->name('ClickHero');
 
     Route::get('/clickerhero/load', [ClickerHeroController::class, 'load']);
     Route::post('/clickerhero/save', [ClickerHeroController::class, 'store']);
@@ -70,10 +70,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/profile', 'edit')->name('profile.edit');
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
-
-
-
-
     });
 });
 //////////////////////////////////////////////////////////////

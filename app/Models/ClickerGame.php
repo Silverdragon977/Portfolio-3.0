@@ -10,6 +10,11 @@ class ClickerGame extends Model
         'user_id',
         'score',
         'multiplier',
+        'passive_income_level',
+        'prestige_level',
+        'background_color',
+        'frame_choice',
+    
     ];
 
     public function user()
