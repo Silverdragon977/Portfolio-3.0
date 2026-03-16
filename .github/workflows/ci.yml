@@ -22,11 +22,11 @@ jobs:
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
           --health-timeout=5s
-          --health-retries=3
+          --health-retries=5
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -38,19 +38,24 @@ jobs:
       - name: Copy .env
         run: cp .env.example .env
 
+      - name: Configure environment
+        run: |
+          echo "APP_ENV=testing" >> .env
+          echo "DB_CONNECTION=mysql" >> .env
+          echo "DB_HOST=127.0.0.1" >> .env
+          echo "DB_PORT=3306" >> .env
+          echo "DB_DATABASE=laravel" >> .env
+          echo "DB_USERNAME=root" >> .env
+          echo "DB_PASSWORD=root" >> .env
+
       - name: Install Composer dependencies
         run: composer install --no-progress --prefer-dist --no-interaction
 
       - name: Generate app key
         run: php artisan key:generate
 
-      - name: Set database config
-        run: |
-          php artisan config:set database.connections.mysql.host 127.0.0.1
-          php artisan config:set database.connections.mysql.port 3306
-          php artisan config:set database.connections.mysql.database laravel
-          php artisan config:set database.connections.mysql.username root
-          php artisan config:set database.connections.mysql.password root
+      - name: Clear config cache
+        run: php artisan config:clear
 
       - name: Run migrations
         run: php artisan migrate --force
@@ -62,6 +67,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'npm'
 
       - name: Install NPM dependencies
         run: npm ci
