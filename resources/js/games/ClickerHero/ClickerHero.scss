@@ -30,3 +30,43 @@
   font-weight: bold;
   text-align: center;
 }
+////////////////////
+// Shop Styling  //
+////////////////////
+.shop-heading {
+    font-size: 4rem;
+    font-weight: bold;
+    color: darkslategray;
+}
+.shop-item-label {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    padding-top: 2rem;
+}
+.bulk-selector {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.bulk-btn {
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: 1px solid #333;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.bulk-btn:hover {
+  background: #f2f2f2;
+}
+
+.bulk-btn.active {
+  background: #333;
+  color: white;
+}

@@ -34,11 +34,9 @@ Deliver More Store Options for cutomization:
 - []   add buttons to mass buy click upgrades with 1x, 5x, and 10x 
 - []   add store background colors
 - []   add prestige system
-- []   add prestige emblems
 - []   add frames to customize the player in store
 - []   on the admin panel add users scores to the table
 - []   create a reset button on the adminpanel to reset a users progress in click hero
-- []   when saving display a saving animation
 
 ### Backend (Laravel)
 - [] add prestige score to games table
@@ -54,7 +52,7 @@ Deliver More Store Options for cutomization:
            - [✅] Add PHPUnit tests for ClickerHeroController
            - [✅] Add validation tests for score updates
            - [✅] Add tests for updateOrCreate persistence logic
-           - [ ] Configure GitHub Actions workflow:
+           - [✅] Configure GitHub Actions workflow:
                - Composer install
                - Laravel key generation
                - Database migration
@@ -147,7 +145,10 @@ then transition to user feedback without releasing sensitive data!
     There were some errors with the ClickerHeroTest.php Pest tests like linking wrong table and AssertingJson structure with specific values instead of just
         verifying the columns exist and can load/save
     All 38 tests pass now it is time to use these new state variables in the React UI
-
-
-
-## In-Depth Development Log
+    Refactored the UI elements from h1 tags to div tags and added scss to the ui elements for more ui style control
+    Rearranged the UI elements for better clarity
+    Added bulk purchase triple button for passive income
+    Pulled the logic out of the ui button into a handlePassiveClick method
+    In the new method I call the new getBulkPassiveCost() which calls the getPassiveIncomeCost() multiple times and adds it up to get the bulk cost
+    Then I used this to update and display the new costs to the purchase button based on the bulk button pushed
+    Before I can try this out I need to make a reset score button in admin panel as the costs are a bit too much in mid game - To be fixed in future

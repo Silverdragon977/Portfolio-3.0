@@ -8,7 +8,8 @@ Reading the Backlog Easily:
     Categorizing Format:
         I-x is Importance/Value
         E-x is Effort/Complexity
-        Eg. I-2 E-5
+        D-x is Difficulty
+        Eg. I-2 E-5 D-5
         1 = lowest and 5 = highest
 
 
@@ -25,7 +26,7 @@ Reading the Backlog Easily:
 # EPIC: Engineering Infrastructure
    
     ## 2. Deployment Hardening
-    ## I-4  E-3
+    ## I-4  E-3 D-3
 
         ### Goals
         Increase production safety and rollback reliability.
@@ -42,7 +43,7 @@ Reading the Backlog Easily:
 
 # 🟡 EPIC: Production Architecture
     ## 1. Documentation
-    ## I-3  E-2 
+    ## I-3  E-2 D-4
         ### Goals
         Improve maintainability and future-proof infrastructure decisions.
 
@@ -59,7 +60,7 @@ Reading the Backlog Easily:
         ---
 
     ## 2. Configuration Cleanup
-    ## I-4  E-4
+    ## I-4  E-4 D-4
         ### Goals
         Reduce complexity and remove fragile manual setup.
 
@@ -73,7 +74,7 @@ Reading the Backlog Easily:
 ---------------------------------------------------------------------
 
 # 🟢 EPIC: Containerization (Future)
-## I-3  E-5
+## I-3  E-5 D-4
     ### Goals
     Make environment portable and reproducible.
 
@@ -90,20 +91,31 @@ Reading the Backlog Easily:
 # 🔵 EPIC: Clicker Hero – Core Systems
 ## I-4  E-4
     ## 1. UI/UX Improvements
-    ## I-2  E-3
+    ## I-2  E-3 D-3
 
         - [ ] Add saving animation feedback
-        - [ ] Add store background customization
         - [ ] Add player frame customization
         - [ ] Add prestige emblems
         - [ ] Improve mobile layout polish
 
         ---
+    ## 2. Refactor for Simplicity
+    ## I-2 E-4 D-3
+        - [ ] Create components or classes for methods
+        - [ ] Organize and document the methods in components or classes
+        - [ ] 
+
+    ## 3. Core Functionality
+    ## I-4 E-4 D-5
+        - [ ] create more stable algorithm for passive income  
+        - [ ] create more stable algorithm for double income PPS
+        - [ ]   
+
 
 -------------------------------------------------------------------
 
 # 🟣 EPIC: Quality & Testing
-    ## I-5  E-3
+    ## I-5  E-3 D-3
     ### Goals
     Improve code confidence and prevent regressions.
 
@@ -119,7 +131,7 @@ Reading the Backlog Easily:
 --------------------------------------------------------------------
 
 # ⚪ EPIC: Performance Optimization
-## I-3  E-4
+## I-3  E-4 D-5
 
     ### Goals
     Prepare application for scalability.

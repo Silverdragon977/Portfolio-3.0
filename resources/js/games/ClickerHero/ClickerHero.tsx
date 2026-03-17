@@ -20,7 +20,9 @@ export default function ClickerHero() {
     const [prestigeLevel, setPrestigeLevel] = useState<number>(0);
     const [backgroundColor, setBackgroundColor] = useState<string>('default');
     const [frameChoice, setFrameChoice] = useState<string>('default');
-    
+    const [bulkAmountPassiveIncome, setBulkAmountPassiveIncome] = useState<number>(1);
+    const [bulkAmountMultiplier, setBulkAmountMultiplier] = useState<number>(1);
+
     // Loads the game data from load route when the component mounts
     useEffect(() => {
         loadGame();
@@ -135,6 +137,7 @@ export default function ClickerHero() {
     };
 
     function getPassiveIncomeCost(level: number): number {
+        // This gets called by getBulkPassiveIncomeCost and the passive income per second
     let value = 10;
     for (let i = 0; i < level; i++) {
         let multiplier;
@@ -153,6 +156,30 @@ export default function ClickerHero() {
     }
     return Math.floor(value);
 }
+    function getBulkPassiveCost(
+        currentLevel: number,
+        bulkAmount: number
+    ): number {
+
+        let totalCost = 0;
+
+        for (let i = 0; i < bulkAmount; i++) {
+            totalCost += getPassiveIncomeCost(currentLevel + i);
+        }
+
+        return totalCost;
+    }
+    const handlePassivePurchase = () => {
+        if (passiveIncomeLevel >= 256) return;
+        const remainingLevels = 256 - passiveIncomeLevel;
+        const actualBulk = Math.min(bulkAmountPassiveIncome, remainingLevels);
+        const cost = getBulkPassiveCost(passiveIncomeLevel, actualBulk);
+        if (score >= cost) {
+            setScore(prev => prev - cost);
+            setPassiveIncomeLevel(prev => {const newLevel = prev + actualBulk; return newLevel;
+            });
+        }
+    }
 
 
 
@@ -200,35 +227,39 @@ export default function ClickerHero() {
                     {/* Shop */}
                     <div style={{ gridRow: "2 / span 12", gridColumn: "10 / span 6"}} className="shop">
                         <div className="layout-grid">
-                            <h1 style={{gridRow: "1 / span 2", gridColumn: "1 / span 12"}} className="text-center">Shop</h1>
+                            <div style={{gridRow: "1 / span 2", gridColumn: "1 / span 16"}} className="text-center">
+                                <h1 className="shop-heading">Purchase Upgrades </h1>
+                            </div>
                             
-                            {/* Double Score */}
-                            <h1 style={{gridRow: "3 / span 2", gridColumn: "2 / span 6"}}>
-                                Double points <br />
-                            </h1>
+                {/*============================ */}                            
+                {/*==  Double Score Row    === */}
+                            <div style={{gridRow: "3 / span 1", gridColumn: "1 / span 6"}} className="shop-item-label">
+                                <h3>Double Points</h3>
+                            </div>
                             <button style={{gridRow: "3 / span 1", gridColumn: "8 / span 3"}} className="btn btn-outline-dark" onClick={doubleClick}>
                                  ${MULTIPLIER_COSTS[Math.log2(multiplier)]}
                             </button>
-                            {/* Passive Income */}
-                            <h1 style={{gridRow: "5 / span 2", gridColumn: "2 / span 6"}}>
-                                Clicks per Second: {passiveIncomeLevel} <br />
-                            </h1>
-                            <button style={{gridRow: "5 / span 1", gridColumn: "8 / span 3"}} className="btn btn-outline-dark" onClick={() => {    
-                                if (passiveIncomeLevel >= 256) return;
-                                const cost = getPassiveIncomeCost(passiveIncomeLevel);
-                                if (score >= cost) {
-                                    setScore(prev => prev - cost);
-                                    setPassiveIncomeLevel(prev => {
-                                        const newLevel = prev + 1;
-                                        console.log(`Passive income level is now ${newLevel}`);
-                                        return newLevel;
-                                    });
-                                }
-                            }}>
-                                ${getPassiveIncomeCost(passiveIncomeLevel)}
+                            <button style={{gridRow: "3 / span 1", gridColumn: "11 / span 6"}} className="bulk-purchase-button"></button>
+                {/*=========================== */}
+                {/*==  Passive Income Row  ==*/}
+                            <div style={{gridRow: "4 / span 1", gridColumn: "1 / span 6"}} className="shop-item-label">
+                                <h3>Increase PPS: </h3>
+                            </div>
+                            <button style={{gridRow: "4 / span 1", gridColumn: "8 / span 3"}} className="btn btn-outline-dark" onClick={() => {handlePassivePurchase}}>
+                                ${getBulkPassiveCost(passiveIncomeLevel, bulkAmountPassiveIncome)}
                             </button>
-
-                            {/* Future Shop Items */}
+                            <div style={{ gridRow: "4 / span 1", gridColumn: "11 / span 6" }} className="bulk-selector">
+                              {[1, 5, 10].map((amount) => (
+                                <button
+                                    key={amount}
+                                    className={`bulk-btn ${bulkAmountPassiveIncome === amount ? 'active' : ''}`}
+                                    onClick={() => setBulkAmountPassiveIncome(amount)}>
+                                    {amount}x
+                                </button>
+                              ))}
+                            </div>
+                {/*=========================== */}
+                {/*==  Future Shop Items   ==*/}
 
                         </div>
                     </div>
