@@ -78,22 +78,7 @@ Route::middleware(['auth'])->group(function () {
 //////////////////////////////////////////////////////////////
 ////////    Admin Panel Routes    ////////////////////////////
 //////////////////////////////////////////////////////////////
-// Old non-RESTful routes  - It did work but it was not following RESTful conventions and was a bit messy. I have refactored it to follow RESTful conventions and to be more organized.
-// Route::middleware(['auth', 'admin'])->group(function() {
-//     Route::get('/admin', [AdminRouteController::class, 'index'])->name('admin.index');
-//     //// Project Routes
-//     // Create
-//     Route::get('/admin/createProject', [GithubProjectsController::class, 'create'])->name('admin.projects.create');
-//     Route::post('/admin/createProject', [GithubProjectsController::class, 'store'])->name('admin.projects.store');
-//     // Edit/Update
-//     Route::get('/admin/editProject/{project}', [GithubProjectsController::class, 'edit'])->name('admin.projects.edit');
-//     Route::put('/admin/editProject/{project}', [GithubProjectsController::class, 'update'])->name('admin.projects.update');
-//     // Delete
-//     Route::delete('/admin/deleteProject/{project}', [GithubProjectsController::class, 'destroy'])->name('admin.projects.destroy');
-//     Route::delete('/admin/deleteComment/{comment}', [CommentController::class, 'destroy'])->name('admin.comments.destroy');
-// });
-//
-//  Refactored RESTful routes for Admin Panel
+
 Route::middleware(['auth', 'admin'])
     ->prefix('admin') // All routes have /admin/
     ->name('admin.')  // All route names start with admin. 
@@ -114,8 +99,14 @@ Route::middleware(['auth', 'admin'])
 
         Route::delete('/users/{user}', [AdminRouteController::class, 'deleteUser'])
             ->name('users.delete');
-            // Allows admin to delete users from the admin panel
+          
+        ///////////////////////////////////
+        //  User Stats for ClickerGame  //
 
+        Route::get('/users/{user}/games/clicker',[AdminRouteController::class, 'showClickerStats']
+            )->name('users.games.clicker');
+        Route::post('/users/{user}/games/clicker/reset', [AdminRouteController::class, 'resetClickerStats']
+            )->name('users.games.clicker.reset');
 
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\GithubProjects;
 use App\Models\Comment;
 use App\Models\User;
+use App\Models\ClickerGame;
 
 class AdminRouteController extends Controller
 {
@@ -34,6 +35,32 @@ class AdminRouteController extends Controller
         $user->delete();
 
         return back()->with('success', 'User ' . $user->name . ' deleted successfully.');
+    }
+
+    public function showClickerStats(User $user){
+        $clickerStats = ClickerGame::where('user_id', $user->id)->first(); 
+        return view('protectedWebPages.adminClickerStats', [
+            'user' => $user,
+            'clickerData' => $clickerStats
+        ]);
+    }
+    public function resetClickerStats(User $user)
+    {
+        ClickerGame::updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'score' => 0,
+                'multiplier' => 1,
+                'passive_income_level' => 0,
+                'prestige_level' => 0,
+                'background_color' => 'default',
+                'frame_choice' => 'default',
+            ]
+        );
+    
+        return redirect()
+            ->route('admin.users.games.clicker', $user->id)
+            ->with('success', 'Clicker stats reset successfully.');
     }
 
 }

@@ -31,12 +31,12 @@ Deliver More Store Options for cutomization:
 - [✅]   Finish the passive score generator from last sprint
 - [❌]   implement a clicker limit to stop cheating  // Much harder than expected
 - [✅]   Add costs to passive income
-- []   add buttons to mass buy click upgrades with 1x, 5x, and 10x 
+- [✅]   add buttons to mass buy click upgrades with 1x, 5x, and 10x 
 - []   add store background colors
 - []   add prestige system
 - []   add frames to customize the player in store
-- []   on the admin panel add users scores to the table
-- []   create a reset button on the adminpanel to reset a users progress in click hero
+- [✅]   on the admin panel add users scores to the table
+- [✅]   create a reset button on the adminpanel to reset a users progress in click hero
 
 ### Backend (Laravel)
 - [] add prestige score to games table
@@ -152,3 +152,11 @@ then transition to user feedback without releasing sensitive data!
     In the new method I call the new getBulkPassiveCost() which calls the getPassiveIncomeCost() multiple times and adds it up to get the bulk cost
     Then I used this to update and display the new costs to the purchase button based on the bulk button pushed
     Before I can try this out I need to make a reset score button in admin panel as the costs are a bit too much in mid game - To be fixed in future
+    Adding new route to web.php so that admin can push a button to view the users stats at 'admin.users.games.clicker'
+    Added a reset stats button for the clicker game in the new adminCLickerStats blade per user
+    Debugging the bulk purchase passive income
+    Now it's time to do the same with the double points
+    For testing I added a 100k dev button to increase my score by 100k
+    Both PassiveIncome and DoubleIncome are working as intended, in some other sprint I really need to find a way mathematically to make it doable to finish
+        one run in about 1 hour or so, that way there is a challenge but it doesn't take way too long! Each prestige should unlock a "new currency" but under the hood it should run the same. This game isn't to be super complex infact 1 hr game loop might be way too long!
+    
