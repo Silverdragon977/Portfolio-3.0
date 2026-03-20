@@ -97,6 +97,7 @@ Reading the Backlog Easily:
         - [ ] Add player frame customization
         - [ ] Add prestige emblems
         - [ ] Improve mobile layout polish
+        - [ ] Change theme changer using select to styled div
 
         ---
     ## 2. Refactor for Simplicity
@@ -110,6 +111,9 @@ Reading the Backlog Easily:
         - [ ] create more stable algorithm for passive income  
         - [ ] create more stable algorithm for double income PPS
         - [ ]   
+    ## 4. Mobile UI Implementation
+    ## I-4 E-5 D-5
+    
 
 
 -------------------------------------------------------------------

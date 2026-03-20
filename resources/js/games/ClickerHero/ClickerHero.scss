@@ -3,11 +3,10 @@
 //
 // Frame & Background
 .clicker-hero-container {
-    background-color: gray;
     width: 100%;
     height: 100vh;
-    background-color: var(--bg-primary);
-    background-image: var(--bg-image);
+    min-height: 100vh;
+    background: var(--bg-primary);
     background-size: cover;
     background-position: center;
     border: var(--frame-border);
@@ -20,7 +19,6 @@
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: repeat(16, minmax(30px, 1fr));
   gap: 5px;
-
   width: 100%;
   height: 100%;
 }
@@ -28,7 +26,8 @@
 /* Optional: helps you see placement while designing */
 .layout-grid > div {
   /* Remove this later */
-  border: 1px dashed rgba(0,0,0,0.2);
+  // border: 1px  dashed red;
+  // border-style:outset;
 }
 
 .score {
@@ -36,21 +35,51 @@
   font-weight: bold;
   text-align: center;
 }
+//////////////////////////
+/// Information Titles ///
+//////////////////////////
+
+.info-titles{
+  color: var(--text-primary);
+  border: 2px solid var(--accent);
+  border-color: var(--bg-secondary);
+  
+}
+
+//////////////////////////
 ////////////////////
 // Shop Styling  //
 ////////////////////
+.shop {
+  border: 5px solid gray;
+  border-style: outset;
+  background: var(--bg-secondary);
+}
+
 .shop-heading {
     font-size: 4rem;
     font-weight: bold;
-    color: darkslategray;
+    color: var(--text-primary);
 }
 .shop-item-label {
-    font-size: 1.5rem;
+    font-size: 0.9rem;
     font-weight: bold;
-    color: black;
+    color: var(--text-primary);
     text-align: center;
-    padding-top: 2rem;
+    align-self: center;
 }
+.shop-button{
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+  background: var(--bg-secondary);
+}
+
+.shop-button:hover {
+  border-color: var(--text-primary);
+  background: var(--accent);
+}
+
 .bulk-selector {
   display: flex;
   gap: 8px;
@@ -61,18 +90,63 @@
 .bulk-btn {
   padding: 6px 12px;
   font-size: 0.9rem;
-  border: 1px solid #333;
+  border: 1px solid var(--text-primary);
   border-radius: 10px;
-  background: white;
+  background: var(--bg-secondary);
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .bulk-btn:hover {
-  background: #f2f2f2;
+  background: var(--accent);
+  color: var(--text-primary);
+  border-color: var(--text-primary);
 }
 
 .bulk-btn.active {
-  background: #333;
-  color: white;
+  background: var(--accent);
+  color: var(--text-primary);
 }
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 2px solid var(--accent);
+  padding: 6px 10px;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+}
+select option {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+}
+//////////////////////////////////////
+///////////////////////////
+/// Theme Changer  ////////
+///////////////////////////
+.theme-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.theme-controls select {
+  padding: 6px 10px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+}
+
+.theme-controls button {
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--bg-secondary);
+  border: none;
+  cursor: pointer;
+}
+

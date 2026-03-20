@@ -159,4 +159,6 @@ then transition to user feedback without releasing sensitive data!
     For testing I added a 100k dev button to increase my score by 100k
     Both PassiveIncome and DoubleIncome are working as intended, in some other sprint I really need to find a way mathematically to make it doable to finish
         one run in about 1 hour or so, that way there is a challenge but it doesn't take way too long! Each prestige should unlock a "new currency" but under the hood it should run the same. This game isn't to be super complex infact 1 hr game loop might be way too long!
-    
+    Got background themes working, just need to change the UI and CSS so it looks better
+    Now that the background styles are applied to the buttons and such it is starting to look really good
+    Next adding Frames, possibly background images, then move onto a simple prestige system that resets the progress and adds 1 to the prestige counter!

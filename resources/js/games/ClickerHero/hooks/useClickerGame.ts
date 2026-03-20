@@ -28,8 +28,8 @@ export function useClickerGame() {
   const [bulkAmountDoubleIncome, setBulkAmountDoubleIncome] = useState(1);
 
   // Adding UI Themes
-  const [backgroundColor, setBackgroundColor] = useState<BackgroundThemeKey>('default');  // BACKGROUNDKEY not found error so lets just go with string
-  const [frameChoice, setFrameChoice] = useState<string>('default');
+  const [backgroundColor, setBackgroundColor] = useState<BackgroundThemeKey>('default');  
+  const [frameChoice, setFrameChoice] = useState<FrameThemeKey>('default');
 
 
     useEffect(() => {
