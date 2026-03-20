@@ -6,10 +6,10 @@ console.log("useClickerGame.ts Hook loaded")
 
 export function useClickerGame() {
 
-  const MAX_SCORE = 999999999;
+  const MAX_SCORE = 999999;
   const AUTOSAVE_INTERVAL = 30000;
   const MULTIPLIER_COSTS = [10, 30, 90, 270, 810, 2430, 7290, 21870, 65610, 131220, 262440, 524880, 1049760, 2099520, 4199040, 8398080, 12597120, 18895680, 28343520, 34012224, 40814669, 48977603, 58773124, 70527749, 84672000]; // Costs for each multiplier level (x2, x4, x8, etc.)
-  const PASSIVE_INCOME_COSTS = [100, 250, 500, 750, 1000];
+  const PASSIVE_INCOME_COSTS = [100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200, 102400, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 550000, 600000, 650000, 700000, 750000, 800000, 850000, 900000, 950000];
 
   const lastSavedData = useRef({
     score: 0,
@@ -88,6 +88,8 @@ export function useClickerGame() {
             alert(`Congratulations! You've reached ${MAX_SCORE + 1} clicks!`);
             setScore(0); // Reset score after reaching MAX_SCORE
             setMultiplier(1); // Reset multiplier as well
+            setPassiveIncomeLevel(0);
+            setPrestigeLevel(prev => prev + 1); // Increase prestige level on reset
         }
     }
 
@@ -190,6 +192,9 @@ export function useClickerGame() {
         else {multiplier = 1.2;}
         value *= multiplier;
     }
+        const rawDiscount = 1 - (prestigeLevel * 0.1);
+        const prestigeDiscount = Math.max(rawDiscount, 0.7);
+        value *= prestigeDiscount;
         return Math.floor(value);
     }
     function getBulkPassiveCost(

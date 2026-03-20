@@ -33,21 +33,7 @@ export default function ClickerHero() {
   const [selectedTheme, setSelectedTheme] = useState<BackgroundThemeKey>(backgroundColor);
   const [selectedFrame, setSelectedFrame] = useState<FrameThemeKey>(frameChoice);
 
-  useState<BackgroundThemeKey>(backgroundColor);
-    const setDefaultBackground = () => {
-      setBackgroundColor('default');
-    };
 
-    const setCommonBackground = () => {
-      setBackgroundColor('common');
-    };
-    const setDefaultFrame = () => {
-      setFrameChoice('default');
-    };
-
-    const setCommonFrame = () => {
-      setFrameChoice('common');
-    };
 
     // End of Game Methods
     /////////////////////////////////////////////////////////////////////
@@ -84,10 +70,11 @@ export default function ClickerHero() {
                         <button className="btn shop-button w-100 h-100" onClick={saveData}>
                             Save Game
                         </button>
-                    </div> 
+                    </div>
+                    {/* dev only tool not rendered in prod
                     <div style={{gridRow: "10 / span 2", gridColumn: "1 / span 4"}} className="shop-item-label">
                         <button onClick={() => setScore(prev => prev + 100000)}>DEV: +100k</button>
-                    </div>
+                    </div> */}
 
             {/* Shop */}
             <div style={{ gridRow: "2 / span 12", gridColumn: "10 / span 6"}} className="shop">

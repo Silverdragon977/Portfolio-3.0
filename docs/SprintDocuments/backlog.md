@@ -91,29 +91,44 @@ Reading the Backlog Easily:
 # 🔵 EPIC: Clicker Hero – Core Systems
 ## I-4  E-4
     ## 1. UI/UX Improvements
-    ## I-2  E-3 D-3
+    ## I-3  E-3 D-2
 
         - [ ] Add saving animation feedback
-        - [ ] Add player frame customization
         - [ ] Add prestige emblems
-        - [ ] Improve mobile layout polish
         - [ ] Change theme changer using select to styled div
+        - [ ] 
 
         ---
     ## 2. Refactor for Simplicity
-    ## I-2 E-4 D-3
-        - [ ] Create components or classes for methods
-        - [ ] Organize and document the methods in components or classes
-        - [ ] 
+    ## I-4 E-4 D-3
+        - [ ] Create component for store and remove the store from ClickerHero.tsx
+        - [ ] Remove Theme Backgrounds and Frames from ClickerHero.tsx and useClickerHero.tsx into it's own component
+        - [ ] remove unused state
+        - [ ] extract store from ClickerHero.tsx for simplicity
+        - [ ] create component for save/load // Optional
 
     ## 3. Core Functionality
-    ## I-4 E-4 D-5
-        - [ ] create more stable algorithm for passive income  
-        - [ ] create more stable algorithm for double income PPS
+    ## I-4 E-4 D-4
+        - [ ] create more stable algorithm for passive income (no implementation yet) 
+        - [ ] create more stable algorithm for double income PPS (no implementation yet) 
         - [ ]   
-    ## 4. Mobile UI Implementation
-    ## I-4 E-5 D-5
-    
+    ## 4. Store Toggle & Leaderboard panel (UI/UX)
+    ## I-3 E-3 D-3
+        - [ ] add isStoreOpen toggle state in useClickerHero
+        - [ ] create Open store button
+        - [ ] add isLearderboardOpen toggle 
+        - [ ] create sliding leaderboard panel (CSS transition)
+        - [ ] ensure clean close and open behavior
+    ## 5. Leaderboard API & Data layer
+    ## I-4 E-3 D-3
+        - [ ] add relationship ClickerGame -> belongsTo(User)
+        - [ ] create leaderboard() method in controller
+        - [ ] make sql query to grab top 3 users based on high score
+        - [ ] map username, score, prestige_level
+        - [ ] add api route /leaderboard
+        - [ ] create leaderboard component
+        - [ ] fetch /leaderboard on mount and every 60 seconds
+        - [ ] display ranked ordered list
 
 
 -------------------------------------------------------------------
@@ -128,6 +143,7 @@ Reading the Backlog Easily:
         - [ ] Add database migration tests
         - [ ] Add frontend TypeScript strict validation checks
         - [ ] Introduce test coverage reporting
+        - [ ] Refactor JS with TS types and other TS safety measures
 
         ---
 
@@ -151,7 +167,6 @@ Reading the Backlog Easily:
 # ⚫ EPIC: Future Product Expansion
 ## I-2  E-4
     ### Backlog Ideas
-        - [ ] Leaderboards
         - [ ] Achievements system
         - [ ] Offline progress calculation
         - [ ] Animation polish

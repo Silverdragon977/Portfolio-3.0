@@ -32,16 +32,16 @@ Deliver More Store Options for cutomization:
 - [❌]   implement a clicker limit to stop cheating  // Much harder than expected
 - [✅]   Add costs to passive income
 - [✅]   add buttons to mass buy click upgrades with 1x, 5x, and 10x 
-- []   add store background colors
-- []   add prestige system
-- []   add frames to customize the player in store
+- [✅]   add store background colors
+- [✅]   add prestige system
+- [✅]   add frames to customize the player in store
 - [✅]   on the admin panel add users scores to the table
 - [✅]   create a reset button on the adminpanel to reset a users progress in click hero
 
 ### Backend (Laravel)
-- [] add prestige score to games table
-- [] add background color choice to the backend
-- [] add frame choice to the backend
+- [✅] add prestige score to games table
+- [✅] add background color choice to the backend
+- [✅] add frame choice to the backend
     ## 1. Continuous Integration (CI)
        ## I-5  E-3
    
@@ -59,7 +59,7 @@ Deliver More Store Options for cutomization:
                - PHPUnit execution
                - npm ci
                - npm run build
-           - [ ] Enable branch protection rules:
+           - [✅] Enable branch protection rules:
                - Require Pull Requests before merge
                - Require CI checks to pass
                - Prevent direct pushes to main
@@ -102,9 +102,9 @@ GET /api/clicker/load
 - Implemnts defaults for new users
 - No console errors
 - No database errors
-- Clean merge into main
-- Deployed to production
-- Works on mobile
+- All Pest Tests working
+- Latest CI test passes
+
 
 ---
 
@@ -113,7 +113,7 @@ GET /api/clicker/load
 - Merge to main after completion
 - Run deployment script
 - Verify production
-- Tag release v1.1.0 (Optional)
+- Tag release v1.2.0 
 
 ---
 
@@ -162,3 +162,7 @@ then transition to user feedback without releasing sensitive data!
     Got background themes working, just need to change the UI and CSS so it looks better
     Now that the background styles are applied to the buttons and such it is starting to look really good
     Next adding Frames, possibly background images, then move onto a simple prestige system that resets the progress and adds 1 to the prestige counter!
+    Frames are done
+    I set the max clicks to 1Million before reset, on reset I increment the prestige counter
+    In the handle passiveIncome I modified it to take the prestige level and apply a 10% discount per prestige level with a max of 70% off
+    I'm not going to give a discount to doubleclicks cause it's math is fragile and this was to buff the passive income which is expensive
