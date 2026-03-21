@@ -18,13 +18,21 @@ class ClickerHeroController extends Controller
     if (!$save) {
         return response()->json([
             'score' => 0,
-            'multiplier' => 1
+            'multiplier' => 1,
+            'passive_income_level' => 0,
+            'prestige_level' => 0,
+            'background_color' => 'default',
+            'frame_choice' => 'default',
         ]);
     }
 
     return response()->json([
         'score' => $save->score,
-        'multiplier' => $save->multiplier
+        'multiplier' => $save->multiplier,
+        'passive_income_level' => $save->passive_income_level,
+        'prestige_level' => $save->prestige_level,
+        'background_color' => $save->background_color,
+        'frame_choice' => $save->frame_choice,
     ]);
     }
 
@@ -35,7 +43,11 @@ class ClickerHeroController extends Controller
     {
         $data = $request->validate([
             'score' => 'required|integer|min:0',
-            'multiplier' => 'required|integer|min:1'
+            'multiplier' => 'required|integer|min:1',
+            'passive_income_level' => 'required|integer|min:0',
+            'prestige_level' => 'required|integer|min:0',
+            'background_color' => 'required|string',
+            'frame_choice' => 'required|string'
         ]);
         $save = ClickerGame::updateOrCreate(
             // uses the first array to find the record,
@@ -43,7 +55,11 @@ class ClickerHeroController extends Controller
             ['user_id' => auth()->id()],
             [
                 'score' => $data['score'],
-                'multiplier' => $data['multiplier']
+                'multiplier' => $data['multiplier'],
+                'passive_income_level' => $data['passive_income_level'],
+                'prestige_level' => $data['prestige_level'],
+                'background_color' => $data['background_color'],
+                'frame_choice' => $data['frame_choice']
             ]
         );
         return response()->json($save);

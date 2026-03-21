@@ -1,106 +1,40 @@
-console.log('ClickerHero loaded');
+
+// import { useState, useEffect, useRef } from "react"; //Default React Lib
 import { useState, useEffect, useRef } from "react";
+import { BACKGROUND_THEMES } from "./BackgroundThemes";
+import type { BackgroundThemeKey } from "./BackgroundThemes";
+import { FRAME_THEMES } from "./FrameThemes";
+import type { FrameThemeKey } from "./FrameThemes";
+import { useClickerGame } from "./hooks/useClickerGame";  //State&Logic Lib Hook
 import "./ClickerHero.scss";
+
+console.log("Main Game loaded")
+
+
+
 
 export default function ClickerHero() {
 
-    // Max of n + 1 clicks
-    // Eg. if MAX_SCORE is 10, then 11 clicks
-    // is when the user wins and resets to 0.
-    const MAX_SCORE = 999; 
-    const AUTOSAVE_INTERVAL = 30000; // Timer for auto-saving game data (30 seconds)
-    const MULTIPLIER_COSTS = [10, 30, 90, 270, 810];
+    // Adding Game Logic Hook
+    const {
+    score, multiplier, passiveIncomeLevel, prestigeLevel, backgroundColor, frameChoice,
+    bulkAmountDoubleIncome, bulkAmountPassiveIncome,
+    setPassiveIncomeLevel,
+    setBulkAmountDoubleIncome, setBulkAmountPassiveIncome,
+    getBulkMultiplierCost, getBulkPassiveCost,
+    setScore,
+    handleClick, handleDoubleClick, handlePassivePurchase,
+    loadGame, saveData,
+    setBackgroundColor, setFrameChoice,
+    } = useClickerGame();
 
-    const lastSavedData = useRef({ score: 0, multiplier: 1 });
+  const BackgroundTheme = BACKGROUND_THEMES[backgroundColor] ?? BACKGROUND_THEMES.default;
+  const FrameTheme = FRAME_THEMES[frameChoice] ?? FRAME_THEMES.default;
+  const [selectedTheme, setSelectedTheme] = useState<BackgroundThemeKey>(backgroundColor);
+  const [selectedFrame, setSelectedFrame] = useState<FrameThemeKey>(frameChoice);
 
-    // Game State
-    const [score, setScore] = useState<number>(0);
-    const [multiplier, setMultiplier] = useState<number>(1);
 
-    
-    // Loads the game data from load route when the component mounts
-    useEffect(() => {
-        loadGame();
-    }, []);
 
-    // Auto-saves the game data every 30 seconds, but only if there have been changes since the last save
-    useEffect(() => {
-        const interval = setInterval(() => 
-            {
-                saveData();
-            }, AUTOSAVE_INTERVAL);
-        return () => clearInterval(interval);
-    }, [score, multiplier]); 
- 
-    /////////////////////////////////////////////////
-    // Button Click Game Logic                     //
-    /////////////////////////////////////////////////
-    const handleClick = () => {
-        const newScore = score + multiplier; // multiplier from use state
-        if (newScore <= (MAX_SCORE + 1)) {
-            setScore(prevScore => prevScore + multiplier);
-        }
-        if (newScore > MAX_SCORE) {
-            alert(`Congratulations! You've reached ${MAX_SCORE + 1} clicks!`);
-            setScore(0); // Reset score after reaching MAX_SCORE
-            setMultiplier(1); // Reset multiplier as well
-        }
-    }
-    const doubleClick = () => {
-        const currentLevel = Math.log2(multiplier); 
-        if (score >= MULTIPLIER_COSTS[currentLevel]) {
-            setScore(prevScore => prevScore - MULTIPLIER_COSTS[currentLevel]); // Deduct cost from score
-            setMultiplier(prevMultiplier => prevMultiplier * 2);
-        }
-    }
-    const saveData = async () => {
-        // Check for no difference in game data since last save to prevent unnecessary saves
-        if (score === lastSavedData.current.score && multiplier === lastSavedData.current.multiplier) {
-            console.log('No changes since last save, skipping save.');
-            return;
-        }
-        const saveJsonData = {
-            score: score,
-            multiplier: multiplier,
-        };
-        try {
-            const response = await fetch('/clickerhero/save', {
-                method: 'POST',
-                credentials: 'same-origin',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
-                },
-                body: JSON.stringify(saveJsonData)
-            });
-            if (!response.ok) {
-                throw new Error(`Network response was not ok: ${response.status}`);
-            }
-            const result = await response.json();
-            console.log('Save successful:');
-            // console.log('Save successful:', result);
-
-            lastSavedData.current = { score: score, multiplier: multiplier }; // Update the ref with the current data after successful save
-        }
-        catch (error) {
-            console.error(`Error saving data: ${error}`);
-        }
-    }
-
-    const loadGame = async () => {
-        try {
-            const response = await fetch('/clickerhero/load');
-            if (!response.ok) {
-                throw new Error(`Failed to load game data: ${response.status}`);
-            }
-            const data = await response.json();
-            setScore(data.score);
-            setMultiplier(data.multiplier);
-            lastSavedData.current = { score: data.score, multiplier: data.multiplier }; // Update the ref with the loaded data
-        } catch (error) {
-            console.error("Error loading save:", error);
-        }
-    };
     // End of Game Methods
     /////////////////////////////////////////////////////////////////////
     // Render the game UI
@@ -108,43 +42,132 @@ export default function ClickerHero() {
     return ( 
             <div className="clicker-hero-container">
                 <div className="layout-grid">
+                  {/* Prestige Level */}
+                    <div style={{ gridRow: "2 / span 1", gridColumn: "2 / span 4"}} className="info-titles prestige-level">
+                        <h3>Prestige Level: {prestigeLevel}</h3>
+                    </div>
                     {/* Multiplier Display */}
-                    <div style={{ gridRow: "4 / span 1", gridColumn: "1 / span 5"}} className="multiplier text-center p-4">
-                        <h1>Score Multiplier: x{multiplier}</h1>
+                    <div style={{ gridRow: "3 / span 1", gridColumn: "2 / span 4"}} className="info-titles multiplier">
+                        <h3>Point Multiplier: x{multiplier}</h3>
                     </div>
                     {/* Score Display */}
-                    <div style={{ gridRow: "5 / span 1", gridColumn: "1 / span 5"}} className="score text-center p-4">
-                        <h1>Score: {score}</h1>
+                    <div style={{ gridRow: "4 / span 2", gridColumn: "2 / span 4"}} className="info-titles score text-center p-4">
+                        <h1>Total Points: {score}</h1>
+                    </div>
+                    {/* Clicks Per Second Display */}
+                    <div style={{ gridRow: "2 / span 2", gridColumn: "6 / span 4"}} className="info-titles clicks-per-second ">
+                        <h1>Points Per Second: <br /> {passiveIncomeLevel}</h1>
                     </div>
 
                     {/* Click Button */}
-                    <div className="text-left p-4" style={{ gridRow: "8 / span 2", gridColumn: "1 / span 5"}}>
-                        <button className="btn btn-outline-dark w-100 h-100" onClick={handleClick}>
+                    <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "2 / span 4"}}>
+                        <button className="btn shop-button w-100 h-100" onClick={handleClick}>
                             Click Me!
                         </button>
                     </div>
                     {/* Save Button */}
-                    <div className="text-left p-4" style={{ gridRow: "10 / span 2", gridColumn: "1 / span 5"}}>
-                        <button className="btn btn-outline-dark w-100 h-100" onClick={saveData}>
+                    <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "6 / span 4"}}>
+                        <button className="btn shop-button w-100 h-100" onClick={saveData}>
                             Save Game
                         </button>
-                    </div> 
+                    </div>
+                    {/* dev only tool not rendered in prod
+                    <div style={{gridRow: "10 / span 2", gridColumn: "1 / span 4"}} className="shop-item-label">
+                        <button onClick={() => setScore(prev => prev + 100000)}>DEV: +100k</button>
+                    </div> */}
 
-                    {/* Shop */}
-                    <div style={{ gridRow: "1 / span 12", gridColumn: "6 / span 12"}} className="shop">
-                        <div className="layout-grid">
-                            <h1 style={{gridRow: "1 / span 2", gridColumn: "1 / span 12"}} className="text-center">Shop</h1>
+            {/* Shop */}
+            <div style={{ gridRow: "2 / span 12", gridColumn: "10 / span 6"}} className="shop">
+                <div className="layout-grid">
+                    <div style={{gridRow: "1 / span 2", gridColumn: "1 / span 16"}} className="text-center">
+                        <h1 className="shop-heading">Purchase Upgrades </h1>
+                    </div>
                             
-                            {/* Double Score */}
-                            <h1 style={{gridRow: "3 / span 2", gridColumn: "4 / span 6"}}>
-                                Cost: ${[10, 30, 90, 270, 810][Math.log2(multiplier)]} <br />
-                            </h1>
-                            <button style={{gridRow: "3 / span 1", gridColumn: "2 / span 1"}} className="btn btn-outline-dark" onClick={doubleClick}>
-                                Double Score
-                            </button>
+                {/*============================ */}                            
+                {/*==  Double Score Row    === */}
+                    <div style={{gridRow: "6 / span 1", gridColumn: "1 / span 6"}} className="shop-item-label">
+                        <h3>Double Points</h3>
+                    </div>
+                        <button style={{gridRow: "6 / span 1", gridColumn: "8 / span 3"}} className="btn shop-button" 
+                        onClick={handleDoubleClick}>
+                             ${getBulkMultiplierCost(Math.log2(multiplier), bulkAmountDoubleIncome)}
+                        </button>
+                        <div style={{ gridRow: "6 / span 1", gridColumn: "11 / span 6" }} className="bulk-selector">
+                          {[1, 5, 10].map((amount) => (
+                                <button
+                                key={amount}
+                                className={`bulk-btn ${bulkAmountDoubleIncome === amount ? 'active' : ''}`}
+                                onClick={() => setBulkAmountDoubleIncome(amount)}>
+                                    {amount}x
+                                </button>
+                            ))}
                         </div>
+                {/*=========================== */}
+                {/*==  Passive Income Row  ==*/}
+                    <div style={{gridRow: "7 / span 1", gridColumn: "1 / span 6"}} className="shop-item-label">
+                        <h3>Increase PPS: </h3>
+                    </div>
+                    <button style={{gridRow: "7 / span 1", gridColumn: "8 / span 3"}} className="btn shop-button" 
+                    onClick={handlePassivePurchase}>
+                        ${getBulkPassiveCost(passiveIncomeLevel, bulkAmountPassiveIncome)}
+                    </button>
+                    <div style={{ gridRow: "7 / span 1", gridColumn: "11 / span 6" }} className="bulk-selector">
+                      {[1, 5, 10].map((amount) => (
+                        <button
+                            key={amount}
+                            className={`bulk-btn ${bulkAmountPassiveIncome === amount ? 'active' : ''}`}
+                            onClick={() => setBulkAmountPassiveIncome(amount)}>
+                            {amount}x
+                        </button>
+                      ))}
+                    </div>
+                {/*=========================== */}
+                {/*==  Future Shop Items   ==*/}
+                    {/**  Remove before PR   */}
+                    <div style={{gridRow: "9 / span 1", gridColumn: "1 / span 6"}} className="shop-item-label">
+                        <h5>Change Theme</h5>
+                    </div>
+                    <div style={{gridRow: "8 / span 2", gridColumn: "8 / span 3"}} className="theme-controls">
+                      <select
+                        value={selectedTheme}
+                        onChange={(e) =>
+                          setSelectedTheme(e.target.value as BackgroundThemeKey)
+                        }
+                      >
+                        {Object.keys(BACKGROUND_THEMES).map((key) => (
+                          <option key={key} value={key}>
+                            {key}
+                          </option>
+                        ))}
+                      </select>
+
+                    
+                      <button onClick={() => setBackgroundColor(selectedTheme)}>
+                        Apply
+                      </button>
+                    </div>
+                  <div style={{gridRow: "10 / span 1", gridColumn: "1 / span 6"}} className="shop-item-label">
+                        <h5>Change Frame</h5>
+                    </div>
+                  <div style={{gridRow: "9 / span 2", gridColumn: "8 / span 4"}} className="theme-controls">
+                      <select
+                        value={selectedFrame}
+                        onChange={(e) =>
+                          setSelectedFrame(e.target.value as FrameThemeKey)
+                        }>
+                        {Object.keys(FRAME_THEMES).map((key) => (
+                          <option key={key} value={key}>
+                            {key}
+                          </option>
+                        ))}
+                      </select>
+                      <button onClick={() => setFrameChoice(selectedFrame)}>
+                        Apply
+                      </button>
                     </div>
                 </div>
             </div>
-        );
+        </div>
+    </div>
+  );
 }

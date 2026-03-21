@@ -108,6 +108,7 @@
                     <th>Name</th>
                     <th>E-mail</th>
                     <th>Role</th>
+                    <th>ClickerHero Stats</th>
                     <th>Delete</th>
                 </tr>
                 
@@ -117,6 +118,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->role }}</td>
+                        <td><a href="{{ route('admin.users.games.clicker', $user->id) }}"><button type="button">View Stats</button></a></td>
                         <td>
                             <form action="{{ route('admin.users.delete', $user->id) }}" method="POST">
                                 @csrf
