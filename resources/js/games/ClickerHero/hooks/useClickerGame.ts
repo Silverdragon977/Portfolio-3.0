@@ -223,14 +223,8 @@ export function useClickerGame() {
             setPassiveIncomeLevel(prev => {const newLevel = prev + actualBulk; return newLevel;
             
             });
-        } else { console.log("Not enough Score")}
+        } else { console.log("Not enough Score") }
     }
-
-
-
-
-
-
 
     // End of Game Methods
     /////////////////////////////////////////////////////////////////////

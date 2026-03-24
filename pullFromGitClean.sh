@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Prevent script from running with sudo/root
+if [ "$EUID" -eq 0 ]; then
+    echo "❌ ERROR: Do NOT run this script with sudo."
+    echo "Running with sudo will change file permissions."
+    echo "Run it as your deploy user instead."
+    exit 1
+fi
+
 echo "🔄 Fetching latest changes..."
 git fetch origin || { echo "❌ Git fetch failed"; exit 1; }
 
