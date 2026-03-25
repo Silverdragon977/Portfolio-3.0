@@ -1,58 +1,62 @@
 import { useState, useEffect, useRef } from "react";
-import { BACKGROUND_THEMES } from "../BackgroundThemes";
-import { FRAME_THEMES } from "../FrameThemes";
+// import { BACKGROUND_THEMES } from "./themes/BackgroundThemes";
+// import { FRAME_THEMES } from "./themes/FrameThemes";
+import { useThemes } from "./themes/useThemes";
+
+
 console.log("useClickerGame.ts Hook loaded")
+
 
 
 export function useClickerGame() {
 
-  const MAX_SCORE = 999999;
-  const AUTOSAVE_INTERVAL = 30000;
-  const MULTIPLIER_COSTS = [10, 30, 90, 270, 810, 2430, 7290, 21870, 65610, 131220, 262440, 524880, 1049760, 2099520, 4199040, 8398080, 12597120, 18895680, 28343520, 34012224, 40814669, 48977603, 58773124, 70527749, 84672000]; // Costs for each multiplier level (x2, x4, x8, etc.)
-  const PASSIVE_INCOME_COSTS = [100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200, 102400, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 550000, 600000, 650000, 700000, 750000, 800000, 850000, 900000, 950000];
+    //////////////////////////////////////////////////
+    //////   Hook State and Variables            /////
+    //////////////////////////////////////////////////
+    // Adding Themes Hook
+    const {
+       backgroundColor,
+       frameChoice,
+       setBackgroundColor,
+       setFrameChoice,
+    } = useThemes();
 
-  const lastSavedData = useRef({
-    score: 0,
-    multiplier: 1,
-    passiveIncomeLevel: 0,
-    prestigeLevel: 0,
-    backgroundColor: 'default',
-    frameChoice: 'default'
-  });
+    ////////////////////////////////////////////////////
+    //
+    ////////////////////////////////////////////////////
+    //////  Game State Variables and Constants     /////
+    ////////////////////////////////////////////////////
 
-  const [score, setScore] = useState(0);
-  const [multiplier, setMultiplier] = useState(1);
-  const [passiveIncomeLevel, setPassiveIncomeLevel] = useState(0);
-  const [prestigeLevel, setPrestigeLevel] = useState(0);
-  const [bulkAmountPassiveIncome, setBulkAmountPassiveIncome] = useState(1);
-  const [bulkAmountDoubleIncome, setBulkAmountDoubleIncome] = useState(1);
+    const MAX_SCORE = 999999;
+    const AUTOSAVE_INTERVAL = 30000;
+    const MULTIPLIER_COSTS = [10, 30, 90, 270, 810, 2430, 7290, 21870, 65610, 131220, 262440, 524880, 1049760, 2099520, 4199040, 8398080, 12597120, 18895680, 28343520, 34012224, 40814669, 48977603, 58773124, 70527749, 84672000]; // Costs for each multiplier level (x2, x4, x8, etc.)
+    const PASSIVE_INCOME_COSTS = [100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200, 102400, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 550000, 600000, 650000, 700000, 750000, 800000, 850000, 900000, 950000];
+  
+    const lastSavedData = useRef({
+      score: 0,
+      multiplier: 1,
+      passiveIncomeLevel: 0,
+      prestigeLevel: 0,
+      backgroundColor: 'default',
+      frameChoice: 'default'
+    });
+  
+    const [score, setScore] = useState(0);
+    const [multiplier, setMultiplier] = useState(1);
+    const [passiveIncomeLevel, setPassiveIncomeLevel] = useState(0);
+    const [prestigeLevel, setPrestigeLevel] = useState(0);
+    const [bulkAmountPassiveIncome, setBulkAmountPassiveIncome] = useState(1);
+    const [bulkAmountDoubleIncome, setBulkAmountDoubleIncome] = useState(1);
+    const [isStoreOpen, setIsStoreOpen] = useState(false);
 
-  // Adding UI Themes
-  const [backgroundColor, setBackgroundColor] = useState<BackgroundThemeKey>('default');  
-  const [frameChoice, setFrameChoice] = useState<FrameThemeKey>('default');
-
+    ////////////////////////////////////////////////////////
+    /////////     Use State Stuff              /////////////
+    ////////////////////////////////////////////////////////
 
     useEffect(() => {
         // Loads the game data from load route when the component mounts
         loadGame();
     }, []);
-    
-    useEffect(() => {
-        // Sets Background Theme based on user selection
-        const theme = BACKGROUND_THEMES[backgroundColor] || BACKGROUND_THEMES.default;
-        
-        Object.entries(theme).forEach(([key, value]) => {
-            document.documentElement.style.setProperty(key, value);
-        });
-    }, [backgroundColor]);
-
-    useEffect(() => {
-        const theme = FRAME_THEMES[frameChoice] || FRAME_THEMES.default;
-
-        Object.entries(theme).forEach(([key, value]) => {
-          document.documentElement.style.setProperty(key, value);
-        });
-    }, [frameChoice]);
 
     //// SaveGame Interval Logic ////
     // Auto-saves the game data every 30 seconds, but only if there have been changes since the last save
@@ -238,6 +242,7 @@ export function useClickerGame() {
     frameChoice,
     bulkAmountDoubleIncome,
     bulkAmountPassiveIncome,
+    isStoreOpen,
     setBackgroundColor,
     setFrameChoice,
     setPassiveIncomeLevel,
@@ -251,5 +256,6 @@ export function useClickerGame() {
     handlePassivePurchase,
     loadGame,
     saveData,
+    setIsStoreOpen
   };
 };

@@ -11,6 +11,7 @@
     background-position: center;
     border: var(--frame-border);
     box-shadow: var(--frame-shadow);
+    position: relative; // For the store overlay
 }
 
 /* The developer layout grid */
@@ -121,6 +122,37 @@ select {
 select option {
   background: var(--bg-secondary);
   color: var(--text-primary);
+}
+.store-overlay {
+  position: absolute; // IMPORTANT: stay inside your game container
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none; // allow clicks only on panel
+}
+.store-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%; // tweak this
+  height: 100%;
+  background: var(--bg-secondary);
+  border-left: 4px solid var(--accent);
+  box-shadow: -10px 0 20px rgba(0, 0, 0, 0.5);
+  transform: translateX(100%); // START OFF SCREEN
+  transition: transform 0.3s ease;
+  pointer-events: auto;
+  display: flex;
+  flex-direction: column;
+}
+.store-panel.open {transform: translateX(0);}
+.store-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
 }
 //////////////////////////////////////
 ///////////////////////////

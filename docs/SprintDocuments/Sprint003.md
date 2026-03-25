@@ -34,10 +34,10 @@ Why are we doing this?
     ------------
     ## 2. Refactor for Simplicity
     ## I-4 E-4 D-3
-        - [ ] Create component for store and remove the store from ClickerHero.tsx
-        - [ ] Remove Theme Backgrounds and Frames from ClickerHero.tsx and useClickerHero.tsx into it's own component
-        - [ ] remove unused state
-        - [ ] extract store from ClickerHero.tsx for simplicity
+        - [✅] Create component for store and remove the store from ClickerHero.tsx
+        - [✅] Remove Theme Backgrounds and Frames from ClickerHero.tsx and useClickerHero.tsx into it's own component
+        - [✅] remove unused state
+        - [✅] extract store from ClickerHero.tsx for simplicity
         - [ ] create component for save/load // Optional
     -------------
     ## 3. Core Functionality
