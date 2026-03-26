@@ -7,8 +7,9 @@ import { FRAME_THEMES } from "./hooks/themes/FrameThemes";
 import type { FrameThemeKey } from "./hooks/themes/FrameThemes";
 import { useClickerGame } from "./hooks/useClickerGame";  //State&Logic Lib Hook
 import { StoreOverlay } from "./StoreOverlay"; // Store Overlay Component
+import { SavingIndicator } from "./components/SavingIndicator";
+import { Leaderboard } from "./components/Leaderboard";
 import "./ClickerHero.scss";
-
 console.log("Main Game loaded")
 
 export default function ClickerHero() {
@@ -18,14 +19,14 @@ export default function ClickerHero() {
     // Adding Game Logic Hook
     const {
     score, multiplier, passiveIncomeLevel, prestigeLevel, backgroundColor, frameChoice,
-    bulkAmountDoubleIncome, bulkAmountPassiveIncome, isStoreOpen,
+    bulkAmountDoubleIncome, bulkAmountPassiveIncome, isStoreOpen, isSaving,
     setPassiveIncomeLevel,
     setBulkAmountDoubleIncome, setBulkAmountPassiveIncome,
     getBulkMultiplierCost, getBulkPassiveCost,
     setScore,
     handleClick, handleDoubleClick, handlePassivePurchase,
     loadGame, saveData,
-    setBackgroundColor, setFrameChoice, setIsStoreOpen,
+    setBackgroundColor, setFrameChoice, setIsStoreOpen, setIsSaving,
     } = useClickerGame();
 
     ////////////////////////////////////////////////////
@@ -49,14 +50,14 @@ export default function ClickerHero() {
     // Render the game UI
     const game = {
     score, multiplier, passiveIncomeLevel, prestigeLevel, backgroundColor, frameChoice,
-    bulkAmountDoubleIncome, bulkAmountPassiveIncome, isStoreOpen,
+    bulkAmountDoubleIncome, bulkAmountPassiveIncome, isStoreOpen, isSaving,
     setPassiveIncomeLevel,
     setBulkAmountDoubleIncome, setBulkAmountPassiveIncome,
     getBulkMultiplierCost, getBulkPassiveCost,
     setScore,
     handleClick, handleDoubleClick, handlePassivePurchase,
     loadGame, saveData,
-    setBackgroundColor, setFrameChoice, setIsStoreOpen,
+    setBackgroundColor, setFrameChoice, setIsStoreOpen, setIsSaving,
     }; // allows the useage of the game hook in the store overlay
 
     return  ( 
@@ -69,6 +70,10 @@ export default function ClickerHero() {
                   {/* Clicks Per Second Display */}
                       <div style={{ gridRow: "2 / span 2", gridColumn: "6 / span 4"}} className="info-titles clicks-per-second ">
                           <h1>Points Per Second: <br /> {passiveIncomeLevel}</h1>
+                      </div>
+                  {/* Saving Indicator */}    
+                      <div style={{gridRow: "1 / span 2", gridColumn: "12 / span 3"}} className="outline-btn w-100 h-100">
+                            <SavingIndicator isSaving={game.isSaving} />
                       </div>
                   {/* Multiplier Display */}
                       <div style={{ gridRow: "3 / span 1", gridColumn: "2 / span 4"}} className="info-titles multiplier">
@@ -143,6 +148,10 @@ export default function ClickerHero() {
                               <StoreOverlay game={game} onClose={() => setIsStoreOpen(false)} />
                           )}
                       </div>
+                      <div style={{ gridRow: "12 / span 2", gridColumn: "1 / span 6"}} className="text-center">
+                          <Leaderboard />
+                      </div>
+
 
                   </div> {/* End of Layout Grid */}
               </div>

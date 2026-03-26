@@ -93,25 +93,30 @@ Reading the Backlog Easily:
     ## 1. UI/UX Improvements
     ## I-3  E-3 D-2
 
-        - [ ] Add saving animation feedback
-        - [ ] Add prestige emblems
+        - [ ] Move the Store and Leaderboard buttons to a task bar for navigation at the bottom
+        - [ ] Bring the themes and backgrounds into the store
+        - [ ] Make store grids that scroll to view store cards with space for titles
+        - [ ] Inside the store cards design a preview for the backgrounds and frames
         - [ ] Change theme changer using select to styled div
+        - [ ] Add separation for different ranks of backgrounds and frames
+        - [ ] Common backgrounds have mono colors, rare use 2 color gradients, 
+                 ultra rare use 3+ gradients and static effects, legendary is ultra rare with animations 
         - [ ] 
 
         ---
     ## 2. Refactor for Simplicity
     ## I-4 E-4 D-3
-        - [ ] Create component for store and remove the store from ClickerHero.tsx
-        - [ ] Remove Theme Backgrounds and Frames from ClickerHero.tsx and useClickerHero.tsx into it's own component
-        - [ ] remove unused state
-        - [ ] extract store from ClickerHero.tsx for simplicity
+        - [ ] 
         - [ ] create component for save/load // Optional
 
     ## 3. Core Functionality
     ## I-4 E-4 D-4
         - [ ] create more stable algorithm for passive income (no implementation yet) 
         - [ ] create more stable algorithm for double income PPS (no implementation yet) 
-        - [ ]   
+        - [ ] Add columns in the clickergame table safely to add bought frames and bought backgrounds
+        - [ ] On purchase of Background or Frame add it to the table 
+        - [ ] on the buyBackground and buyFrame method add functionality to check the bought themes and 
+            if the item is already bought then reduce the price to 0  
     ## 4. Store Toggle & Leaderboard panel (UI/UX)
     ## I-3 E-3 D-3
         - [ ] add isStoreOpen toggle state in useClickerHero
@@ -129,7 +134,9 @@ Reading the Backlog Easily:
         - [ ] create leaderboard component
         - [ ] fetch /leaderboard on mount and every 60 seconds
         - [ ] display ranked ordered list
-
+    ## 6. Themes and backgrounds in the Store
+        - [ ] In useClickerGame.ts add method for changing theme background and frames called buyBackground and buyFrame
+        - [ ] 
 
 -------------------------------------------------------------------
 

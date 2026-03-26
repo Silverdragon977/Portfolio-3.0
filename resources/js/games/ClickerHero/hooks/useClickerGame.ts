@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 // import { BACKGROUND_THEMES } from "./themes/BackgroundThemes";
 // import { FRAME_THEMES } from "./themes/FrameThemes";
 import { useThemes } from "./themes/useThemes";
+import { SavingIndicator } from "../components/SavingIndicator";
 
 
 console.log("useClickerGame.ts Hook loaded")
@@ -48,6 +49,7 @@ export function useClickerGame() {
     const [bulkAmountPassiveIncome, setBulkAmountPassiveIncome] = useState(1);
     const [bulkAmountDoubleIncome, setBulkAmountDoubleIncome] = useState(1);
     const [isStoreOpen, setIsStoreOpen] = useState(false);
+    const [isSaving, setIsSaving] = useState(false);
 
     ////////////////////////////////////////////////////////
     /////////     Use State Stuff              /////////////
@@ -98,6 +100,7 @@ export function useClickerGame() {
     }
 
     const saveData = async () => {
+        setIsSaving(true);
         // Check for no difference in game data since last save to prevent unnecessary saves
         if (score === lastSavedData.current.score && multiplier === lastSavedData.current.multiplier && passiveIncomeLevel === lastSavedData.current.passiveIncomeLevel && prestigeLevel === lastSavedData.current.prestigeLevel && backgroundColor === lastSavedData.current.backgroundColor && frameChoice === lastSavedData.current.frameChoice) {
             console.log('No changes since last save, skipping save.');
@@ -132,6 +135,9 @@ export function useClickerGame() {
         catch (error) {
             console.error(`Error saving data: ${error}`);
         }
+        setTimeout(() => {
+            setIsSaving(false);
+        }, 2000); // Show "Saving..." for 2 seconds after save completes
     }
 
     const loadGame = async () => {
@@ -243,6 +249,7 @@ export function useClickerGame() {
     bulkAmountDoubleIncome,
     bulkAmountPassiveIncome,
     isStoreOpen,
+    isSaving,
     setBackgroundColor,
     setFrameChoice,
     setPassiveIncomeLevel,
@@ -256,6 +263,7 @@ export function useClickerGame() {
     handlePassivePurchase,
     loadGame,
     saveData,
-    setIsStoreOpen
+    setIsStoreOpen,
+    setIsSaving,
   };
 };
