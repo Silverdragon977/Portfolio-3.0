@@ -66,13 +66,25 @@ class ClickerHeroController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Leaderboard
      */
-    public function show(string $id)
+    public function leaderboard()
     {
         //
+        $leaders = ClickerGame::with('user')
+       ->orderByDesc('score')
+        ->take(3)
+        ->get();
+        return response()->json(
+            $leaders->map(function ($leader) {
+                return [
+                    'username' => $leader->user->name,
+                    'score' => $leader->score,
+                    'prestige_level' => $leader->prestige_level
+                ];
+            })
+        );
     }
-
     /**
      * Update the specified resource in storage.
      */

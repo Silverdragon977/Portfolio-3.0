@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/clickerhero/load', [ClickerHeroController::class, 'load']);
     Route::post('/clickerhero/save', [ClickerHeroController::class, 'store']);
+    Route::get('/leaderboard', [ClickerHeroController::class, 'leaderboard']);
 
     Route::get('/contact', [CommentController::class, 'create'])
         ->name('contact.create');
