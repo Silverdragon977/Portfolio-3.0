@@ -64,35 +64,35 @@ export default function ClickerHero() {
               <div className="clicker-hero-container">
                   <div className="layout-grid">
                   {/* Prestige Level */}
-                      <div style={{ gridRow: "2 / span 1", gridColumn: "2 / span 4"}} className="info-titles prestige-level">
+                      <div style={{ gridRow: "2 / span 1", gridColumn: "10 / span 4"}} className="info-titles prestige-level">
                           <h3>Prestige Level: {prestigeLevel}</h3>
                       </div>
                   {/* Clicks Per Second Display */}
-                      <div style={{ gridRow: "2 / span 2", gridColumn: "6 / span 4"}} className="info-titles clicks-per-second ">
-                          <h1>Points Per Second: <br /> {passiveIncomeLevel}</h1>
+                      <div style={{ gridRow: "4 / span 1", gridColumn: "2 / span 4"}} className="info-titles clicks-per-second ">
+                          <h1>Points Per Second: <br /> {passiveIncomeLevel * 2}</h1>
                       </div>
                   {/* Saving Indicator */}    
                       <div style={{gridRow: "1 / span 2", gridColumn: "12 / span 3"}} className="outline-btn w-100 h-100">
                             <SavingIndicator isSaving={game.isSaving} />
                       </div>
                   {/* Multiplier Display */}
-                      <div style={{ gridRow: "3 / span 1", gridColumn: "2 / span 4"}} className="info-titles multiplier">
+                      <div style={{ gridRow: "5 / span 1", gridColumn: "2 / span 4"}} className="info-titles multiplier">
                           <h3>Point Multiplier: x{multiplier}</h3>
                       </div>
                   {/* Score Display */}
-                      <div style={{ gridRow: "4 / span 2", gridColumn: "2 / span 4"}} className="info-titles score text-center p-4">
+                      <div style={{ gridRow: "6 / span 1", gridColumn: "2 / span 6"}} className="info-titles score text-center p-4">
                           <h1>Total Points: {score}</h1>
                       </div>
   
   
                   {/* Click Button */}
-                      <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "2 / span 4"}}>
+                      <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "2 / span 6"}}>
                           <button className="btn shop-button w-100 h-100" onClick={handleClick}>
                               Click Me!
                           </button>
                       </div>
                   {/* Save Button */}
-                      <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "10 / span 6"}}>
+                      <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "12 / span 4"}}>
                           <button className="btn shop-button w-100 h-100" onClick={saveData}>
                               Save Game
                           </button>
@@ -102,10 +102,10 @@ export default function ClickerHero() {
                           <button onClick={() => setScore(prev => prev + 100000)}>DEV: +100k</button>
                       </div> */}
                   {/* Background Theme Controls */}
-                      <div style={{gridRow: "9 / span 1", gridColumn: "1 / span 6"}} className="shop-item-label">
-                          <h5>Change Theme</h5>
+                      <div style={{gridRow: "3 / span 2", gridColumn: "12 / span 6"}} className="shop-item-label">
+                          <p>Change Theme</p>
                       </div>
-                      <div style={{gridRow: "8 / span 2", gridColumn: "8 / span 3"}} className="theme-controls">
+                      <div style={{gridRow: "4 / span 1", gridColumn: "14 / span 3"}} className=" theme-controls">
                           <select
                             value={selectedTheme}
                             onChange={(e) => setSelectedTheme(e.target.value as BackgroundThemeKey)}>
@@ -120,10 +120,10 @@ export default function ClickerHero() {
                               </button>
                       </div>
                   {/* Background Theme Controls */}
-                      <div style={{gridRow: "10 / span 1", gridColumn: "1 / span 6"}} className="shop-item-label">
-                          <h5>Change Frame</h5>
+                      <div style={{gridRow: "5 / span 1", gridColumn: "12 / span 6"}} className="shop-item-label">
+                          <p>Change Frame</p>
                       </div>
-                      <div style={{gridRow: "9 / span 2", gridColumn: "8 / span 4"}} className="theme-controls">
+                      <div style={{gridRow: "5 / span 2", gridColumn: "14 / span 4"}} className="theme-controls">
                           <select
                               value={selectedFrame}
                                   onChange={(e) =>
@@ -140,7 +140,7 @@ export default function ClickerHero() {
                                 </button>
                       </div>
                   {/* Open Store Button */}
-                      <div style={{ gridRow: "5 / span 2", gridColumn: "7 / span 2"}}>
+                      <div style={{ gridRow: "2 / span 2", gridColumn: "14 / span 2"}}>
                           <button className="btn shop-button w-80 h-80 center" onClick={() => setIsStoreOpen(true)}>
                               <h1>Open Store</h1>
                           </button>
@@ -148,7 +148,7 @@ export default function ClickerHero() {
                               <StoreOverlay game={game} onClose={() => setIsStoreOpen(false)} />
                           )}
                       </div>
-                      <div style={{ gridRow: "12 / span 2", gridColumn: "1 / span 6"}} className="text-center">
+                      <div style={{ gridRow: "2 / span 2", gridColumn: "2 / span 6"}} className="text-center">
                           <Leaderboard />
                       </div>
 

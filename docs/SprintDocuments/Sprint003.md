@@ -45,8 +45,8 @@ Why are we doing this?
     -------------
     ## 3. Core Functionality
     ## I-4 E-4 D-4
-        - [ ] create more stable algorithm for passive income  
-        - [ ] create more stable algorithm for double income PPS
+        - [❌] create more stable algorithm for passive income  
+        - [✅] create more stable algorithm for double income PPS
     --------------
     ## 4. Store Toggle & Leaderboard panel (UI/UX)
     ## I-3 E-3 D-3
@@ -73,14 +73,14 @@ Why are we doing this?
     ## I-3  E-2 D-4
 
         ### Tasks
-        - [ ] Create `docs/ProductionArchitecture/production-architecture.md`
+        - [❌] Create `docs/ProductionArchitecture/production-architecture.md`
             - Server OS
             - Nginx structure
             - PHP-FPM model
             - SSL strategy
             - Deployment pipeline
             - Security layers (UFW, Fail2Ban)
-        - [ ] Add architecture change log section
+        - [❌] Add architecture change log section
 
 ---
 
@@ -150,10 +150,18 @@ This worked but now I needed to make a bunch of additions to the store part to a
 I made the root div position absolute so that my slider can find where to start the animation
 Now that the store slides in and out of the game and looks good I verified that it still allows purchases
 Ok now we can rework the UI a bit to give some breathing room
-Now lets 
+Now lets make a leaderboard by adding the leaderboard method to the game controller,
+this will query the backend game table and grab the users who have the top scores in order and return it
+via a /leaderboard json api on load() and every 40 seconds it will update the leaderboard, this way it doesn't 
+conflict with the 30 second saving timer. I put all of the leaderboard state, vars, and UI inside the Leaderboard.tsx
+component to keep it out of the main app UI. Also I added a saving Indicator with it's own component with isSaving state
+that way I can setisSavingIndicator to true for on and set a timout timer for 5 seconds, that way I can add this indicator
+when ever a save starts and time it out once the save is complete!
+I started modifying the multiplier per click costs and implemented it, though there are some issues to fix later on.
+See right now there is two implementations. I need to refactor the handle purchase methods so that they calculate the right amount per purchase. It shouldn't be that hard as I'm hardcoding the costs now, but I'm leaving that for the next sprint since it is friday!
 
 
-## In-Depth Development Log
+
  
  
  

@@ -23,7 +23,7 @@ export function Leaderboard() {
   useEffect(() => {
     fetchLeaderboard();
 
-    const interval = setInterval(fetchLeaderboard, 60000);
+    const interval = setInterval(fetchLeaderboard, 40000);
 
     return () => clearInterval(interval);
   }, []);

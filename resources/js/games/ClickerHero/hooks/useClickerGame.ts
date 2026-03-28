@@ -30,9 +30,9 @@ export function useClickerGame() {
 
     const MAX_SCORE = 999999;
     const AUTOSAVE_INTERVAL = 30000;
-    const MULTIPLIER_COSTS = [10, 30, 90, 270, 810, 2430, 7290, 21870, 65610, 131220, 262440, 524880, 1049760, 2099520, 4199040, 8398080, 12597120, 18895680, 28343520, 34012224, 40814669, 48977603, 58773124, 70527749, 84672000]; // Costs for each multiplier level (x2, x4, x8, etc.)
-    const PASSIVE_INCOME_COSTS = [100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600, 51200, 102400, 150000, 200000, 250000, 300000, 350000, 400000, 450000, 500000, 550000, 600000, 650000, 700000, 750000, 800000, 850000, 900000, 950000];
-  
+    // const MULTIPLIER_COSTS = [10, 30, 90, 270, 810, 2430, 7290, 21870, 65610, 131220, 262440, 524880, 1049760, 2099520, 4199040, 8398080, 12597120, 18895680, 28343520, 34012224, 40814669, 48977603, 58773124, 70527749, 84672000]; // Costs for each multiplier level (x2, x4, x8, etc.)
+    const MULTIPLIER_COSTS = Array.from({ length: 24 }, (_, n) => Math.round(40 * Math.pow(2.1, n)));
+    const PASSIVE_INCOME_COSTS = Array.from({ length: 24 }, (_, n) => Math.round(40 * Math.pow(2.1, n)));
     const lastSavedData = useRef({
       score: 0,
       multiplier: 1,
@@ -74,7 +74,7 @@ export function useClickerGame() {
     useEffect(() => {
         const passiveIncomeInterval = setInterval(() => {
             setScore(prevScore => {
-                const newScore = prevScore + passiveIncomeLevel;
+                const newScore = prevScore + (passiveIncomeLevel * 2);
                 return newScore <= MAX_SCORE ? newScore : prevScore;
             });
         }, 1000);
@@ -104,6 +104,7 @@ export function useClickerGame() {
         // Check for no difference in game data since last save to prevent unnecessary saves
         if (score === lastSavedData.current.score && multiplier === lastSavedData.current.multiplier && passiveIncomeLevel === lastSavedData.current.passiveIncomeLevel && prestigeLevel === lastSavedData.current.prestigeLevel && backgroundColor === lastSavedData.current.backgroundColor && frameChoice === lastSavedData.current.frameChoice) {
             console.log('No changes since last save, skipping save.');
+            setIsSaving(false);
             return;
         }
         const saveJsonData = {

@@ -106,7 +106,7 @@ Reading the Backlog Easily:
         ---
     ## 2. Refactor for Simplicity
     ## I-4 E-4 D-3
-        - [ ] 
+        - [ ] remove the multiplier cost duplication
         - [ ] create component for save/load // Optional
 
     ## 3. Core Functionality
@@ -117,26 +117,14 @@ Reading the Backlog Easily:
         - [ ] On purchase of Background or Frame add it to the table 
         - [ ] on the buyBackground and buyFrame method add functionality to check the bought themes and 
             if the item is already bought then reduce the price to 0  
-    ## 4. Store Toggle & Leaderboard panel (UI/UX)
-    ## I-3 E-3 D-3
-        - [ ] add isStoreOpen toggle state in useClickerHero
-        - [ ] create Open store button
-        - [ ] add isLearderboardOpen toggle 
-        - [ ] create sliding leaderboard panel (CSS transition)
-        - [ ] ensure clean close and open behavior
-    ## 5. Leaderboard API & Data layer
-    ## I-4 E-3 D-3
-        - [ ] add relationship ClickerGame -> belongsTo(User)
-        - [ ] create leaderboard() method in controller
-        - [ ] make sql query to grab top 3 users based on high score
-        - [ ] map username, score, prestige_level
-        - [ ] add api route /leaderboard
-        - [ ] create leaderboard component
-        - [ ] fetch /leaderboard on mount and every 60 seconds
-        - [ ] display ranked ordered list
-    ## 6. Themes and backgrounds in the Store
-        - [ ] In useClickerGame.ts add method for changing theme background and frames called buyBackground and buyFrame
-        - [ ] 
+
+    ## 7. Game State Normalization
+    ## I-5 E-3 D-4
+    - [ ] Separate "derived values" from state (e.g. PPS = level * 2)
+    - [ ] Ensure single source of truth for costs
+    - [ ] Remove duplicated logic between systems
+    - [ ] Create clear "economy layer" (cost + scaling functions)
+
 
 -------------------------------------------------------------------
 
@@ -151,6 +139,11 @@ Reading the Backlog Easily:
         - [ ] Add frontend TypeScript strict validation checks
         - [ ] Introduce test coverage reporting
         - [ ] Refactor JS with TS types and other TS safety measures
+    ### Pest Tests
+        - [ ] Pest the API endpoints
+        - [ ] Pest the Save/load integrity
+        - [ ] Pest the Leaderboard
+        - [ ] Pest Database migration tests
 
         ---
 
