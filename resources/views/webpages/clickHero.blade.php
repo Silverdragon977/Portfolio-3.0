@@ -2,6 +2,9 @@
 @extends('layouts.defaultLayout')
 
     @section('header')
+        <script>
+            window.APP_URL = "{{ config('app.url') }}";
+        </script>
     @endsection
         
     @section('mainContent')

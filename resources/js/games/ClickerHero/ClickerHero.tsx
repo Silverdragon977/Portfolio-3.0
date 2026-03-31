@@ -1,4 +1,4 @@
-
+// ClickerHero.tsx - Main Game Component for Clicker Hero
 // import { useState, useEffect, useRef } from "react"; //Default React Lib
 import { useState, useEffect, useRef } from "react";
 import { BACKGROUND_THEMES } from "./hooks/themes/BackgroundThemes";
@@ -12,7 +12,12 @@ import { Leaderboard } from "./components/Leaderboard";
 import "./ClickerHero.scss";
 console.log("Main Game loaded")
 
+
+
+
+
 export default function ClickerHero() {
+    const BASE_URL = (window as any).APP_URL;
     //////////////////////////////////////////////////
     //////   Hook State and Variables            /////
     //////////////////////////////////////////////////
@@ -68,7 +73,7 @@ export default function ClickerHero() {
                           <h3>Prestige Level: {prestigeLevel}</h3>
                       </div>
                   {/* Clicks Per Second Display */}
-                      <div style={{ gridRow: "4 / span 1", gridColumn: "2 / span 4"}} className="info-titles clicks-per-second ">
+                      <div style={{ gridRow: "6 / span 2", gridColumn: "2 / span 6"}} className="info-titles clicks-per-second ">
                           <h1>Points Per Second: <br /> {passiveIncomeLevel * 2}</h1>
                       </div>
                   {/* Saving Indicator */}    
@@ -76,23 +81,23 @@ export default function ClickerHero() {
                             <SavingIndicator isSaving={game.isSaving} />
                       </div>
                   {/* Multiplier Display */}
-                      <div style={{ gridRow: "5 / span 1", gridColumn: "2 / span 4"}} className="info-titles multiplier">
+                      <div style={{ gridRow: "5 / span 1", gridColumn: "2 / span 6"}} className="info-titles multiplier">
                           <h3>Point Multiplier: x{multiplier}</h3>
                       </div>
                   {/* Score Display */}
-                      <div style={{ gridRow: "6 / span 1", gridColumn: "2 / span 6"}} className="info-titles score text-center p-4">
+                      <div style={{ gridRow: "8 / span 2", gridColumn: "2 / span 6"}} className="info-titles score text-center p-4">
                           <h1>Total Points: {score}</h1>
                       </div>
   
   
                   {/* Click Button */}
-                      <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "2 / span 6"}}>
+                      <div className="text-left p-4" style={{ gridRow: "10 / span 2", gridColumn: "2 / span 6"}}>
                           <button className="btn shop-button w-100 h-100" onClick={handleClick}>
                               Click Me!
                           </button>
                       </div>
                   {/* Save Button */}
-                      <div className="text-left p-4" style={{ gridRow: "7 / span 2", gridColumn: "12 / span 4"}}>
+                      <div className="text-left p-4" style={{ gridRow: "10 / span 2", gridColumn: "12 / span 4"}}>
                           <button className="btn shop-button w-100 h-100" onClick={saveData}>
                               Save Game
                           </button>
@@ -102,10 +107,10 @@ export default function ClickerHero() {
                           <button onClick={() => setScore(prev => prev + 100000)}>DEV: +100k</button>
                       </div> */}
                   {/* Background Theme Controls */}
-                      <div style={{gridRow: "3 / span 2", gridColumn: "12 / span 6"}} className="shop-item-label">
+                      <div style={{gridRow: "4 / span 2", gridColumn: "12 / span 6"}} className="shop-item-label">
                           <p>Change Theme</p>
                       </div>
-                      <div style={{gridRow: "4 / span 1", gridColumn: "14 / span 3"}} className=" theme-controls">
+                      <div style={{gridRow: "5 / span 1", gridColumn: "14 / span 3"}} className=" theme-controls">
                           <select
                             value={selectedTheme}
                             onChange={(e) => setSelectedTheme(e.target.value as BackgroundThemeKey)}>
@@ -120,10 +125,10 @@ export default function ClickerHero() {
                               </button>
                       </div>
                   {/* Background Theme Controls */}
-                      <div style={{gridRow: "5 / span 1", gridColumn: "12 / span 6"}} className="shop-item-label">
+                      <div style={{gridRow: "8 / span 1", gridColumn: "12 / span 6"}} className="shop-item-label">
                           <p>Change Frame</p>
                       </div>
-                      <div style={{gridRow: "5 / span 2", gridColumn: "14 / span 4"}} className="theme-controls">
+                      <div style={{gridRow: "8 / span 2", gridColumn: "14 / span 4"}} className="theme-controls">
                           <select
                               value={selectedFrame}
                                   onChange={(e) =>

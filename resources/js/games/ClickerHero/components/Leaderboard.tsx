@@ -1,3 +1,4 @@
+// Leaderboard.tsx - Component to display the top players in Clicker Hero, fetching data from the server and updating every 40 seconds.
 import { useEffect, useState } from "react";
 
 type Player = {
