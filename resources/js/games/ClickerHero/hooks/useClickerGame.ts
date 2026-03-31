@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+// useClickerGame.ts Main game logic and state management for Clicker Hero, implemented as a custom React hook. 
 // import { BACKGROUND_THEMES } from "./themes/BackgroundThemes";
 // import { FRAME_THEMES } from "./themes/FrameThemes";
 import { useThemes } from "./themes/useThemes";
 import { SavingIndicator } from "../components/SavingIndicator";
+import { useState, useEffect, useRef } from "react";
 
 
 console.log("useClickerGame.ts Hook loaded")
@@ -14,6 +15,7 @@ export function useClickerGame() {
     //////////////////////////////////////////////////
     //////   Hook State and Variables            /////
     //////////////////////////////////////////////////
+    const BASE_URL = (window as any).APP_URL;
     // Adding Themes Hook
     const {
        backgroundColor,
@@ -116,7 +118,7 @@ export function useClickerGame() {
             frame_choice: frameChoice
         };
         try {
-            const response = await fetch('/clickerhero/save', {
+            const response = await fetch(`${BASE_URL}/clickerhero/save`, {
                 method: 'POST',
                 credentials: 'same-origin',
                 headers: {
@@ -143,7 +145,7 @@ export function useClickerGame() {
 
     const loadGame = async () => {
         try {
-            const response = await fetch('/clickerhero/load');
+            const response = await fetch(`${BASE_URL}/clickerhero/load`);
             if (!response.ok) {
                 throw new Error(`Failed to load game data: ${response.status}`);
             }
