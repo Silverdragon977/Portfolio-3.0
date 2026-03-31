@@ -1,5 +1,7 @@
 // Leaderboard.tsx - Component to display the top players in Clicker Hero, fetching data from the server and updating every 40 seconds.
 import { useEffect, useState } from "react";
+const BASE_URL = (window as any).APP_URL;
+
 
 type Player = {
   username: string;
@@ -12,7 +14,7 @@ export function Leaderboard() {
 
   const fetchLeaderboard = async () => {
     try {
-      const res = await fetch("/leaderboard");
+      const res = await fetch(`${BASE_URL}/leaderboard`);
       const data = await res.json();
       setPlayers(data);
       console.log("Fetched leaderboard data:", data);
