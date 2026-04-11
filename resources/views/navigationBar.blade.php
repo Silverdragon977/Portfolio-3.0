@@ -22,7 +22,6 @@
                 <li><a class="dropdown-item" href="{{ route('resume') }}">Resume</a></li>
                 <li><a class="dropdown-item" href="{{ route('contact.create') }}">Contact</a></li>
                 <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a></li>
-                <li><a class="dropdown-item" href="{{ route('whatIsMyIP') }}">What's My IP?</a></li>
 
 
             </ul>
@@ -32,6 +31,7 @@
                  Games
               </a>
               <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ route('whatIsMyIP') }}">What's My IP?</a></li>
                   <li><a class="dropdown-item" href="{{ route('ClickHero') }}">Click Hero</a></li>
               </ul>
           </li>

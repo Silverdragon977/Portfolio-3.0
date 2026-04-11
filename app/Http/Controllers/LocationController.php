@@ -75,7 +75,7 @@ class LocationController extends Controller
     public function displayIPData(Request $request)
     {
         $userIP = $request->ip();
-        $userIP = '66.101.0.0'; // Example IP address for testing
+        // $userIP = '66.101.0.0'; // Example IP address for testing
         $location = Location::get($userIP);
 
          // Fallback to default values if location information is not available
