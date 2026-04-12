@@ -62,7 +62,7 @@
                         <td>{{ $location->timezone}}</td>
                     </tr> --}}
             
-                </tbody>
+                {{-- </tbody>
             </table>
         @else
             <h1>Unable to retrieve your IP information.</h1>
