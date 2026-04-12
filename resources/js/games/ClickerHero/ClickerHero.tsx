@@ -46,8 +46,7 @@ export default function ClickerHero() {
     ////////////////////////////////////////////////////////
 
 
-    const [selectedTheme, setSelectedTheme] = useState<BackgroundThemeKey>(backgroundColor);
-    const [selectedFrame, setSelectedFrame] = useState<FrameThemeKey>(frameChoice);
+
   
 
     // End of Game Methods
@@ -106,51 +105,16 @@ export default function ClickerHero() {
                       <div style={{gridRow: "10 / span 2", gridColumn: "1 / span 4"}} className="shop-item-label">
                           <button onClick={() => setScore(prev => prev + 100000)}>DEV: +100k</button>
                       </div> */}
-                  {/* Background Theme Controls */}
-                      <div style={{gridRow: "4 / span 2", gridColumn: "12 / span 6"}} className="shop-item-label">
-                          <p>Change Theme</p>
-                      </div>
-                      <div style={{gridRow: "5 / span 1", gridColumn: "14 / span 3"}} className=" theme-controls">
-                          <select
-                            value={selectedTheme}
-                            onChange={(e) => setSelectedTheme(e.target.value as BackgroundThemeKey)}>
-                              {Object.keys(BACKGROUND_THEMES).map((key) => (
-                                  <option key={key} value={key}>
-                                  {key}
-                              </option>
-                              ))}
-                          </select>
-                              <button onClick={() => setBackgroundColor(selectedTheme)}>
-                                    Apply
-                              </button>
-                      </div>
-                  {/* Background Theme Controls */}
-                      <div style={{gridRow: "8 / span 1", gridColumn: "12 / span 6"}} className="shop-item-label">
-                          <p>Change Frame</p>
-                      </div>
-                      <div style={{gridRow: "8 / span 2", gridColumn: "14 / span 4"}} className="theme-controls">
-                          <select
-                              value={selectedFrame}
-                                  onChange={(e) =>
-                                      setSelectedFrame(e.target.value as FrameThemeKey)
-                                  }>
-                                  {Object.keys(FRAME_THEMES).map((key) => (
-                                      <option key={key} value={key}>
-                                          {key}
-                                      </option>
-                                  ))}
-                            </select>
-                                <button onClick={() => setFrameChoice(selectedFrame)}>
-                                    Apply
-                                </button>
-                      </div>
                   {/* Open Store Button */}
                       <div style={{ gridRow: "2 / span 2", gridColumn: "14 / span 2"}}>
                           <button className="btn shop-button w-80 h-80 center" onClick={() => setIsStoreOpen(true)}>
                               <h1>Open Store</h1>
                           </button>
                           {isStoreOpen && (
-                              <StoreOverlay game={game} onClose={() => setIsStoreOpen(false)} />
+                              <StoreOverlay 
+                                    game={game} 
+                                    onClose={() => setIsStoreOpen(false)}
+                                />
                           )}
                       </div>
                       <div style={{ gridRow: "2 / span 2", gridColumn: "2 / span 6"}} className="text-center">
