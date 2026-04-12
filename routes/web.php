@@ -22,7 +22,7 @@ use Symfony\Component\Console\Exception\CommandNotFoundException;
 // Route::get('/resume', fn () => view('webpages.resume'))->name('resumePage');
 //
 // New RESTful routes for public pages
-Route::view('/', [LocationController::class, 'index'])->name('home');
+Route::get('/', [LocationController::class, 'index'])->name('home');
 # IP Tracker Route
 
 Route::get('/projects', [PublicProjectController::class, 'index'])
@@ -115,7 +115,6 @@ Route::middleware(['auth', 'admin'])
             )->name('users.games.clicker');
         Route::post('/users/{user}/games/clicker/reset', [AdminRouteController::class, 'resetClickerStats']
             )->name('users.games.clicker.reset');
-
 
 
 });

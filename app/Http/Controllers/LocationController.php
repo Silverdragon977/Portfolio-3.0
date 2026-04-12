@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Stevebauman\Location\Facades\Location;
 use App\Models\Visitors;
-use App\Models\Visit;
+use App\Models\Visits;
 
 
 class LocationController extends Controller
@@ -19,7 +19,9 @@ class LocationController extends Controller
         // or 
         // $userIP = $_SERVER['REMOTE_ADDR'];
         // or manually assign
-        // $userIP = '66.102.0.0'; // Example IP address for testing
+        // $userIP = '66.102.0.0'; // Example IP address for testing                
+        $userIP = '66.106.0.0'; // Example IP address for testing
+
 
         // Get the location information based on the user's IP address
         $location = Location::get($userIP);
@@ -36,11 +38,10 @@ class LocationController extends Controller
                 'latitude' => null,
                 'longitude' => null,
                 'areaCode' => null,
-                'timeZone' => null,
             ];
         }
         // Store or update the visitor information in the database
-        Visitors::updateOrCreate(
+        $visitor = Visitors::updateOrCreate(
             ['ip' => $location->ip],
             [
                 'country' => $location->countryName,
@@ -52,24 +53,22 @@ class LocationController extends Controller
                 'latitude' => $location->latitude,
                 'longitude' => $location->longitude,
                 'area_code' => $location->areaCode,
-                'time_zone' => $location->timeZone
             ]
         );
 
         // Checks database cache to prevent spam refresh counting
-        $recentVisit = Visit::where('visitor_id', $visitor->id)
+        $recentVisit = Visits::where('visitor_id', $visitor->id)
             ->where('visited_at', '>', now()->subMinutes(10))
             ->exists();
 
         // If there is no recent visit, create a new visit record    
         if (!$recentVisit) {
-            Visit::create([
+            Visits::create([
                 'visitor_id' => $visitor->id,
                 'visited_at' => now(),
             ]);
         }
-
-        return view('index', ['location' => $location]);
+        return view('index', compact('location'));
     }
 
     public function displayIPData(Request $request)
@@ -91,12 +90,55 @@ class LocationController extends Controller
                 'latitude' => null,
                 'longitude' => null,
                 'areaCode' => null,
-                'timeZone' => null,
             ];
         }
         return view('webpages.whatIsMyIP', ['location' => $location]);
     }
 
+    public function getStatsData()
+    {
+        // Unique visitors per day (new users)
+        $uniquePerDay = Visitors::selectRaw('DATE(created_at) as date, COUNT(DISTINCT ip) as unique_visitors')
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        // Total visits per day (including repeat visits)
+        $totalPerDay = Visits::selectRaw('DATE(visited_at) as date, COUNT(*) as total_visits')
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+        
+        // Today
+        $todayUnique = Visitors::whereDate('created_at', now()->toDateString())->distinct('ip')->count('ip');
+        $todayTotal = Visits::whereDate('visited_at', now()->toDateString())->count();
+
+        // This week
+        $weekUnique = Visitors::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->distinct('ip')->count('ip');
+        $weekTotal = Visits::whereBetween('visited_at', [now()->startOfWeek(), now()->endOfWeek()])->count();    
+
+        // This month
+        $monthUnique = Visitors::whereBetween('created_at', [now()->startOfMonth(), now()->endOfMonth()])->distinct('ip')->count('ip');
+        $monthTotal = Visits::whereBetween('visited_at', [now()->startOfMonth(), now()->endOfMonth()])->count();
+
+        // All time
+        $allUnique = Visitors::distinct('ip')->count('ip');
+        $allTotal = Visits::count();
+
+        return [
+                    'today' => ['unique' => $todayUnique, 'total' => $todayTotal],
+                    'week' => ['unique' => $weekUnique, 'total' => $weekTotal],
+                    'month' => ['unique' => $monthUnique, 'total' => $monthTotal],
+                    'all' => ['unique' => $allUnique, 'total' => $allTotal],
+                    'uniquePerDay' => $uniquePerDay,
+                    'totalPerDay' => $totalPerDay
+                ];  
+    }
+    public function stats()
+    { // grabs the stats data and returns it as JSON for the admin dashboard to use in charts
+        $statsData = $this->getStatsData();
+        return response()->json($statsData);
+    }
 
 
 }

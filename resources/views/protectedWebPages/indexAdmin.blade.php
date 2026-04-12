@@ -137,4 +137,76 @@
                 @endforelse
             </table>
         </div>
+
+        <!----------------------------------------------------------->
+        <!----------------------------------------------------------->
+        <!------------      IP Tracker Stats     -------------------->
+        <!---------------------------------------------------------->
+        <h2>Visitor Stats</h2>
+
+        <div style="display: flex; gap: 20px;">
+            <div>
+                <h3>Today</h3>
+                <p>Unique: {{ $stats['today']['unique'] }}</p>
+                <p>Total: {{ $stats['today']['total'] }}</p>
+            </div>
+        
+            <div>
+                <h3>This Week</h3>
+                <p>Unique: {{ $stats['week']['unique'] }}</p>
+                <p>Total: {{ $stats['week']['total'] }}</p>
+            </div>
+        
+            <div>
+                <h3>This Month</h3>
+                <p>Unique: {{ $stats['month']['unique'] }}</p>
+                <p>Total: {{ $stats['month']['total'] }}</p>
+            </div>
+        
+            <div>
+                <h3>All Time</h3>
+                <p>Unique: {{ $stats['all']['unique'] }}</p>
+                <p>Total: {{ $stats['all']['total'] }}</p>
+            </div>
+        </div>        
+        <hr>
+        <h3>Visits Per Day</h3>
+
+        <table border="1">
+            <tr>
+                <th>Date</th>
+                <th>Unique Visitors</th>
+                <th>Total Visits</th>
+            </tr>
+        
+            @foreach ($stats['uniquePerDay'] as $index => $day)
+                <tr>
+                    <td>{{ $day->date }}</td>
+                    <td>{{ $day->unique_visitors }}</td>
+                    <td>{{ $stats['totalPerDay'][$index]->total_visits ?? 0 }}</td>
+                </tr>
+            @endforeach
+        </table>  
+        <h3>Recent Visitors</h3>
+            
+        <table border="1">
+            <tr>
+                <th>IP</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>First Seen</th>
+            </tr>
+        
+            @foreach ($visitors as $v)
+                <tr>
+                    <td>{{ $v->ip }}</td>
+                    <td>{{ $v->country }}</td>
+                    <td>{{ $v->city_name }}</td>
+                    <td>{{ $v->created_at }}</td>
+                </tr>
+            @endforeach
+        </table>
+
+
+
     @endsection
