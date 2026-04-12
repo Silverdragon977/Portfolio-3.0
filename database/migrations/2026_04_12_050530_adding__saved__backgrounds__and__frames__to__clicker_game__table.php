@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('_clicker_game_', function (Blueprint $table) {
-            $table->json('owned_backgrounds')->default(json_encode([]));
-            $table->json('owned_frames')->default(json_encode([]));
+        Schema::table('clicker_games', function (Blueprint $table) {
+            $table->json('owned_backgrounds')->nullable();
+            $table->json('owned_frames')->nullable();
         });
 
         Schema::create('backgrounds', function (Blueprint $table) {
@@ -49,7 +49,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('_clicker_game_', function (Blueprint $table) {
+        Schema::table('clicker_games', function (Blueprint $table) {
             $table->dropColumn(['owned_backgrounds', 'owned_frames']);
         });
         Schema::dropIfExists('backgrounds');
