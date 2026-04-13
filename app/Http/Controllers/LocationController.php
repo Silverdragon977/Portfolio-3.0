@@ -20,7 +20,7 @@ class LocationController extends Controller
         // $userIP = $_SERVER['REMOTE_ADDR'];
         // or manually assign
         // $userIP = '66.102.0.0'; // Example IP address for testing                
-        $userIP = '66.106.0.0'; // Example IP address for testing
+        // $userIP = '66.106.0.0'; // Example IP address for testing
 
 
         // Get the location information based on the user's IP address
