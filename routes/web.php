@@ -6,6 +6,8 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GithubProjectsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProjectController;
+use App\Http\Controllers\LocationController;
+use App\Models\Visitor;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
 
@@ -20,7 +22,8 @@ use Symfony\Component\Console\Exception\CommandNotFoundException;
 // Route::get('/resume', fn () => view('webpages.resume'))->name('resumePage');
 //
 // New RESTful routes for public pages
-Route::view('/', 'index')->name('home');
+Route::get('/', [LocationController::class, 'index'])->name('home');
+# IP Tracker Route
 
 Route::get('/projects', [PublicProjectController::class, 'index'])
     ->name('projects.index');
@@ -29,6 +32,10 @@ Route::get('/projects/{project}', [PublicProjectController::class, 'show'])
     ->name('projects.show');
 
 Route::view('/resume', 'webpages.resume')->name('resume');
+
+Route::get('/whatIsMyIP', [LocationController::class, 'displayIPData'])->name('whatIsMyIP');
+
+
 //////////////////////////////////////////////////////////////
 //
 //
@@ -108,7 +115,6 @@ Route::middleware(['auth', 'admin'])
             )->name('users.games.clicker');
         Route::post('/users/{user}/games/clicker/reset', [AdminRouteController::class, 'resetClickerStats']
             )->name('users.games.clicker.reset');
-
 
 
 });

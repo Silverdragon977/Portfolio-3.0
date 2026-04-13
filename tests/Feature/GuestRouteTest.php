@@ -21,6 +21,11 @@ describe('guest accessable routes', function () {
 
         $response->assertOk();
     });
+    it('IP Info page reacheable', function () {
+        $response = $this->get('/whatIsMyIP'); 
+
+        $response->assertOk();
+    });
 });
 
 describe('guest routes that should redirect to login', function () {

@@ -1,13 +1,25 @@
 // Store.tsx
 import { useClickerGame } from "./hooks/useClickerGame";
+import { BACKGROUND_THEMES } from "./hooks/themes/BackgroundThemes";
+import type { BackgroundThemeKey } from "./hooks/themes/BackgroundThemes";
+import { FRAME_THEMES } from "./hooks/themes/FrameThemes";
+import type { FrameThemeKey } from "./hooks/themes/FrameThemes";
+import { useState } from "react";
 
 type Props = {
     game: ReturnType<typeof useClickerGame>; // Pass the entire game hook
     onClose: () => void;
 };
 
+
+
+
+
 export function StoreOverlay ({ game, onClose }: Props) {
+    const [selectedTheme, setSelectedTheme] = useState<BackgroundThemeKey>(game.backgroundColor);
+    const [selectedFrame, setSelectedFrame] = useState<FrameThemeKey>(game.frameChoice);
     return (
+
     <div className="store-overlay">
         <div className={`store-panel ${game.isStoreOpen ? "open" : ""}`}>
             {/* Shop */}
@@ -60,8 +72,45 @@ export function StoreOverlay ({ game, onClose }: Props) {
                     </div>
                 {/*=========================== */}
                 {/*==  Future Shop Items   ==*/}
-                    {/**  Remove before PR   */}
-                  
+
+                {/* Background Theme Controls */}
+                    <div style={{gridRow: "9 / span 2", gridColumn: "1 / span 6"}} className="shop-item-label">
+                        <h3>Change Theme</h3>
+                    </div>
+                    <div style={{gridRow: "9 / span 2", gridColumn: "7 / span 3"}} className=" theme-controls">
+                        <select
+                          value={selectedTheme}
+                          onChange={(e) => setSelectedTheme(e.target.value as BackgroundThemeKey)}>
+                            {Object.keys(BACKGROUND_THEMES).map((key) => (
+                                <option key={key} value={key}>
+                                {key}
+                            </option>
+                            ))}
+                        </select>
+                            <button onClick={() => game.setBackgroundColor(selectedTheme)}>
+                                  Apply
+                            </button>
+                    </div>
+                {/* Background Theme Controls */}
+                    <div style={{gridRow: "12 / span 2", gridColumn: "1 / span 6"}} className="shop-item-label">
+                        <h3>Change Frame</h3>
+                    </div>
+                    <div style={{gridRow: "12 / span 2", gridColumn: "7 / span 4"}} className="theme-controls">
+                        <select
+                            value={selectedFrame}
+                                onChange={(e) =>
+                                    setSelectedFrame(e.target.value as FrameThemeKey)
+                                }>
+                                {Object.keys(FRAME_THEMES).map((key) => (
+                                    <option key={key} value={key}>
+                                        {key}
+                                    </option>
+                                ))}
+                          </select>
+                              <button onClick={() => game.setFrameChoice(selectedFrame)}>
+                                  Apply
+                              </button>
+                    </div>
                 </div>
             </div>
         </div>

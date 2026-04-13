@@ -1,14 +1,17 @@
-<!-- // HomePage -->
 @extends('layouts.defaultLayout')
 
     @section('header')
-        
     @endsection
         
     @section('mainContent')
-        <br><br><br>
-        <h1>Welcome to My Portfolio!</h1>
-        {{-- @if($location->ip === '127.0.0.1')
+        <br>
+        <h1>What's My IP?</h1>
+        <hr>
+        <p> Location data may not be 100% accurate, but it provides a general idea of where your IP address is located. </p>
+        <p> The information displayed below is based on the IP address detected from your request.</p>
+        <p> Data is retrieved using the Stevebauman\Location package that utilizes the IP2Location database to provide geolocation information based on the visitor's IP address. </p>
+        <hr><br>
+        @if($location->ip === '127.0.0.1')
             <h2>Unable to retrieve your IP information.</h2>
             <h3>It seems you are accessing the site from a local environment (localhost).</h3>
             <h5>Please deploy the site to a live server to see your actual IP information.</h5>
@@ -62,10 +65,11 @@
                         <td>{{ $location->timezone}}</td>
                     </tr> --}}
             
-                {{-- </tbody>
+                </tbody>
             </table>
         @else
             <h1>Unable to retrieve your IP information.</h1>
             <p>Please try again later.</p>
-        @endif --}}
+        @endif
+
     @endsection

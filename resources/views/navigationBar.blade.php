@@ -23,6 +23,7 @@
                 <li><a class="dropdown-item" href="{{ route('contact.create') }}">Contact</a></li>
                 <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a></li>
 
+
             </ul>
           </li>
           <li class="nav-item dropdown me-1">
@@ -30,6 +31,7 @@
                  Games
               </a>
               <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{{ route('whatIsMyIP') }}">What's My IP?</a></li>
                   <li><a class="dropdown-item" href="{{ route('ClickHero') }}">Click Hero</a></li>
               </ul>
           </li>

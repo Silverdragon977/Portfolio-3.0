@@ -7,6 +7,11 @@ use App\Models\GithubProjects;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\ClickerGame;
+use App\Models\Visitors;
+use App\Models\Visits;
+use App\Http\Controllers\LocationController;
+
+
 
 class AdminRouteController extends Controller
 {
@@ -18,9 +23,13 @@ class AdminRouteController extends Controller
         $projects = GithubProjects::all();
         $comments = Comment::all();
         $users = User::select('id', 'name', 'email', 'role')->get();
-        
 
-        return view('protectedWebPages.indexAdmin', compact('projects', 'comments', 'users'));
+        ## Adding API stats for IP Tracker
+        $locationController = new LocationController();
+        $stats = $locationController->getStatsData();
+        $visitors = Visitors::latest()->limit(50)->get();
+
+        return view('protectedWebPages.indexAdmin', compact('projects', 'comments', 'users', 'stats', 'visitors'));
         
     }
     public function deleteUser(User $user){
