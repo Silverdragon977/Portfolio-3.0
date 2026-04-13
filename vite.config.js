@@ -12,4 +12,10 @@ export default defineConfig({
         //     fastRefresh: false,
         // }),
     ],
+    server: {
+        watch: {
+            usePolling: true,
+            ignored: ['**/node_modules/**', '**/vendor/**', '**/.git/**', '**/storage/**'],
+        },
+    }
 })
