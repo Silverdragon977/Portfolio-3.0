@@ -4,9 +4,13 @@
 // Variables
 @import 'variables';
 
+html {
+    scroll-behavior: smooth;
+}
 
 body {
-    background-color: $body-bg;
+    background-color: $body-bg; 
+    scroll-snap-type: y mandatory; // for index video sections
 }
 h1 {
     font-size: 75px;
@@ -26,7 +30,7 @@ h1 {
 nav {
     border: 0.25rem solid navy;
     border-style:inset;
-    background-color: lightblue !important;
+    background-color: #add8e6 !important;
     border-radius: 10px;
     transition: all 0.3s ease;
 }
@@ -72,6 +76,7 @@ nav {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   background-color: burlywood;
+  // background-color: #f5f1e8;
   transition: border-radius 0.3s ease;
 }
 @media (max-width: 768px) {
@@ -157,14 +162,57 @@ table.authTable {
 //////////////////////////////////////////////
 //   Clicker Hero CSS            
 #gameBorder {
-  border: black solid 5px;
+  border: black solid 15px;
   background-color: #fff;
-  min-height: 300px;
 }
 #gameContent {
   text-align: center;
   vertical-align: center;
 }
 ////////////////////////////////////////////////
+/// Video-Card CSS
+/// 
+
+
+.video-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    max-width: 100%;
+    scroll-snap-align: center; // for index video sections
+    min-height: 75vh; // Ensure each section takes full viewport height
+    p {
+        margin: 0;
+        padding: 0;
+        font-size: 3em;
+        font-weight: bold;
+    }
+    .video-container {
+        flex: 3; // Video takes 65% of the width
+        video {
+            width: 100%;
+            border: 4px solid #6366F1;
+            border-radius: 16px;
+            background: black;
+            box-shadow: 0 0 35px #6366F1;
+        }
+    }
+    .text-container {
+      // background: red;
+        flex: 1; // Text takes 35% of the width
+        color: #334155;
+        font-size: 1.8em;
+        line-height: 1.8;
+        white-space: pre-line; // Preserve line breaks in caption
+        p { max-width: 100%;}
+    }
+    &.reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+/// 
 /// // Bootstrap
 @import 'bootstrap/scss/bootstrap';
