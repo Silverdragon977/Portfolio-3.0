@@ -66,43 +66,49 @@
         <br>
         <h1>Welcome to My Portfolio!</h1>
         <br><br>
-        <h2> Below is a tour of my website and its features as a user and administrator. </h2>
+        <h4> Below is a tour of my website and its features as a user and administrator. </h4>
         <br>
         <x-video-card 
             videoName="1ProtectedRoutesWithBreeze"
-            caption="<strong>Using Laravel Breeze I can protect CRUD routes and ensure only authenticated users can access them. <br><br> This way only users can post messages to my backend for me to view later!</strong>"
+            caption="<strong>Webpages that use CRUD operations are only available to authenticated users. <br><br>
+                The Contact Page allows users to post a comment to my backend for me to view later!</strong>"
             side="left"
             heading="Laravel Breeze Route Protection" />
         
         <x-video-card
             videoName="2AdminPanelProtection"
-            caption="<strong>Admin Panel Protection</strong>"
+            caption="<strong>Here we can see the users profile page<br><br>
+                        They are trying to access the admin panel as <br>a non-admin user!<br><br>
+                        Fortunately, the admin panel is only accessible to admin users.</strong>"
             side="right"
             heading="Admin Panel Protection" />
         
         <x-video-card
             videoName="3AdminPanelDemoPt1"
-            caption="<strong>Admin Panel CRUD Operations</strong>"
+            caption="<strong>Here we can view the comment posted by Dexter Morgan earlier <br><br>
+                         This admin panel lets us see projects, comments made by users, and the users themselves<br><br> 
+                        We even have Visitor Stats for website traffic and analytics!</strong>"
             side="left"
-            heading="Admin Panel CRUD Operations" />
+            heading="Create and Update Projects" />
         
         <x-video-card
             videoName="4AdminPanelDemoPt2"
-            caption="<strong>Admin Panel User Management</strong>"
+            caption="<strong><br><br>There is a button to create a new project as an administrator via POST<br><br>
+                        There is an edit button on each project that allows for updates via PUT<br><br>
+                        We can also delete projects and comments from the MySQL database with a simple click!</strong>"
             side="right"
-            heading="Admin Panel User Management" />
+            heading="Admin Panel Project Management" />
         
         <x-video-card
             videoName="5WhatsMyIPDemo"
-            caption="<strong>Whats My IP Demo</strong>"
+            caption="<strong><br><br>On the Whats My IP page, users can view their public IP address and location information.<br><br>
+            This data is retrieved via an installed npm package called location by Stevebauman <br><br>
+            It grabs the users IP address and uses an api to get the users geo-location data from IP2Location database.
+            </strong>"
             side="left"
             heading="Whats My IP Demo" />
         
-        <x-video-card
-            videoName="6ClickerGameDemo"
-            caption="<strong>Clicker Game Demo</strong>"
-            side="right"
-            heading="Clicker Game Demo" />
+
         
 
 
