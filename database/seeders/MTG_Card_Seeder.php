@@ -13,20 +13,27 @@ class MTG_Card_Seeder extends Seeder
      */
     public function run(): void
     {
-        $jsonPath = File::get(database_path('data/mtgCards.json'));
+        $jsonPath = File::get(database_path('seeders/jsonDatasets/mtgCards.json'));
         if (!File::exists($jsonPath)) {
-            dd("JSON file not found at: " . $jsonPath);
+            $this->command?->warn('mtgCards.json not found. Skipping MTG seeding.');
+            return;
         }
 
         $json = file::get($jsonPath);
         $cards = json_decode($json, true);
         if (!cards){
-            dd("SON decode failed");
+            $this->command?->error('Invalid JSON format in mtgCards.json. Skipping.');
+            return;
         }
+
+        $this->command?->info('Seeding MTG cards...');
+
         // Chunking to regulate effiency on server as the database is quite big
         collect($cards)->chunk(500)->each(function ($chunk){
             foreach ($cards as $card) {
-                MtgCardsModel::create([
+                MtgCardsModel::updateOrCreate(
+                    ['name' => $card['name']],
+                    [
                     'name'                => $card['name'] ?? null,
                     'mana_cost'           => $card['mana_cost'] ?? null,
                     'converted_mana_cost' => $card['converted_mana_cost'] ?? null,
@@ -36,10 +43,11 @@ class MTG_Card_Seeder extends Seeder
                     'description'         => $card['description'] ?? null,
                     'rarity'              => $card['rarity'] ?? null,
                     'purchaseUrls'        => $card['purchaseUrls'] ?? []
-                ]);        
+                    ]
+                );        
             }
         }); // end of chunking
-
-
+        $this->command?->info('MTG cards seeded successfully.');
+        // Make sure to add conditional to DatabaseSeeder so that CI runs despite no Dataset!
     }
 }

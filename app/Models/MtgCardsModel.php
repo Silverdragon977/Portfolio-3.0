@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MtgCardsModel extends Model
 {
+    protected $table = 'mtg_cards_table';
         protected $fillable = [
         'name',
         'mana_cost',

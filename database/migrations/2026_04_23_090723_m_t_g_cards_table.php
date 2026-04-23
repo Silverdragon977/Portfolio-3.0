@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
     Schema::create('mtg_cards_table', function (Blueprint $table) {
-        $table->id('name');
+        $table->id();
 
-        $table->string('name')->nullable();
+        $table->string('name')->nullable()->index();
         $table->string('mana_cost')->nullable();
         $table->float('converted_mana_cost')->nullable();
 

@@ -5,9 +5,9 @@
         
     @section('mainContent')
         <h1>MTG Searcher</h1>
-        
+
         <form id="search-form">
-            <input type="text" id="name" placeholder="Search cards">
+            <input type="text" id="name" placeholder="Search cards Names">
             <button type="submit">Search</button>
         </form>
 
@@ -25,7 +25,13 @@
             function renderCards() {
                 const container = document.getElementById('results');
                 container.innerHTML = '';
-            
+
+                // The mtgCards.json won't exist in CI or Github due to file storage limit 
+                if (cards.length === 0) {
+                    results.innerHTML = "<p>No cards found</p>";
+                    return;
+                }
+                // Otherwise in local and finialized prod it will render the cards
                 cards.forEach(card => {
                     container.innerHTML += `
                         <div style="border:1px solid #ccc; margin:10px; padding:10px;">
@@ -41,30 +47,30 @@
                     `;
                 });
             }
-        
-            async function addToDeck(cardId) {
-                try {
-                    const res = await fetch('/api/deck/add-card', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                        },
-                        body: JSON.stringify({
-                            card_id: cardId
-                        })
-                    });
+            // Ready for Deck table implementation in the future to POST searched card to users Deck
+            // async function addToDeck(cardId) {
+            //     try {
+            //         const res = await fetch('/api/deck/add-card', {
+            //             method: 'POST',
+            //             headers: {
+            //                 'Content-Type': 'application/json',
+            //                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            //             },
+            //             body: JSON.stringify({
+            //                 card_id: cardId
+            //             })
+            //         });
                 
-                    if (res.status === 401) {
-                        alert('You must be logged in');
-                        return;
-                    }
+            //         if (res.status === 401) {
+            //             alert('You must be logged in');
+            //             return;
+            //         }
                 
-                    alert('Card added to deck!');
-                } catch (err) {
-                    console.error(err);
-                }
-            }
+            //         alert('Card added to deck!');
+            //     } catch (err) {
+            //         console.error(err);
+            //     }
+            // }
         
             document.getElementById('search-form').addEventListener('submit', e => {
                 e.preventDefault();
