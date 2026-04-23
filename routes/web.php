@@ -36,7 +36,13 @@ Route::view('/resume', 'webpages.resume')->name('resume');
 
 Route::get('/whatIsMyIP', [LocationController::class, 'displayIPData'])->name('whatIsMyIP');
 
-Route::get('/api/mtg-cards', [MtgCardController::class, 'index']);
+Route::get('/api/mtg-cards', [MtgCardController::class, 'index'])->name('MTGIndex');
+
+Route::get('/mtg-searcher', function () {
+    return view('webpages.MTGSearch');
+})->name('MTGSearcher');
+
+Route::get('/mtg-searcher/{id}', [MtgCardController::class, 'show']);
 
 //////////////////////////////////////////////////////////////
 //

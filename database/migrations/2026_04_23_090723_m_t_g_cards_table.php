@@ -27,7 +27,10 @@ return new class extends Migration
         $table->text('description')->nullable();
         $table->string('rarity')->nullable();
 
-        $table->json('purchaseUrls')->nullable();
+        $table->json('purchase_urls')->nullable();
+
+        $table->string('thumbnail_url')->nullable();
+        $table->string('full_card_image_url')->nullable();
 
         $table->timestamps();
 });

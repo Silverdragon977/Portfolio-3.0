@@ -17,7 +17,9 @@ class MtgCardsModel extends Model
         'supertypes',
         'description',
         'rarity',
-        'purchaseUrls'
+        'purchase_urls',
+        'thumbnail_url',
+        'full_card_image_url'
     ];
 
     protected $casts = [
@@ -25,6 +27,6 @@ class MtgCardsModel extends Model
         'types' => 'array',
         'subtypes' => 'array',
         'supertypes' => 'array',
-        'purchaseUrls' => 'array'
+        'purchase_urls' => 'array'
     ];
 }
