@@ -10,6 +10,7 @@ use App\Http\Controllers\LocationController;
 use App\Models\Visitor;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
+use App\Http\Controllers\MtgCardController;
 
 
 /////////////////////////////////////////////////////////////
@@ -35,6 +36,7 @@ Route::view('/resume', 'webpages.resume')->name('resume');
 
 Route::get('/whatIsMyIP', [LocationController::class, 'displayIPData'])->name('whatIsMyIP');
 
+Route::get('/api/mtg-cards', [MtgCardController::class, 'index']);
 
 //////////////////////////////////////////////////////////////
 //
@@ -79,6 +81,11 @@ Route::middleware(['auth'])->group(function () {
         Route::patch('/profile', 'update')->name('profile.update');
         Route::delete('/profile', 'destroy')->name('profile.destroy');
     });
+    // Future Profile Deck routes
+    // Route::post('/api/deck/add-card', [DeckController::class, 'addCard']);
+    // Route::get('/api/decks', [DeckController::class, 'index']);
+
+
 });
 //////////////////////////////////////////////////////////////
 //
