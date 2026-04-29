@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\Registered;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Mail\GreetNewUser;
-use Illuminat\Support\Facades\Mail;
+use Illuminate\Support\Facades\Mail;
 
 class SendWelcomeEmail
 {
@@ -23,6 +23,6 @@ class SendWelcomeEmail
      */
     public function handle(Registered $event): void
     {
-        Mail::to($event->user->email)->queue(new GreetNewUser($event->user));
+        //
     }
 }
