@@ -1,26 +1,23 @@
-<?php
-// /routes/web.php
+<?php // /routes/web.php
 use App\Http\Controllers\APi\ClickerHeroController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AdminRouteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\GithubProjectsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProjectController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MtgCardController;
 use App\Models\Visitor;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Console\Exception\CommandNotFoundException;
-use App\Http\Controllers\MtgCardController;
+
 
 
 /////////////////////////////////////////////////////////////
 ////////    Public Routes    ////////////////////////////////
 /////////////////////////////////////////////////////////////
-// Old non-RESTful routes - It did work but it was not following RESTful conventions and was a bit messy. I have refactored it to follow RESTful conventions and to be more organized.
-// Route::get('/',fn() => view('index'))->name('homePage');
-// // This will call the publicIndex for the public route /projects as projectsPage
-// Route::get('/projects', [PublicProjectController::class, 'index'])->name('projectsPage'); 
-// Route::get('/resume', fn () => view('webpages.resume'))->name('resumePage');
 //
 // New RESTful routes for public pages
 Route::get('/', [LocationController::class, 'index'])->name('home');
@@ -50,20 +47,6 @@ Route::get('/mtg-searcher/{id}', [MtgCardController::class, 'show']);
 //////////////////////////////////////////////////////////////
 ////////     Routes Protected with Authorization     /////////
 //////////////////////////////////////////////////////////////
-// Old non-RESTful routes  - It did work but it was not following RESTful conventions and was a bit messy. I have refactored it to follow RESTful conventions and to be more organized.
-// Route::middleware(['auth'])->group(function(){
-//     Route::get('/games', fn()=>view('webpages.click-hero'))->name('clickHero');
-//     Route::get('/contact', [CommentController::class, 'create'])->name('contactPage');
-//     Route::post('/contact', [CommentController::class, 'store'])->name('contact.store');
-//     //
-//     // Dashboard need Authorization and Verification
-//     Route::get('dashboard', fn()=> view('dashboard'))->middleware('verified')->name('dashboard');
-//     //
-//     // User Profile Page Routes
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 // Refactored RESTful routes for authenticated users
 Route::middleware(['auth'])->group(function () {
     Route::view('/clickhero', 'webpages.clickHero')->name('ClickHero');
@@ -100,7 +83,7 @@ Route::middleware(['auth'])->group(function () {
 ////////    Admin Panel Routes    ////////////////////////////
 //////////////////////////////////////////////////////////////
 
-Route::middleware(['auth', 'admin'])
+Route::middleware(['auth', 'admin', 'verified'])
     ->prefix('admin') // All routes have /admin/
     ->name('admin.')  // All route names start with admin. 
     ->group(function () {
