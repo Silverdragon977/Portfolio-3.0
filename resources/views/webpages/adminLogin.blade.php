@@ -1,6 +1,6 @@
 
 @extends('layouts.defaultLayout')
-
+@section('pageName', 'Admin Page')
     @section('header')
     @endsection
         

@@ -1,6 +1,6 @@
 
 @extends('layouts.defaultLayout')
-
+@section('pageName', 'MTG Search')
     @section('header')
     @endsection
         

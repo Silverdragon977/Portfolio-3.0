@@ -1,5 +1,5 @@
 @extends('layouts.defaultLayout')
-
+    @section('pageName', 'What`s My IP')
     @section('header')
     @endsection
         
