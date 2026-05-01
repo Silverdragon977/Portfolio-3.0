@@ -34,3 +34,5 @@ prod_db*
 db_dumps
 db_dumps/*
 !db_dumps/.gitkeep
+# MTG dataset (too large, local only)
+database/seeders/jsonDatasets/

@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-md-12">
             <h2 class="font-weight-semibold text-xl text-dark">
-                {{ __('Profile') }}
+                Profile
             </h2>
         </div>
     </div>

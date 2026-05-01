@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\APi\ClickerHeroController;
+use App\Http\Controllers\MtgCardController;
 
-// Route::get('/clickerhero/load', [ClickerHeroController::class, 'index']);
-// Route::post('/clickerhero/save', [ClickerHeroController::class, 'store']);
+Route::post('/mtg-cards/{id}/image', [MtgCardController::class, 'storeImage'])->middleware('throttle:60,1');
 
-// touches bootstrap/app.php to register the controller, so it can be used in the routes above

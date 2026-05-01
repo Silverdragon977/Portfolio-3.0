@@ -1,3 +1,8 @@
+{{-- 
+
+
+Old Tailwind Here incase we need to preserve the routes and what not
+
 <div class="container">
     <div class="mb-4">
         <!-- Session Status -->
@@ -61,4 +66,29 @@
             </button>
         </div>
     </form>
+</div> --}}
+
+@extends('layouts.defaultLayout')
+
+@section('mainContent')
+<div class="container py-5">
+
+    <div class="alert alert-info">
+        Please verify your email address by clicking the link we just emailed to you.
+    </div>
+
+    @if (session('status') == 'verification-link-sent')
+        <div class="alert alert-success">
+            A new verification link has been sent to your email address.
+        </div>
+    @endif
+
+    <form method="POST" action="{{ route('verification.send') }}">
+        @csrf
+        <button type="submit" class="btn btn-primary">
+            Resend Verification Email
+        </button>
+    </form>
+
 </div>
+@endsection

@@ -1,6 +1,6 @@
 
 @extends('layouts.defaultLayout')
-
+@section('pageName', 'Resume')
     @section('header')
     @endsection
         

@@ -28,6 +28,17 @@
                         @error('password')<div>{{ $message }}</div>@enderror
                     </td>
                 </tr>
+                <tr class"d-block d-sm-table-row">
+                    <th class="d-block d-sm-table-cell text-start">
+
+                    </th>
+                    <td>
+                        <a href="{{ route('password.request') }}"
+                           class="text-muted">
+                            Forgot your password?
+                        </a>
+                    </td>
+                </tr>
                 <tr class="d-block d-sm-table-row">
                     <th class="d-block d-sm-table-cell text-start">
                         <button type="submit">Login</button>

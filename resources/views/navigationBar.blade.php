@@ -32,6 +32,7 @@
               </a>
               <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{{ route('whatIsMyIP') }}">What's My IP?</a></li>
+                  <li><a class="dropdown-item" href="{{ route('MTGSearcher') }}">MTG Searcher</li>
                   <li><a class="dropdown-item" href="{{ route('ClickHero') }}">Click Hero</a></li>
               </ul>
           </li>

@@ -1,6 +1,6 @@
 
 @extends('layouts.defaultLayout')
-
+@section('pageName', 'Clicker Hero')
     @section('header')
         <script>
             window.APP_URL = "{{ config('app.url') }}";
