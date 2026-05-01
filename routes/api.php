@@ -1,4 +1,4 @@
-<?php // routes/api.php
+<?php 
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MtgCardController;

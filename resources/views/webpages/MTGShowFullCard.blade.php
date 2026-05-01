@@ -1,4 +1,4 @@
-// resources/views/webpages/MTGShowFullCard.blade.php
+
 @extends('layouts.defaultLayout')
 @section('pageName', 'MTG Search')
     @section('header')
