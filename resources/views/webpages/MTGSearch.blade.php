@@ -1,3 +1,4 @@
+// resources/views/webpages/MTGSearch.blade.php
 @extends('layouts.defaultLayout')
 @section('pageName', 'MTG Search')
     @section('header')
@@ -12,7 +13,9 @@
         </form>
 
         <div id="results"></div>
-
+        <script>
+            window.apiMtgCards = "{{ url('/api/mtg-cards') }}";
+        </script>
         <script>
             let cards = [];
             
@@ -22,7 +25,7 @@
             }
 
             async function fetchCards(name = '') {
-                const res = await fetch(`/api/mtg-cards?name=${encodeURIComponent(name)}`);
+                const res = await fetch(`${window.apiMtgCards}?name=${encodeURIComponent(name)}`);
                 cards = await res.json();
                 renderCards();
             }
@@ -62,7 +65,7 @@
 
                     // 🔥 3. Write-back ONCE (don’t block UI)
                     if (thumb || full) {
-                        fetch(`/api/mtg-cards/${card.id}/image`, {
+                        fetch(`${window.apiStoreImageBase}/${card.id}/image`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'

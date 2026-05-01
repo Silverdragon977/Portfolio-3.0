@@ -1,4 +1,4 @@
-
+// resources/views/webpages/MTGShowFullCard.blade.php
 @extends('layouts.defaultLayout')
 @section('pageName', 'MTG Search')
     @section('header')
@@ -49,7 +49,9 @@
                     <a href="{{ $url }}" class="btn btn-outline-success btn-sm"> {{ ucfirst($site) }} </a>
                 @endforeach
             </div>
-            
+            <script>
+                window.apiStoreImageBase = "{{ url('/api/mtg-cards') }}";
+            </script>
            <script>
                 async function loadFullImage(card) {
                 
@@ -81,7 +83,7 @@
                             card.full_card_image_url = full;
                         
                             //  Save to DB (non-blocking)
-                            fetch(`/api/mtg-cards/${card.id}/image`, {
+                            fetch(`${window.apiStoreImageBase}/${card.id}/image`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
