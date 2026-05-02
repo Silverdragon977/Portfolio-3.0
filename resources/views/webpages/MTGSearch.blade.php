@@ -1,19 +1,25 @@
 
 @extends('layouts.defaultLayout')
+@section('meta')
+    <meta name="api-base" content="{{ url('/api/mtg-cards') }}">
+    <meta name="app-base" content="{{ url('/') }}">
+@endSection
+
 @section('pageName', 'MTG Search')
-    @section('header')
-    @endsection
+
+@section('header') 
+
+@endsection
+
         
-    @section('mainContent')
-        <h1>MTG Searcher</h1>
-
-        <form id="search-form">
-            <input type="text" id="name" placeholder="Search cards Names">
-            <button type="submit">Search</button>
-        </form>
-
-        <div id="results"></div>
-        <script>
+@section('mainContent')
+    <h1>MTG Searcher</h1>
+    <form id="search-form">
+        <input type="text" id="name" placeholder="Search cards Names">
+        <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
+        {{-- <script>
             window.apiMtgCards = "{{ url('/api/mtg-cards') }}";
         </script>
         <script>
@@ -178,5 +184,8 @@
 
             // initial load
             fetchCards();
-        </script>
-    @endsection
+        </script> --}}
+@endsection
+@section('pageScripts')
+    @vite('resources/js/backendScripts/ShowMTGSearchBlade.js')
+@endSection

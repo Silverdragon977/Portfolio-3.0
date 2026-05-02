@@ -1,8 +1,15 @@
 
 @extends('layouts.defaultLayout')
+
+@section('meta')
+    <meta name="api-base" content="{{ url('/api/mtg-cards') }}">
+@endSection
+
 @section('pageName', 'MTG Search')
-    @section('header')
-    @endsection
+
+@section('header')
+    
+@endsection
         
     @section('mainContent')
         <h1>Full Card Information</h1><br><br><br>
@@ -12,6 +19,7 @@
                 <img
                     id="card-image"
                     src="{{ $card->full_card_image_url }}"
+                    data-card='@json($card)'
                     class="img-fluid rounded shadow mb-3"
                     style="max-width:300px;"
                 >
@@ -19,6 +27,7 @@
                 <img
                     id="card-image"
                     src="{{ asset('images/mtg-placeholder.png') }}"
+                    data-card='@json($card)'
                     class="img-fluid rounded shadow mb-3"
                     style="max-width:300px;"
                 >
@@ -49,8 +58,8 @@
                     <a href="{{ $url }}" class="btn btn-outline-success btn-sm"> {{ ucfirst($site) }} </a>
                 @endforeach
             </div>
-            <script>
-                window.apiStoreImageBase = "{{ url('/api/mtg-cards') }}";
+            {{-- <script>
+                window.apiBase = "{{ url('/') }}";
             </script>
            <script>
                 async function loadFullImage(card) {
@@ -83,7 +92,7 @@
                             card.full_card_image_url = full;
                         
                             //  Save to DB (non-blocking)
-                            fetch(`${window.apiStoreImageBase}/${card.id}/image`, {
+                            fetch(`${window.apiStoreImageBase}/mtg-searcher/${card.id}/image`, {
                                 method: 'POST',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -109,7 +118,10 @@
 
                 // 🔥 Pass Laravel card to JS
                 loadFullImage(@json($card));
-            </script>
+            </script> --}}
 
     @endsection
 
+@section('pageScripts')
+    @vite('resources/js/backendScripts/ShowMTGFullCard.js')
+@endsection
