@@ -21,9 +21,11 @@
                 <li><a class="dropdown-item" href="{{ route('projects.index') }}">Projects</a></li>
                 <li><a class="dropdown-item" href="{{ route('resume') }}">Resume</a></li>
                 <li><a class="dropdown-item" href="{{ route('contact.create') }}">Contact</a></li>
-                <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a></li>
-
-
+                @auth
+                    @if(auth()->user()->role === 'admin')
+                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}">Admin</a></li>
+                    @endif
+                @endauth
             </ul>
           </li>
           <li class="nav-item dropdown me-1">
