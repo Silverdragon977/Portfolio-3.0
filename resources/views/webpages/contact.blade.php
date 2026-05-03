@@ -131,6 +131,8 @@
                 <div class="uiverse__contact-message-field">
                     <input type="text"
                            name="fullName"
+                           value="{{  old('fullName', $name) }}"
+                           {{  auth()->check() ? 'readonly' : '' }}
                            required
                            placeholder="Full Name"
                            class="uiverse__contact-message-input @error('fullName') uiverse__login-form-field--error @enderror"
@@ -143,6 +145,8 @@
                 <div class="uiverse__contact-message-field">
                     <input type="email"
                            name="email"
+                           value="{{ old('email', $email) }}"
+                           {{ auth()->check() ? 'readonly' : '' }}
                            required
                            placeholder="Email"
                            class="uiverse__contact-message-input @error('email') uiverse__login-form-field--error @enderror">
@@ -161,6 +165,12 @@
                                   <div class="uiverse__login-form-error">{{ $message }}</div>
                               @enderror
                 </div>
+
+                <input type="text"
+                        name="website"
+                        class="d-none"
+                        tabindex="-1"
+                        autocomplete="off">
 
                 <button type="submit"
                         class="uiverse__contact-message-button">

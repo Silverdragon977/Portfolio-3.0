@@ -34,7 +34,7 @@ class CommentController extends Controller
     public function create()
     {
         $user = auth()->user(); ## Get user and pass session variable to view
-        return view('webpages.contact', ['name' => $user->name, 'email' => $user->email]);
+        return view('webpages.contact', ['name' => $user?->name, 'email' => $user?->email]);
     }
 
     /**
@@ -45,6 +45,12 @@ class CommentController extends Controller
         // Redundent auth check
         // $user = auth()->user();
 
+        // bot check
+        if ($request->filled('website')) {abort(403);}
+
+
+
+
         $validated = $request->validate([
             'fullName' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -52,8 +58,8 @@ class CommentController extends Controller
         ]);
 
         Comment::create([
-            'fullName' => $user->name,
-            'email' => $user->email,
+            'fullName' => $validated['fullName'],
+            'email' => $validated['email'],
             'comment' => $validated['comment']
         ]);
         
