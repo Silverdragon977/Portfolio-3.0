@@ -18,7 +18,7 @@
     @vite(['resources/scss/app.scss', 'resources/js/app.tsx'])
 </head>
 <body>
-    <div class="container px-0">
+    <div class="site-wrapper">
     
     <header id="banner-container">
         <img id='banner' src="{{ asset('images/banner.png') }}" class="img-fluid" alt="Image Did not load properly"></img>        
