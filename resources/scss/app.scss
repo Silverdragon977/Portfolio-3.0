@@ -3,18 +3,41 @@
 
 // Variables
 @import 'variables';
-
+@import 'bootstrap/scss/bootstrap';
 html {
     scroll-behavior: smooth;
 }
+
+////////////////////////////////////////////////
+////////  Main Styled Tags           ///////////
+////////////////////////////////////////////////
 
 body {
     background-color: $body-bg; 
     scroll-snap-type: y mandatory; // for index video sections
 }
 h1 {
-    font-size: 75px;
+    font-size: clamp(2rem, 5vw, 4.5rem);
 }
+.homepage-header {
+  margin: clamp(2rem, 5vw, 5rem) 0;
+}
+
+.site-wrapper {
+  width: 92%;                 // always leaves space on edges
+  max-width: 1600px;          // prevents ultra-wide stretch
+  margin: 0 auto;             // centers horizontally
+}
+
+/* Extra large screens */
+@media (min-width: 2000px) {
+  .site-wrapper {
+    max-width: 1800px;
+  }
+}
+
+
+
 //////////////////////////////
 //////   Banner CSS    ///////
 #banner {
@@ -86,7 +109,7 @@ nav {
   }
 }
 /////////////////////////////////////////
-// Login & Register CSS
+// Login & Register CSS  
 .formContainer {
   text-align: center;
   max-width: 60%;
@@ -212,7 +235,754 @@ table.authTable {
         flex-direction: row-reverse;
     }
 }
+@media (max-width: 992px) {
+  .video-section {
+    flex-direction: column-reverse !important;
+    text-align: center;
+    gap: 20px;
+    min-height: auto;
+    padding: 2rem 1rem;
+  }
+  .video-section.reverse {
+    flex-direction: column-reverse !important;
+  }
+  .video-section .video-container {
+    width: 100%;
+  }
+  .video-section .text-container {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  .video-section video {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    scroll-snap-type: none;
+  }
+  .video-section {
+    scroll-snap-align: none;
+  }
+}
+//
+//
+////////////////////////////////////////////////////////////////////////////////////
+//////////////  UIverse Component Library (Scoped Third-Party Styles  //////////////
 
+.uiverse {
+////////////////////////////////
+/// Login & Registration UI  ///
+////////////////////////////////
+    &__button-primary {
+          align-items: center;
+          background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
+          border: 0;
+          border-radius: 8px;
+          box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+          box-sizing: border-box;
+          color: #ffffff;
+          display: flex;
+          font-size: 18px;
+          justify-content: center;
+          line-height: 1em;
+          max-width: 100%;
+          min-width: 140px;
+          padding: 3px;
+          text-decoration: none;
+          user-select: none;
+          -webkit-user-select: none;
+          touch-action: manipulation;
+          white-space: nowrap;
+          cursor: pointer;
+          transition: all 0.3s;
+    }
+            &__button-primary:active,
+            &__button-primary:hover {
+              outline: 0;
+            }
+            &__button-primary span {
+              background-color: rgb(5, 6, 45);
+              padding: 16px 24px;
+              border-radius: 6px;
+              width: 100%;
+              height: 100%;
+              transition: 300ms;
+            }
+            &__button-primary:hover span {
+              background: none;
+            }
+            &__button-primary:active {
+              transform: scale(0.9);
+            }
+    
+
+    &__login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 0 2em 0.4em 2em;
+      background-color: #171717;
+      border-radius: 25px;
+      transition: .4s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+        border: 1px solid black;
+      }
+    }
+            &__login-form-heading {
+              text-align: center;
+              margin: 2em;
+              color: white;
+              font-size: 1.2em;
+            }
+          
+            &__login-form-field {
+              display: flex;
+              align-items: center;
+              gap: 0.5em;
+              border-radius: 25px;
+              padding: 0.6em;
+              background-color: #171717;
+              box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+              color: white;
+            }
+          
+            &__login-form-input-icon {
+              height: 1.3em;
+              width: 1.3em;
+              fill: white;
+            }
+          
+            &__login-form-input {
+              background: none;
+              border: none;
+              outline: none;
+              width: 100%;
+              color: #d3d3d3;
+            }
+          
+            &__login-form-btn-group {
+              display: flex;
+              justify-content: center;
+              gap: 0.5em;
+              margin-top: 2.5em;
+            }
+          
+            &__login-form-btn {
+              padding: 0.5em 1.1em;
+              border-radius: 5px;
+              border: none;
+              outline: none;
+              transition: .4s ease-in-out;
+              background-color: #252525;
+              color: white;
+              cursor: pointer;
+            
+              &:hover {
+                background-color: black;
+              }
+            }
+          
+            &__login-form-btn--wide {
+              padding-left: 2.3em;
+              padding-right: 2.3em;
+            }
+          
+            &__login-form-btn--danger {
+              margin-bottom: 3em;
+            
+              &:hover {
+                background-color: red;
+              }
+            }
+          &__login-form-field--error {
+            border: 1px solid #ff6b6b;
+            box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.25);
+          }
+  &__login-form-container {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, $body-bg, $body-bg);
+  }
+
+          &__login-form-card {
+            width: 100%;
+            max-width: 420px;
+          }
+        
+          &__login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            padding: 2rem;
+            background-color: #171717;
+            border-radius: 25px;
+            transition: 0.4s ease-in-out;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+          
+            &:hover {
+              transform: scale(1.02);
+            }
+          }
+        
+          &__login-form-heading {
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+          }
+        
+          &__login-form-field {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-radius: 25px;
+            padding: 0.75rem 1rem;
+            background-color: #171717;
+            box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            
+            &:focus-within {
+              border: 1px solid #00ddeb;
+              box-shadow: 0 0 8px #00ddeb;
+            }
+          }
+
+          &__login-form-input {
+            background: none;
+            border: none;
+            outline: none;
+            width: 100%;
+            color: #d3d3d3;
+            font-size: 0.95rem;
+            &:focus {
+              color:white;
+            } 
+            
+              &:-webkit-autofill,
+              &:-webkit-autofill:hover,
+              &:-webkit-autofill:focus,
+              &:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 1000px #171717 inset !important;
+                -webkit-text-fill-color: #ffffff !important;
+                transition: background-color 5000s ease-in-out 0s;
+              }
+          }
+          &__login-form-error {
+            background-color: #2a1212; // dark red tone
+            color: #ff6b6b;
+            padding: 0.6rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-top: -0.4rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+          }
+          &__login-form-icon {
+            width: 1.2rem;
+            height: 1.2rem;
+            fill: white;
+          }
+        
+          &__login-form-checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #d3d3d3;
+            font-size: 0.9rem;
+          }
+        
+          &__login-form-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+          }
+          &__login-form-buttons-row {
+            display: flex;
+            gap: 0.75rem;
+          }
+        
+          &__login-form-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background-color: #252525;
+            color: white;
+            transition: 0.3s ease-in-out;
+            text-align: center;
+            cursor: pointer;
+          
+            &:hover {
+              background-color: black;
+            }
+            &--primary { 
+              background-color: #252525;
+              &:hover { background-color: green;}
+            }
+            &--secondary {
+              background-color: #3a3a3a;
+              &:hover {background-color: #000;}
+            }
+
+            &--danger:hover {
+              background-color: red;
+            }
+          }
+        
+/////////////////////////
+/// 
+/////////////////////
+/// Checkbox UI  ////
+/////////////////////
+&__checkbox {
+    --primary: #00ffaa;
+    --primary-dark: #00cc88;
+    --primary-light: #88ffdd;
+    --size: 30px;
+
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    input {
+      display: none;
+    }
+
+    &-frame {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-box {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      border-radius: 4px;
+      border: 2px solid var(--primary-dark);
+      transition: all 0.4s ease;
+    }
+
+    &-check-container {
+      position: absolute;
+      inset: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &-check {
+      width: 80%;
+      height: 80%;
+      fill: none;
+      stroke: var(--primary);
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 40;
+      stroke-dashoffset: 40;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    &-glow {
+      position: absolute;
+      inset: -2px;
+      border-radius: 6px;
+      background: var(--primary);
+      opacity: 0;
+      filter: blur(8px);
+      transform: scale(1.2);
+      transition: all 0.4s ease;
+    }
+
+    &:hover &-box {
+      border-color: var(--primary);
+      transform: scale(1.05);
+    }
+
+    /* CHECKED STATE */
+    input:checked ~ &-frame &-box {
+      border-color: var(--primary);
+      background: rgba(0, 255, 170, 0.1);
+    }
+
+    input:checked ~ &-frame &-check {
+      stroke-dashoffset: 0;
+      transform: scale(1.1);
+    }
+
+    input:checked ~ &-frame &-glow {
+      opacity: 0.2;
+    }
+  }
+    
+/////////////////////////////////////////////////////
+////////////   UIVerse Contact Form      ////////////
+/////////////////////////////////////////////////////
+
+    &__contact-message-container {
+      display: flex;
+      justify-content: center;
+      margin: 3rem 0;
+      width: 100%;
+    }
+
+    &__contact-message-card1 {
+      width: 100%;
+      max-width: 900px;
+      background-image: linear-gradient(163deg, #64ffda 0%, #64ffda 100%);
+      border-radius: 22px;
+      padding: 3px;
+      transition: 0.3s ease;
+    
+      &:hover {
+        box-shadow: 0px 0px 30px 1px rgba(100, 255, 218, 0.3);
+      }
+    }
+
+    &__contact-message-card2 {
+      border-radius: 20px;
+    }
+
+    &__contact-message-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2.5rem 3rem;
+      background-color: #171717;
+      border-radius: 20px;
+      width: 100%;
+    }
+
+    &__contact-message-heading {
+      text-align: center;
+      margin-bottom: 1.5em;
+      color: #64ffda;
+      font-size: 1.3em;
+    }
+
+    &__contact-message-field {
+      border-radius: 25px;
+      padding: 0.75rem 1rem;
+      background-color: #171717;
+      box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+      border: 1px solid transparent;
+      transition: 0.3s ease;
+    
+      &:focus-within {
+        border: 1px solid #00ddeb;
+        box-shadow: 0 0 8px #00ddeb;
+      }
+    }
+
+    &__contact-message-input {
+      background: none;
+      border: none;
+      outline: none;
+      width: 100%;
+      color: #ccd6f6;
+      font-size: 0.95rem;
+    
+      &:focus {
+        color: white;
+      }
+    }
+
+    &__contact-message-button {
+      margin-top: 1.5em;
+      padding: 1em;
+      border-radius: 10px;
+      border: 1px solid #64ffda;
+      background-color: transparent;
+      color: #64ffda;
+      font-weight: bold;
+      transition: 0.3s ease;
+      cursor: pointer;
+    
+      &:hover {
+        background-color: #64ffda;
+        color: #000;
+        box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+      }
+    }
+/* ========================================
+   Contact Intro Layout
+======================================== */
+
+&__contact-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+  padding: 0 1rem;
+  font-size: 1.2rem;
+}
+
+&__contact-title {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+&__contact-description {
+  max-width: 600px;
+  margin: 0 auto 2rem auto;
+  line-height: 1.1;
+  color: darkslategray;
+}
+   
+//////////////////////////////////////////////////
+/// 
+//////////////////////////////////////////
+/// UIverse Contact Email Block  /////////
+//////////////////////////////////////////
+
+    &__contact-email-block {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    &__contact-email-input {
+      width: 20%;
+      min-width: 260px;
+      max-width: 400px;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      background-color: #171717;
+      color: $body-bg;
+      box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+      transition: 0.3s ease;
+      font-size: 0.9rem;
+    
+      &:focus {
+        outline: none;
+        border: 1px solid #00ddeb;
+        box-shadow: 0 0 8px #00ddeb;
+        color: $body-bg;
+      }
+    }
+
+    &__contact-email-button {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background-color: #171717;
+      border: 1px solid transparent;
+      box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      transition: 0.3s ease;
+    
+      &:hover {
+        border: 1px solid #00ddeb;
+        box-shadow: 0 0 8px #00ddeb;
+      }
+    
+      svg {
+        color: #ccd6f6;
+        transition: 0.3s ease;
+      }
+    
+      &:hover svg {
+        color: #64ffda;
+      }
+    }
+
+    &__contact-email-tooltip {
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font: 12px Menlo, monospace;
+      color: #ccd6f6;
+      background: #1f1f1f;
+      padding: 6px 8px;
+      border-radius: 6px;
+      transition: 0.2s ease;
+    }
+
+    &__contact-email-tooltip::before {
+      content: attr(data-text-initial);
+    }
+
+    &__contact-email-button:hover &__contact-email-tooltip {
+      opacity: 1;
+      visibility: visible;
+      top: -38px;
+    }
+
+@media (max-width: 768px) {
+  &__contact-email-input {
+    width: 80%;
+  }
+}
+
+////////////////////////////////////////
+///////   Contact Socials Button  //////
+////////////////////////////////////////
+
+/* ========================================
+   Contact LinkedIn Button
+======================================== */
+
+&__contact-linkedin-button {
+  --black-700: hsla(0 0% 12% / 1);
+  --border_radius: 9999px;
+  --transition: 0.3s ease-in-out;
+
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  padding: 1rem 3rem;
+  background: transparent;
+  border: none;
+  border-radius: var(--border_radius);
+
+  text-decoration: none;
+
+  transform: scale(calc(1 + (var(--active, 0) * 0.05)));
+  transition: transform var(--transition);
+}
+
+/* Background Base */
+&__contact-linkedin-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--black-700);
+  border-radius: var(--border_radius);
+
+  box-shadow:
+    inset 0 0.5px white,
+    inset 0 -1px 2px black,
+    0 4px 10px -4px rgba(0,0,0,0.8),
+    0 0 0 calc(var(--active, 0) * 0.375rem) rgba(10, 102, 194, 0.75);
+
+  transition: all var(--transition);
+  z-index: 0;
+}
+
+/* Glow Layer */
+&__contact-linkedin-button::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border_radius);
+
+  background-color: rgba(10, 102, 194, 0.75);
+  opacity: var(--active, 0);
+  transition: opacity var(--transition);
+  z-index: 1;
+}
+
+&__contact-linkedin-button:hover,
+&__contact-linkedin-button:focus-visible {
+  --active: 1;
+}
+
+&__contact-linkedin-button:active {
+  transform: scale(1);
+}
+
+/* Dots Border */
+&__contact-linkedin-dots {
+  position: absolute;
+  inset: -2px;
+  border-radius: var(--border_radius);
+  overflow: hidden;
+  z-index: -1;
+}
+
+&__contact-linkedin-dots::before {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 2rem;
+  background: white;
+  mask: linear-gradient(transparent 0%, white 120%);
+  animation: rotate 5s linear infinite;
+}
+
+/* Sparkle Icon */
+&__contact-linkedin-sparkle {
+  width: 1.75rem;
+  z-index: 2;
+}
+
+&__contact-linkedin-path {
+  fill: white;
+  stroke: white;
+  transform-origin: center;
+}
+
+&__contact-linkedin-button:hover
+&__contact-linkedin-path {
+  animation: sparklePath 1.5s linear 0.5s infinite;
+}
+
+/* Text */
+&__contact-linkedin-text {
+  position: relative;
+  z-index: 2;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: $body-bg;
+}
+
+/* Animations */
+@keyframes rotate {
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+@keyframes rotate-reverse {
+  to {
+    transform: translateX(-50%) rotate(-360deg);
+  }
+}
+@keyframes sparklePath {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+/* ========================================
+   Social Button Reverse Animation Modifier
+======================================== */
+
+&__social-button-reverse-animation
+.uiverse__contact-linkedin-dots::before {
+  animation: rotate-reverse 5.4s linear infinite;
+}
+
+//
+}
+/////////////////////////////////////////////////////////////////////////////////
 /// 
 /// // Bootstrap
-@import 'bootstrap/scss/bootstrap';
+// @import 'bootstrap/scss/bootstrap';

@@ -63,11 +63,10 @@
     @endsection
         
     @section('mainContent')
-        <br>
-        <h1>Welcome to My Portfolio!</h1>
-        <br><br>
-        <h4> Below is a tour of my website and its features as a user and administrator. </h4>
-        <br>
+        <div class="homepage-header">
+            <h1>Welcome to My Portfolio!</h1>
+            <h4> Below is a tour of my website and its features as a user and administrator. </h4>
+        </div>
         <x-video-card 
             videoName="1ProtectedRoutesWithBreeze"
             caption="<strong>Webpages that use CRUD operations are only available to authenticated users. <br><br>

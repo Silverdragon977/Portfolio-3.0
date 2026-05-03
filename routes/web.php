@@ -41,6 +41,13 @@ Route::get('/mtg-searcher', function () {
 
 Route::get('/mtg-searcher/{id}', [MtgCardController::class, 'show']);
 
+Route::get('/contact', [CommentController::class, 'create'])
+        ->name('contact.create');
+
+Route::post('/contact', [CommentController::class, 'store'])
+        ->middleware('throttle:3,10')
+        ->name('contact.store');
+
 //////////////////////////////////////////////////////////////
 //
 //
@@ -55,11 +62,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/clickerhero/save', [ClickerHeroController::class, 'store']);
     Route::get('/leaderboard', [ClickerHeroController::class, 'leaderboard']);
 
-    Route::get('/contact', [CommentController::class, 'create'])
-        ->name('contact.create');
 
-    Route::post('/contact', [CommentController::class, 'store'])
-        ->name('contact.store');
+
+
 
     Route::view('/dashboard', 'dashboard')
         ->middleware('verified')
