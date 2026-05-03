@@ -44,7 +44,7 @@
 
         <div class="uiverse__contact-social-buttons">
         
-            <a href="https://linkedin.com/"
+            <a href="www.linkedin.com/in/michael-howard-05b101253"
                  target="_blank"
                  class="uiverse__contact-linkedin-button">
             
@@ -54,7 +54,7 @@
                     My LinkedIn Profile
                   </span>
             </a>
-            <a href="https://github.com/"
+            <a href="https://github.com/Silverdragon977"
                  target="_blank"
                  class="uiverse__contact-linkedin-button uiverse__social-button-reverse-animation">
             
