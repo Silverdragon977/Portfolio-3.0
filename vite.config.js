@@ -5,7 +5,13 @@ import laravel from 'laravel-vite-plugin'
 export default defineConfig({
     plugins: [
         laravel({
-            input: ['resources/scss/app.scss', 'resources/js/app.tsx'],
+            input: [
+                    'resources/scss/app.scss',
+                    'resources/js/app.tsx',
+                    // MTG scripts
+                    'resources/js/backendScripts/ShowMTGSearchBlade.js',
+                    'resources/js/backendScripts/ShowMTGFullCard.js',
+                ],
             refresh: true,
         }),
         // react({
