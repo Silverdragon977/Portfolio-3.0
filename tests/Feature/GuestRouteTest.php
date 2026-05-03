@@ -26,14 +26,13 @@ describe('guest accessable routes', function () {
 
         $response->assertOk();
     });
+    it('Contact page reachable', function() {
+        $response = $this->get('/contact');
+        $response->assertOk();
+    });
 });
 
 describe('guest routes that should redirect to login', function () {
-    it('Contact page redirects to login', function () {
-        $response = $this->get('/contact'); 
-
-        $response->assertRedirect('/login');
-    });
     it('Admin page redirects to login', function () {
         $response = $this->get('/admin'); 
 
